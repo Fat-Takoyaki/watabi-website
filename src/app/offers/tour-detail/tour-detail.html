@@ -1,0 +1,240 @@
+<div class="tour-detail-page">
+
+    <!-- Header Banner (riutilizzato) -->
+    <app-header class="-mt-20" [title]="tourSubtitle" [subtitle]="tourTitle" [backgroundImage]="backgroundImage">
+    </app-header>
+
+    <!-- Quote Banner Sticky -->
+    <div class="sticky top-20 z-40 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div>
+                <h3 class="text-lg font-bold text-gray-900">Quotazione su misura</h3>
+                <p class="text-sm text-gray-600">Richiedi subito un preventivo personalizzato.</p>
+            </div>
+            <button (click)="requestQuote()"
+                class="bg-gradient-to-r from-teal-500 to-teal-600 text-white px-8 py-3 rounded-xl font-bold hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+                Preventivo
+            </button>
+        </div>
+    </div>
+
+    <!-- Breadcrumbs 
+    <div class="max-w-7xl mx-auto px-4 py-6">
+        <div class="flex items-center gap-2 text-sm">
+            @for(crumb of breadcrumbs; track crumb.label; let last = $last) {
+            <span>
+                @if(crumb.route) {
+                <a [routerLink]="crumb.route"
+                    class="text-gray-600 hover:text-red-watabi transition-colors cursor-pointer">
+                    {{ crumb.label }}
+                </a>
+                } @else {
+                <span class="text-gray-900 font-semibold">{{ crumb.label }}</span>
+                }
+            </span>
+            @if(!last) {
+            <i class="pi pi-angle-right text-gray-400 text-xs"></i>
+            }
+            }
+        </div>
+    </div>-->
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 pb-16">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+            <!-- Left Column - Tour Content -->
+            <div class="lg:col-span-2 space-y-12 mt-12">
+
+                <!-- Tour Stops -->
+                @for(stop of tourStops; track stop.city) {
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100">
+
+                    <!-- City Header -->
+                    <div class="bg-gradient-to-r from-red-watabi to-red-dark p-6 border-b border-gray-200">
+                        <h2 class="text-3xl font-bold text-white mb-2">
+                            {{ stop.city }}
+                            <span class="text-lg font-normal text-white/90 ml-2">| {{ stop.nights }} Notti</span>
+                        </h2>
+                    </div>
+
+                    <!-- Images Gallery -->
+                    <div class="grid grid-cols-3 gap-2 p-4 bg-gray-50">
+                        @for(image of stop.images; track image) {
+                        <div class="relative aspect-video rounded-lg overflow-hidden group cursor-pointer">
+                            <img [src]="image" [alt]="stop.city"
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div
+                                class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+
+                            </div>
+                        </div>
+                        }
+                    </div>
+
+                    <!-- Description -->
+                    <div class="p-6">
+                        <p class="text-gray-700 leading-relaxed mb-6">
+                            {{ stop.description }}
+                        </p>
+
+                        <!-- Highlights -->
+                        <div class="space-y-2">
+                            @for(highlight of stop.highlights; track highlight) {
+                            <div class="flex items-center gap-3 text-gray-800">
+                                <i class="pi pi-check-circle text-red-watabi"></i>
+                                <span class="font-medium">{{ highlight }}</span>
+                            </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                }
+
+                <!-- Price Packages -->
+                <div class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        @for(pkg of pricePackages; track pkg.name) {
+                        <div class="rounded-2xl overflow-hidden shadow-xl border border-gray-200">
+
+                            <!-- Header -->
+                            <div class="p-6 text-center text-white" [ngClass]="{
+                       '!bg-gradient-to-br !from-teal-500 !to-teal-600': pkg.color === 'teal',
+                       'bg-gradient-to-br from-blue-500 to-blue-600': pkg.color === 'gold'
+                     }">
+                                <div class="flex justify-center gap-1 mb-3">
+                                    @for(star of getStarsArray(pkg.stars); track $index) {
+                                    <i class="pi pi-star-fill text-white text-xl"></i>
+                                    }
+                                </div>
+                                <h3 class="text-2xl font-bold mb-2">{{ pkg.name }}</h3>
+                                <p class="text-white/90 text-sm mb-4">a partire da</p>
+                                <div class="text-5xl font-bold">€ {{ pkg.price }}</div>
+                            </div>
+
+                            <!-- Features -->
+                            <div class="p-6 bg-white space-y-3">
+                                @for(feature of pkg.features; track feature) {
+                                <div class="flex items-start gap-3">
+                                    <i class="pi pi-check text-teal-600 mt-1"></i>
+                                    <span class="text-gray-700 text-sm">{{ feature }}</span>
+                                </div>
+                                }
+                            </div>
+                        </div>
+                        }
+                    </div>
+                </div>
+
+                <!-- Info Sections -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                    <!-- Scheda Informativa -->
+                    <div>
+                        <h2 class="text-3xl font-bold text-gray-900 mb-6">Scheda <span
+                                class="text-red-watabi">Informativa</span></h2>
+                        <div class="space-y-4">
+                            @for(section of infoSections; track section.title) {
+                            <details class="group bg-white rounded-xl border border-gray-200 overflow-hidden">
+                                <summary
+                                    class="px-6 py-4 cursor-pointer hover:bg-gray-50 transition-colors flex justify-between items-center">
+                                    <span class="font-semibold text-gray-900">{{ section.title }}</span>
+                                    <i
+                                        class="pi pi-chevron-down text-teal-600 group-open:rotate-180 transition-transform"></i>
+                                </summary>
+                                <div class="px-6 pb-4 text-gray-700 text-sm leading-relaxed">
+                                    {{ section.content }}
+                                </div>
+                            </details>
+                            }
+                        </div>
+                    </div>
+
+                    <!-- Non Include -->
+                    <div>
+                        <h2 class="text-3xl font-bold text-gray-900 mb-6">Cosa <span class="text-red-watabi">Non
+                                Include</span></h2>
+                        <div class="bg-white rounded-xl border border-gray-200 p-6">
+                            <div class="space-y-3">
+                                @for(item of notIncluded; track item) {
+                                <div class="flex items-start gap-3">
+                                    <i class="pi pi-times text-red-500 mt-1"></i>
+                                    <span class="text-gray-700 text-sm">{{ item }}</span>
+                                </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Right Column - Sidebar -->
+            <div class="lg:col-span-1 mt-12">
+                <div class="sticky top-48 space-y-6">
+
+                    @for(info of sidebarInfo; track info.title) {
+                    <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-6">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div
+                                class="w-12 h-12 rounded-full bg-gradient-to-br from-red-watabi to-red-dark flex items-center justify-center">
+                                <i [class]="'pi ' + info.icon + ' text-white text-xl'"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-gray-900">{{ info.title }}</h3>
+                        </div>
+
+                        @if(info.items) {
+                        <div class="space-y-3">
+                            @for(item of info.items; track item.label) {
+                            <div class="flex items-start gap-2">
+                                <i class="pi pi-check text-red-watabi mt-1 text-sm"></i>
+                                <span class="text-gray-700 text-sm">
+                                    {{ item.label }} <span class="font-semibold text-red-watabi">{{ item.highlight
+                                        }}</span>
+                                </span>
+                            </div>
+                            }
+                        </div>
+                        }
+
+                        @if(info.description) {
+                        <p class="text-gray-700 text-sm leading-relaxed">{{ info.description }}</p>
+                        }
+
+                        @if(info.trustpilot) {
+                        <button (click)="navigateTo(info.trustpilot.link)"
+                            class="mt-4 w-full bg-gradient-to-r from-teal-500 to-teal-600 text-white py-3 rounded-lg font-semibold hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2">
+                            <i class="pi pi-star-fill text-blue-300"></i>
+                            <span>Leggi le {{ info.trustpilot.reviews }} recensioni</span>
+                        </button>
+                        }
+
+                        @if(info.contacts) {
+                        <div class="space-y-3">
+                            @for(contact of info.contacts; track contact.type) {
+                            <div class="flex items-center gap-3">
+                                <i class="pi pi-phone text-red-watabi"></i>
+                                <div>
+                                    <div class="text-xs text-gray-500">{{ contact.type }}</div>
+                                    @if(contact.link) {
+                                    <a [href]="contact.link"
+                                        class="text-sm font-semibold text-red-watabi hover:underline">{{ contact.value
+                                        }}</a>
+                                    } @else {
+                                    <div class="text-sm font-semibold text-gray-900">{{ contact.value }}</div>
+                                    }
+                                </div>
+                            </div>
+                            }
+                        </div>
+                        }
+                    </div>
+                    }
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

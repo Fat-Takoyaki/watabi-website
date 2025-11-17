@@ -1,0 +1,150 @@
+<footer class="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white overflow-hidden">
+
+    <!-- Decorative Elements -->
+    <div class="absolute top-0 right-0 w-96 h-96 bg-red-watabi/10 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 left-0 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- Footer Content -->
+        <div class="pt-16 pb-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+
+                <!-- Brand & Description -->
+                <div class="lg:col-span-1">
+                    <a routerLink="/" class="inline-block group cursor-pointer mb-6">
+                        <img src="/assets/img/logo_w.png" alt="WATABI Logo"
+                            class="h-16 w-auto object-contain transition-transform group-hover:scale-105">
+                    </a>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        Agenzia Viaggi specializzata in Giappone. Creiamo esperienze uniche e indimenticabili nel Paese
+                        del Sol Levante.
+                    </p>
+
+                    <!-- Contact Info -->
+                    <div class="space-y-3">
+                        <a [href]="'mailto:' + contactInfo.email"
+                            class="flex items-center gap-3 text-gray-400 transition-colors group">
+                            <i class="pi pi-envelope text-red-watabi group-hover:scale-110 transition-transform"></i>
+                            <span class="text-sm">{{ contactInfo.email }}</span>
+                        </a>
+                        <a [href]="'tel:' + contactInfo.phone"
+                            class="flex items-center gap-3 text-gray-400 transition-colors group">
+                            <i class="pi pi-phone text-red-watabi group-hover:scale-110 transition-transform"></i>
+                            <span class="text-sm">{{ contactInfo.phone }}</span>
+                        </a>
+                        <div class="flex items-start gap-3 text-gray-400">
+                            <i class="pi pi-map-marker text-red-watabi mt-1"></i>
+                            <span class="text-sm">{{ contactInfo.address }}</span>
+                        </div>
+                    </div>
+
+                    <!-- Social Links -->
+                    <div class="flex items-center gap-3 mt-6">
+                        @for(social of socialLinks; track social.name) {
+                        <button (click)="openSocial(social.url)" [title]="social.name"
+                            class="w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white transition-all duration-300 hover:bg-white/20 hover:-translate-y-1"
+                            [ngClass]="social.color">
+                            <i class="pi text-lg" [ngClass]="social.icon"></i>
+                        </button>
+                        }
+                    </div>
+                </div>
+
+                <!-- Legal Links -->
+                <div>
+                    <h3 class="text-lg font-bold mb-6 text-white">Informazioni Legali</h3>
+                    <ul class="space-y-3">
+                        @for(link of legalLinks; track link.label) {
+                        <li>
+                            <a [routerLink]="link.route"
+                                class="text-gray-400 transition-colors text-sm flex items-center gap-2 group cursor-pointer">
+                                <i
+                                    class="pi pi-angle-right text-xs opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                {{ link.label }}
+                            </a>
+                        </li>
+                        }
+                    </ul>
+
+                    <h3 class="text-lg font-bold mb-6 mt-8 text-white">Assicurazioni</h3>
+                    <ul class="space-y-3">
+                        @for(link of insuranceLinks; track link.label) {
+                        <li>
+                            <a [routerLink]="link.route"
+                                class="text-gray-400 transition-colors text-sm flex items-center gap-2 group cursor-pointer">
+                                <i
+                                    class="pi pi-angle-right text-xs opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                {{ link.label }}
+                            </a>
+                        </li>
+                        }
+                    </ul>
+                </div>
+
+                <!-- Special Tours -->
+                <div class="lg:col-span-2">
+                    <h3 class="text-lg font-bold mb-6 text-white">Tour Speciali</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        @for(link of specialLinks; track link.label) {
+                        <a [routerLink]="link.route"
+                            class="group relative bg-white/5 backdrop-blur-sm rounded-xl p-4 hover:bg-white/10 transition-all duration-300 cursor-pointer border border-white/10 hover:border-red-watabi/50">
+                            <div class="flex items-start gap-3">
+                                <i
+                                    class="pi pi-star-fill text-red-watabi text-lg mt-1 group-hover:scale-110 transition-transform"></i>
+                                <div>
+                                    <h4
+                                        class="text-white font-semibold text-sm mb-1 group transition-colors">
+                                        {{ link.label }}
+                                    </h4>
+                                    <span class="text-gray-500 text-xs">Scopri di più →</span>
+                                </div>
+                            </div>
+                        </a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trustpilot Banner -->
+        <div class="py-8 border-t border-white/10">
+            <button (click)="openTrustpilot()"
+                class="w-full md:w-auto mx-auto flex items-center justify-center gap-4 bg-gradient-to-r from-green-600 to-green-700 rounded-xl px-6 py-4 hover:from-green-500 hover:to-green-600 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl group cursor-pointer">
+                <div class="flex items-center gap-2">
+                    <i class="pi pi-star-fill text-yellow-300 text-xl"></i>
+                    <i class="pi pi-star-fill text-yellow-300 text-xl"></i>
+                    <i class="pi pi-star-fill text-yellow-300 text-xl"></i>
+                    <i class="pi pi-star-fill text-yellow-300 text-xl"></i>
+                    <i class="pi pi-star-fill text-yellow-300 text-xl"></i>
+                </div>
+                <div class="text-left">
+                    <div class="text-white font-bold text-sm">Eccellente su Trustpilot</div>
+                    <div class="text-green-100 text-xs">Leggi le nostre {{ trustpilotReviews }} recensioni</div>
+                </div>
+                <i class="pi pi-external-link text-white/60 group-hover:text-white transition-colors"></i>
+            </button>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div class="py-8 border-t border-white/10">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
+
+                <!-- Copyright -->
+                <div class="text-gray-400 text-center md:text-left">
+                    {{ currentYear }} © <span class="font-semibold text-red-watabi">Watabi</span> - Tutti I Diritti
+                    Riservati
+                    <span class="mx-2">|</span>
+                    <span class="text-gray-500">P.IVA 05290800753</span>
+                </div>
+
+                <div class="flex items-center gap-2 text-gray-400">
+                    <span>Made with</span>
+                    <i class="pi pi-heart-fill text-red-watabi animate-pulse"></i>
+                    <span>in Italy</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</footer>

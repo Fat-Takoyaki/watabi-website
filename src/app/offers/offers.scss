@@ -1,0 +1,46 @@
+:host {
+  display: block;
+}
+
+// Animazione per le card al hover
+.group:hover {
+  .group-hover\:scale-110 {
+    transform: scale(1.1);
+  }
+}
+
+// Effetto shimmer per i ribbon premium
+@keyframes shimmer {
+  0% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+}
+
+.bg-gradient-to-r {
+  &.from-yellow-400 {
+    background-size: 200% 100%;
+    animation: shimmer 3s infinite;
+  }
+}
+
+// Stile per il prezzo barrato
+.line-through {
+  text-decoration-thickness: 2px;
+}
+
+// Effetti hover sui bottoni
+button {
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .grid {
+    gap: 1.5rem;
+  }
+}

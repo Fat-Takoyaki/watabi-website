@@ -1,0 +1,111 @@
+:host {
+  display: block;
+}
+
+// Animazione idle per le nuvole
+@keyframes cloud-idle {
+  0%,
+  100% {
+    transform: translateY(0) translateX(0);
+  }
+  25% {
+    transform: translateY(-10px) translateX(5px);
+  }
+  50% {
+    transform: translateY(-5px) translateX(-5px);
+  }
+  75% {
+    transform: translateY(-15px) translateX(3px);
+  }
+}
+
+// Applica animazione alle nuvole
+.cloud-animated {
+  animation: cloud-idle 20s ease-in-out infinite;
+}
+
+// Animation delays
+.animation-delay-200 {
+  animation-delay: 200ms;
+}
+
+.animation-delay-1200 {
+  animation-delay: 1200ms;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2000ms;
+}
+
+// Gradiente bianco verso il basso (per header su immagine)
+.gradient-fade-white {
+  background: linear-gradient(
+    to top,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 0.8) 40%,
+    rgba(255, 255, 255, 0.5) 60%,
+    rgba(255, 255, 255, 0.2) 80%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+.text-header {
+  color: #fff;
+  text-shadow: 1px 1px 6px #00000080;
+}
+
+// Utility classes per z-index specifici
+.z-20 {
+  z-index: 20;
+}
+
+.z-30 {
+  z-index: 30;
+}
+
+.z-40 {
+  z-index: 40;
+}
+
+.z-50 {
+  z-index: 50;
+}
+
+.z-60 {
+  z-index: 60;
+}
+
+.z-99 {
+  z-index: 99;
+}
+
+// Responsive adjustments
+@media (max-width: 1024px) {
+  .title-gradient-top {
+    font-size: 2rem;
+  }
+
+  .title-gradient-bottom {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .title-gradient-top {
+    font-size: 1.5rem;
+  }
+
+  .title-gradient-bottom {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .title-gradient-top {
+    font-size: 1.25rem;
+  }
+
+  .title-gradient-bottom {
+    font-size: 2rem;
+  }
+}

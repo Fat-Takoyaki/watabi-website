@@ -1,0 +1,117 @@
+<nav [ngClass]="{
+    'bg-white shadow-md': isScrolled,
+    'bg-black/10 backdrop-blur-sm': !isScrolled
+  }" class="fixed top-0 left-0 right-0 z-99 transition-all duration-300">
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+
+            <!-- Logo -->
+            <div class="flex-shrink-0">
+                <a routerLink="/" class="flex items-center group cursor-pointer">
+                    @if (!isScrolled){
+                    <img src="assets/img/logo_w.png" alt="WATABI Logo"
+                        class="h-8 w-auto object-contain transition-transform group-hover:scale-105">
+                    } @else {
+
+                    <img src="assets/img/logo_bw.png" alt="WATABI Logo"
+                        class="h-8 w-auto object-contain transition-transform group-hover:scale-105">
+                    }
+                </a>
+            </div>
+            <!-- Desktop Menu -->
+            <div class="hidden lg:flex lg:items-center lg:gap-1 ">
+                @for(item of menuItems; track item.label) {
+                @if(hasChildren(item)) {
+                <div class="relative">
+                    <button (click)="toggleDropdown(item.label, $event)"
+                        class="px-4 py-2 text-gray-700 hover:text-rose-600 text-sm transition-colors font-semibold flex items-center gap-1 cursor-pointer  bg-black/10 rounded-lg"
+                        [ngClass]="{ 'text-white': !isScrolled, ' bg-white/20': !isScrolled, 'bg-black/10': isScrolled }">
+                        {{ item.label }}
+                        <i class="pi pi-chevron-down text-xs transition-transform duration-200"
+                            [ngClass]="{ 'rotate-180': openDropdown === item.label }">
+                        </i>
+                    </button>
+
+                    @if(openDropdown === item.label) {
+                    <div (click)="$event.stopPropagation()"
+                        class="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-100 py-2 animate-[fadeIn_0.2s_ease-out_forwards]">
+                        @for(child of item.children; track child.label) {
+                        <a [routerLink]="child.route" (click)="closeAllDropdowns()"
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-rose-50 hover:text-rose-600 transition-colors cursor-pointer">
+                            {{ child.label }}
+                        </a>
+                        }
+                    </div>
+                    }
+                </div>
+                } @else {
+                <a [routerLink]="item.route" routerLinkActive="text-rose-600 font-bold"
+                    [routerLinkActiveOptions]="{ exact: item.route === '/' }"
+                    [ngClass]="{ 'text-white': !isScrolled, ' bg-white/20': !isScrolled, 'bg-black/10': isScrolled }"
+                    class="px-4 py-2 text-gray-700 hover:text-rose-600 font-semibold text-sm transition-colors cursor-pointer rounded-lg">
+                    {{ item.label }}
+                </a>
+                }
+                }
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button (click)="toggleMobileMenu()"
+                class="lg:hidden p-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors">
+                @if(!isMobileMenuOpen) {
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                    </path>
+                </svg>
+                } @else {
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
+                </svg>
+                }
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    @if(isMobileMenuOpen) {
+    <div class="lg:hidden bg-white border-t border-gray-100 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 py-4 space-y-1">
+            @for(item of menuItems; track item.label) {
+            @if(hasChildren(item)) {
+            <div class="border-b border-gray-100 last:border-b-0">
+                <button (click)="toggleDropdown(item.label)"
+                    class="w-full flex justify-between items-center px-4 py-3 text-gray-700 hover:bg-rose-50 hover:text-rose-600 font-medium text-sm transition-colors rounded-lg">
+                    {{ item.label }}
+                    <i class="pi pi-chevron-down text-xs transition-transform duration-200"
+                        [ngClass]="{ 'rotate-180': openDropdown === item.label }">
+                    </i>
+                </button>
+
+                @if(openDropdown === item.label) {
+                <div class="pl-4 pb-2 space-y-1">
+                    @for(child of item.children; track child.label) {
+                    <a [routerLink]="child.route" (click)="closeMobileMenu()"
+                        class="block px-4 py-2 text-sm text-gray-600 hover:bg-rose-50 hover:text-rose-600 rounded-lg transition-colors cursor-pointer">
+                        {{ child.label }}
+                    </a>
+                    }
+                </div>
+                }
+            </div>
+            } @else {
+            <a [routerLink]="item.route" (click)="closeMobileMenu()"
+                routerLinkActive="bg-rose-50 text-rose-600 font-semibold"
+                [routerLinkActiveOptions]="{ exact: item.route === '/' }"
+                class="block px-4 py-3 text-gray-700 hover:bg-rose-50 hover:text-rose-600 font-medium text-sm transition-colors rounded-lg cursor-pointer">
+                {{ item.label }}
+            </a>
+            }
+            }
+        </div>
+    </div>
+    }
+</nav>
+
+<div class="h-20"></div>

@@ -1,0 +1,89 @@
+:host {
+  display: block;
+}
+
+// Animazione per le stelle di Trustpilot
+@keyframes twinkle {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+}
+
+.pi-star-fill {
+  animation: twinkle 2s ease-in-out infinite;
+
+  &:nth-child(1) {
+    animation-delay: 0s;
+  }
+  &:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  &:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+  &:nth-child(4) {
+    animation-delay: 0.6s;
+  }
+  &:nth-child(5) {
+    animation-delay: 0.8s;
+  }
+}
+
+// Animazione cuore pulsante
+@keyframes heartBeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  10%,
+  30% {
+    transform: scale(1.1);
+  }
+  20%,
+  40% {
+    transform: scale(1.05);
+  }
+}
+
+.pi-heart-fill {
+  animation: heartBeat 1.5s ease-in-out infinite;
+}
+
+// Effetto hover sui social
+.hover\:-translate-y-1:hover {
+  transform: translateY(-4px);
+}
+
+// Decorative blur animations
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.1;
+  }
+  50% {
+    transform: translateY(-30px) scale(1.1);
+    opacity: 0.15;
+  }
+}
+
+.absolute.blur-3xl {
+  animation: float 8s ease-in-out infinite;
+
+  &:nth-child(2) {
+    animation-delay: 4s;
+  }
+}
+
+// Responsive fixes
+@media (max-width: 768px) {
+  .grid.grid-cols-1.md\:grid-cols-2 {
+    gap: 2rem;
+  }
+}
