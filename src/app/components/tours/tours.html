@@ -1,5 +1,6 @@
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <app-travel-type></app-travel-type>
+
     <!-- Header Section -->
     <div class="text-center mb-12">
         <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
@@ -12,14 +13,27 @@
 
     <!-- Tours Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        @for(offer of offers; track offer.id) {
+        @for(offer of tours; track offer.id) {
         <div class="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden cursor-pointer"
             (click)="viewDetails(offer.id)">
 
-            <!-- Tag -->
+            <!-- Ribbon -->
             @if(offer.ribbon) {
             <div [ngClass]="getRibbonClasses(offer.ribbon.color)">
                 {{ offer.ribbon.text }}
+            </div>
+            }
+
+            <!-- Badge Estensioni NUOVO -->
+            @if(offer.availableExtensions && offer.availableExtensions.length > 0) {
+            <div class="absolute top-4 left-4 bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-lg z-10">
+                <div class="flex items-center gap-2">
+                    <i class="pi pi-plus-circle text-red-watabi text-sm"></i>
+                    <span class="text-xs font-bold text-gray-700">
+                        {{ offer.availableExtensions.length }} {{ offer.availableExtensions.length === 1 ? 'estensione'
+                        : 'estensioni' }}
+                    </span>
+                </div>
             </div>
             }
 
@@ -76,7 +90,6 @@
                 <div class="flex justify-between items-end mb-4">
                     <div>
                         @if(offer.priceDiscounted && offer.priceOriginal) {
-                        <!-- Discounted Price -->
                         <div class="flex items-baseline gap-2">
                             <span class="text-xs text-gray-500">Da</span>
                             <span class="text-sm text-gray-400 line-through">€ {{ offer.priceOriginal }}</span>
@@ -87,14 +100,12 @@
                         </div>
                         <span class="text-xs text-red-600 font-semibold">Promo in numero limitato</span>
                         } @else if(offer.priceFrom) {
-                        <!-- Regular Price -->
                         <div class="flex items-baseline gap-2">
                             <span class="text-xs text-gray-500">Da</span>
                             <span class="text-2xl font-bold text-red-watabi">€ {{ offer.priceFrom }}</span>
                         </div>
                         <span class="text-sm text-gray-600">a persona</span>
                         } @else {
-                        <!-- Coming Soon -->
                         <div class="text-gray-600">
                             <span class="text-sm font-semibold">Disponibile presto</span>
                         </div>
@@ -120,15 +131,12 @@
 
     <!-- CTA Section -->
     <div class="mt-16 relative rounded-2xl overflow-hidden">
-        <!-- Background image -->
         <div class="absolute inset-0 z-0">
             <img src="https://images.unsplash.com/photo-1490806843957-31f4c9a91c65" alt="Japan background"
                 class="w-full h-full object-cover object-[50%_80%]" />
-            <!-- Overlay red gradient -->
             <div class="absolute inset-0 bg-gradient-to-r from-red-watabi/75 to-red-dark/75"></div>
         </div>
 
-        <!-- Content -->
         <div class="relative z-10 p-8 md:p-12 text-center text-white">
             <h3 class="text-3xl font-bold mb-4">Non trovi quello che cerchi?</h3>
             <p class="text-lg mb-6 opacity-90">

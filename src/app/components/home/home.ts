@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { Header } from "../header/header";
-import { Offers } from "../offers/offers";
+import { Tours } from "../tours/tours";
 
 @Component({
   selector: 'app-home',
-  imports: [Header, Offers],
+  imports: [Header, Tours],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })

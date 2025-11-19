@@ -1,0 +1,121 @@
+<div class="bg-gradient-to-br from-gray-50 to-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- Header -->
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                Potrebbero Interessarti Anche
+            </h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">
+                Scopri altri tour selezionati per te in base alle tue preferenze
+            </p>
+        </div>
+
+        <!-- Tours Grid -->
+        @if(relatedTours.length > 0) {
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            @for(tour of relatedTours; track tour.id) {
+            <div (click)="viewTourDetail(tour.id)"
+                class="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden cursor-pointer transform hover:-translate-y-2">
+
+                <!-- Ribbon -->
+                @if(tour.ribbon) {
+                <div [ngClass]="getRibbonClasses(tour.ribbon.color)">
+                    {{ tour.ribbon.text }}
+                </div>
+                }
+
+                <!-- Image -->
+                <div class="relative h-64 overflow-hidden">
+                    <img [src]="tour.image" [alt]="tour.title"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+
+                    <!-- Title overlay -->
+                    <div class="absolute bottom-4 left-4 right-4">
+                        <h3 class="text-2xl font-bold text-white mb-1">
+                            {{ tour.title }}
+                        </h3>
+                        <span
+                            class="inline-block px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-white text-xs font-semibold">
+                            {{ tour.category === 'group' ? 'Tour di Gruppo' :
+                            tour.category === 'individual' ? 'Su Misura' :
+                            tour.category === 'honeymoon' ? 'Viaggio di Nozze' : 'Tour Speciale' }}
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Content -->
+                <div class="p-6">
+                    <!-- Subtitle -->
+                    <p class="text-gray-600 font-medium mb-4">{{ tour.subtitle }}</p>
+
+                    <!-- Features -->
+                    <div class="space-y-2 mb-4">
+                        @for(feature of tour.features.slice(0, 2); track feature) {
+                        <div class="flex items-center gap-2 text-sm text-gray-700">
+                            <i class="pi pi-check-circle text-pink-watabi"></i>
+                            <span>{{ feature }}</span>
+                        </div>
+                        }
+                    </div>
+
+                    <!-- Duration -->
+                    <div class="flex items-center gap-2 text-sm text-gray-600 mb-4">
+                        <i class="pi pi-calendar text-pink-watabi"></i>
+                        <span>{{ tour.duration }}</span>
+                    </div>
+
+                    <!-- Divider -->
+                    <div class="border-t border-gray-200 my-4"></div>
+
+                    <!-- Price & CTA -->
+                    <div class="flex justify-between items-center">
+                        <div>
+                            @if(tour.priceOriginal) {
+                            <div class="flex items-baseline gap-2">
+                                <span class="text-xs text-gray-500">Da</span>
+                                <span class="text-sm text-gray-400 line-through">€ {{ tour.priceOriginal }}</span>
+                            </div>
+                            <div class="flex items-baseline gap-1">
+                                <span class="text-2xl font-bold text-pink-watabi">€ {{ tour.price }}</span>
+                                <span class="text-sm text-gray-600">pp</span>
+                            </div>
+                            } @else {
+                            <div class="flex items-baseline gap-2">
+                                <span class="text-xs text-gray-500">Da</span>
+                                <span class="text-2xl font-bold text-pink-watabi">€ {{ tour.price }}</span>
+                            </div>
+                            <span class="text-sm text-gray-600">a persona</span>
+                            }
+                        </div>
+
+                        <button (click)="viewTourDetail(tour.id); $event.stopPropagation()"
+                            class="px-4 py-2 bg-gradient-to-r from-pink-watabi to-pink-dark text-white font-semibold rounded-lg hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 flex items-center gap-2">
+                            <span class="text-sm">Scopri</span>
+                            <i class="pi pi-arrow-right text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+        } @else {
+        <!-- No Results -->
+        <div class="text-center py-12">
+            <i class="pi pi-info-circle text-gray-400 text-5xl mb-4"></i>
+            <p class="text-gray-600">Nessun tour correlato disponibile al momento</p>
+        </div>
+        }
+
+        <!-- View All CTA -->
+        <div class="text-center mt-12">
+            <button
+                class="inline-flex items-center gap-2 px-8 py-4 bg-white border-2 border-pink-watabi text-pink-watabi font-bold rounded-xl hover:bg-pink-watabi hover:text-white transition-all duration-300 transform hover:-translate-y-1 shadow-lg">
+                <span>Vedi Tutti i Tour</span>
+                <i class="pi pi-arrow-right"></i>
+            </button>
+        </div>
+
+    </div>
+</div>

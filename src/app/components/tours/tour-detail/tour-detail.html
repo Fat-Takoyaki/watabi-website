@@ -203,8 +203,8 @@
 
                         @if(info.trustpilot) {
                         <button (click)="navigateTo(info.trustpilot.link)"
-                            class="mt-4 w-full bg-gradient-to-r from-teal-500 to-teal-600 text-white py-3 rounded-lg font-semibold hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2">
-                            <i class="pi pi-star-fill text-blue-300"></i>
+                            class="mt-4 w-full bg-gradient-to-r from-jade to-jade-dark text-white py-3 rounded-lg font-semibold hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2">
+                            <i class="pi pi-star-fill text-gold-light"></i>
                             <span>Leggi le {{ info.trustpilot.reviews }} recensioni</span>
                         </button>
                         }
@@ -231,10 +231,101 @@
                     </div>
                     }
 
+                    <!-- 🆕 CARD ESTENSIONI DISPONIBILI -->
+                    @if(availableExtensions && availableExtensions.length > 0) {
+                    <div
+                        class="bg-gradient-to-br from-sakura-light to-white rounded-xl shadow-lg border-2 border-sakura p-6">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div
+                                class="w-12 h-12 rounded-full bg-gradient-to-br from-red-watabi to-red-dark flex items-center justify-center">
+                                <i class="pi pi-globe text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-900">Estensioni Disponibili</h3>
+                                <p class="text-xs text-gray-600">Arricchisci il tuo viaggio</p>
+                            </div>
+                        </div>
+
+                        <p class="text-sm text-gray-700 mb-4 leading-relaxed">
+                            Aggiungi un'estensione mare o città al tuo tour del Giappone per un'esperienza ancora più
+                            completa.
+                        </p>
+
+                        <!-- Lista Estensioni Compatte -->
+                        <div class="space-y-3 mb-4">
+                            @for(ext of availableExtensions.slice(0, 3); track ext.id) {
+                            <div (click)="selectExtensionFromSidebar(ext)"
+                                [class.ring-2]="selectedExtension?.id === ext.id"
+                                [class.ring-red-watabi]="selectedExtension?.id === ext.id"
+                                class="group relative border-2 border-white rounded-xl overflow-hidden hover:border-red-watabi hover:shadow-lg transition-all cursor-pointer">
+
+                                <div class="flex gap-3 p-3">
+                                    <!-- Mini Image -->
+                                    <div class="w-20 h-20 flex-shrink-0 rounded-lg overflow-hidden">
+                                        <img [src]="ext.image" [alt]="ext.name"
+                                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                                    </div>
+
+                                    <!-- Info -->
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex items-start justify-between mb-1">
+                                            <h4 class="font-bold text-sm text-gray-900 truncate">{{ ext.name }}</h4>
+                                            @if(selectedExtension?.id === ext.id) {
+                                            <i class="pi pi-check-circle text-red-watabi flex-shrink-0 ml-2"></i>
+                                            }
+                                        </div>
+                                        <p class="text-xs text-gray-600 mb-2 line-clamp-2">{{ ext.description }}</p>
+                                        <div class="flex items-center justify-between">
+                                            <span class="text-red-watabi font-bold text-sm">+€{{ ext.priceFrom }}</span>
+                                            <span class="text-xs text-gray-500">{{ ext.nights }} notti</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Selected Badge -->
+                                @if(selectedExtension?.id === ext.id) {
+                                <div
+                                    class="absolute top-2 right-2 bg-red-watabi text-white text-xs px-2 py-0.5 rounded-full font-bold">
+                                    Selezionata
+                                </div>
+                                }
+                            </div>
+                            }
+                        </div>
+
+                        <!-- Mostra tutte Button -->
+                        @if(availableExtensions.length > 3) {
+                        <button (click)="showExtensionModal = true"
+                            class="w-full py-2 text-sm text-red-watabi font-semibold border-2 border-red-watabi rounded-lg hover:bg-red-watabi hover:text-white transition-all">
+                            Vedi tutte le {{ availableExtensions.length }} estensioni
+                        </button>
+                        }
+
+                        <!-- Info Badge -->
+                        <div class="mt-4 bg-white/80 backdrop-blur-sm rounded-lg p-3 border border-sakura">
+                            <div class="flex items-start gap-2">
+                                <i class="pi pi-info-circle text-red-watabi mt-0.5"></i>
+                                <p class="text-xs text-gray-700">
+                                    Le estensioni sono facoltative e possono essere aggiunte durante la richiesta del
+                                    preventivo.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    }
+
                 </div>
             </div>
 
+            <!-- Modal Extension Selector -->
+            <app-extension-selector [tourId]="tourId" [availableExtensionIds]="availableExtensionIds"
+                [isOpen]="showExtensionModal" (close)="showExtensionModal = false"
+                (extensionSelected)="onExtensionSelected($event)">
+            </app-extension-selector>
+
         </div>
     </div>
-
+    <app-related-tours [currentTourId]="'giappone-classico'" [currentCategory]="'individual'"
+        [currentCities]="['Tokyo', 'Kyoto', 'Hiroshima', 'Kanazawa']"
+        [currentTags]="['su misura', 'flessibile', 'classico']" [maxResults]="3"></app-related-tours>
 </div>

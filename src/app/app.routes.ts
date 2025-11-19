@@ -11,7 +11,7 @@ export const routes: Routes = [
   // Home page (app.component per ora)
   {
     path: 'home',
-    loadComponent: () => import('./home/home').then((m) => m.Home),
+    loadComponent: () => import('./components/home/home').then((m) => m.Home),
     data: { title: 'Home - WATABI' },
   },
 
@@ -61,7 +61,7 @@ export const routes: Routes = [
   {
     path: 'tour/:slug',
     loadComponent: () =>
-      import('./offers/tour-detail/tour-detail').then(
+      import('./components/tours/tour-detail/tour-detail').then(
         (m) => m.TourDetail
       ),
     data: { title: 'Dettaglio Tour - WATABI' },
@@ -71,7 +71,7 @@ export const routes: Routes = [
   {
     path: 'offer/:id',
     loadComponent: () =>
-      import('./offers/tour-detail/tour-detail').then(
+      import('./components/tours/tour-detail/tour-detail').then(
         (m) => m.TourDetail
       ),
     data: { title: 'Offerta - WATABI' },

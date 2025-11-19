@@ -1,0 +1,176 @@
+@if(isOpen) {
+<div class="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-[100] p-4 animate-fadeIn"
+    (click)="closeModal()">
+
+    <div class="bg-white rounded-2xl max-w-5xl w-full max-h-[90vh] overflow-hidden shadow-2xl animate-slideUp"
+        (click)="$event.stopPropagation()">
+
+        <!-- Header -->
+        <div class="bg-gradient-to-r from-red-watabi to-red-dark p-6 text-white">
+            <div class="flex justify-between items-start">
+                <div>
+                    <h2 class="text-3xl font-bold mb-2">Arricchisci il tuo Viaggio</h2>
+                    <p class="text-white/90">Aggiungi un'estensione mare o città al tuo tour</p>
+                </div>
+                <button (click)="closeModal()" class="text-white hover:bg-white/20 p-2 rounded-lg transition">
+                    <i class="pi pi-times text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="flex border-b border-gray-200 px-6 bg-gray-50">
+            <button (click)="setActiveTab('mare')" [class.border-red-watabi]="activeTab === 'mare'"
+                [class.text-red-watabi]="activeTab === 'mare'"
+                class="px-6 py-4 font-semibold border-b-2 transition-colors hover:text-red-watabi flex items-center gap-2">
+                <i class="pi pi-sun"></i>
+                <span>Estensioni Mare</span>
+                <span class="bg-red-watabi text-white text-xs px-2 py-0.5 rounded-full">{{ mareExtensions.length
+                    }}</span>
+            </button>
+            <button (click)="setActiveTab('citta')" [class.border-red-watabi]="activeTab === 'citta'"
+                [class.text-red-watabi]="activeTab === 'citta'"
+                class="px-6 py-4 font-semibold border-b-2 transition-colors hover:text-red-watabi flex items-center gap-2">
+                <i class="pi pi-building"></i>
+                <span>Estensioni Città</span>
+                <span class="bg-red-watabi text-white text-xs px-2 py-0.5 rounded-full">{{ cittaExtensions.length
+                    }}</span>
+            </button>
+        </div>
+
+        <!-- Content -->
+        <div class="p-6 overflow-y-auto max-h-[60vh]">
+
+            <!-- Mare Tab -->
+            @if(activeTab === 'mare') {
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                @for(ext of mareExtensions; track ext.id) {
+                <div (click)="selectExtension(ext)" [class.ring-4]="selectedExtension?.id === ext.id"
+                    [class.ring-red-watabi]="selectedExtension?.id === ext.id"
+                    class="border-2 rounded-xl overflow-hidden cursor-pointer hover:shadow-xl transition-all duration-300 group">
+
+                    <!-- Image -->
+                    <div class="relative h-48 overflow-hidden">
+                        <img [src]="ext.image" [alt]="ext.name"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+
+                        <!-- Selected Badge -->
+                        @if(selectedExtension?.id === ext.id) {
+                        <div
+                            class="absolute top-3 right-3 bg-red-watabi text-white px-3 py-1 rounded-full text-sm font-bold flex items-center gap-2">
+                            <i class="pi pi-check-circle"></i>
+                            Selezionata
+                        </div>
+                        }
+
+                        <div class="absolute bottom-3 left-3 right-3">
+                            <h3 class="text-2xl font-bold text-white">{{ ext.name }}</h3>
+                            <p class="text-white/90 text-sm">{{ ext.destination }}</p>
+                        </div>
+                    </div>
+
+                    <!-- Content -->
+                    <div class="p-4">
+                        <p class="text-gray-600 text-sm mb-3">{{ ext.description }}</p>
+
+                        <!-- Features -->
+                        <div class="space-y-2 mb-4">
+                            @for(feature of ext.features.slice(0, 3); track feature) {
+                            <div class="flex items-center gap-2 text-sm">
+                                <i class="pi pi-check-circle text-red-watabi"></i>
+                                <span class="text-gray-700">{{ feature }}</span>
+                            </div>
+                            }
+                        </div>
+
+                        <!-- Price & Duration -->
+                        <div class="flex justify-between items-center pt-3 border-t">
+                            <div>
+                                <span class="text-xs text-gray-500">Da</span>
+                                <span class="text-2xl font-bold text-red-watabi ml-1">€{{ ext.priceFrom }}</span>
+                            </div>
+                            <div class="text-sm text-gray-600">
+                                <i class="pi pi-calendar mr-1"></i>
+                                {{ ext.nights }} notti
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                }
+            </div>
+            }
+
+            <!-- Citta Tab -->
+            @if(activeTab === 'citta') {
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                @for(ext of cittaExtensions; track ext.id) {
+                <div (click)="selectExtension(ext)" [class.ring-4]="selectedExtension?.id === ext.id"
+                    [class.ring-red-watabi]="selectedExtension?.id === ext.id"
+                    class="border-2 rounded-xl overflow-hidden cursor-pointer hover:shadow-xl transition-all duration-300 group">
+
+                    <div class="relative h-48 overflow-hidden">
+                        <img [src]="ext.image" [alt]="ext.name"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+
+                        @if(selectedExtension?.id === ext.id) {
+                        <div
+                            class="absolute top-3 right-3 bg-red-watabi text-white px-3 py-1 rounded-full text-sm font-bold flex items-center gap-2">
+                            <i class="pi pi-check-circle"></i>
+                            Selezionata
+                        </div>
+                        }
+
+                        <div class="absolute bottom-3 left-3 right-3">
+                            <h3 class="text-2xl font-bold text-white">{{ ext.name }}</h3>
+                            <p class="text-white/90 text-sm">{{ ext.destination }}</p>
+                        </div>
+                    </div>
+
+                    <div class="p-4">
+                        <p class="text-gray-600 text-sm mb-3">{{ ext.description }}</p>
+
+                        <div class="space-y-2 mb-4">
+                            @for(feature of ext.features.slice(0, 3); track feature) {
+                            <div class="flex items-center gap-2 text-sm">
+                                <i class="pi pi-check-circle text-red-watabi"></i>
+                                <span class="text-gray-700">{{ feature }}</span>
+                            </div>
+                            }
+                        </div>
+
+                        <div class="flex justify-between items-center pt-3 border-t">
+                            <div>
+                                <span class="text-xs text-gray-500">Da</span>
+                                <span class="text-2xl font-bold text-red-watabi ml-1">€{{ ext.priceFrom }}</span>
+                            </div>
+                            <div class="text-sm text-gray-600">
+                                <i class="pi pi-calendar mr-1"></i>
+                                {{ ext.nights }} notti
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                }
+            </div>
+            }
+        </div>
+
+        <!-- Footer Actions -->
+        <div class="border-t bg-gray-50 p-6 flex gap-4">
+            <button (click)="skip()"
+                class="flex-1 px-6 py-3 border-2 border-gray-300 text-gray-700 font-semibold rounded-xl hover:bg-gray-100 transition">
+                Salta, non voglio estensioni
+            </button>
+            <button (click)="confirm()" [disabled]="!selectedExtension" [class.opacity-50]="!selectedExtension"
+                [class.cursor-not-allowed]="!selectedExtension"
+                class="flex-1 px-6 py-3 bg-gradient-to-r from-red-watabi to-red-dark text-white font-semibold rounded-xl hover:shadow-xl transition disabled:hover:shadow-none flex items-center justify-center gap-2">
+                <i class="pi pi-check"></i>
+                <span>Conferma {{ selectedExtension ? '+ ' + selectedExtension.name : 'Selezione' }}</span>
+            </button>
+        </div>
+
+    </div>
+</div>
+}
