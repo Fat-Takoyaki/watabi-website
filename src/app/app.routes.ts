@@ -57,7 +57,7 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
 
-  // Tour Detail Route 
+  // Tour Detail Route
   {
     path: 'tour/:slug',
     loadComponent: () =>
@@ -67,7 +67,7 @@ export const routes: Routes = [
     data: { title: 'Dettaglio Tour - WATABI' },
   },
 
-  // Offer Detail 
+  // Offer Detail
   {
     path: 'offer/:id',
     loadComponent: () =>
@@ -77,10 +77,28 @@ export const routes: Routes = [
     data: { title: 'Offerta - WATABI' },
   },
 
-  // Quote/Preventivo (redirect per ora)
+  // 🆕 Checkout/Preventivo
+  {
+    path: 'checkout',
+    loadComponent: () =>
+      import('./components/checkout/checkout').then((m) => m.Checkout),
+    data: { title: 'Riepilogo e Preventivo - WATABI' },
+  },
+
+  /* Quote Confirmation (dopo invio preventivo)
+  {
+    path: 'quote-confirmation',
+    loadComponent: () =>
+      import('./components/checkout/quote-confirmation').then(
+        (m) => m.QuoteConfirmation
+      ),
+    data: { title: 'Preventivo Inviato - WATABI' },
+  },*/
+
+  // Quote/Preventivo (redirect a checkout)
   {
     path: 'quote',
-    redirectTo: 'home',
+    redirectTo: 'checkout',
     pathMatch: 'full',
   },
 

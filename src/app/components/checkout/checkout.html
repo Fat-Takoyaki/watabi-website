@@ -1,0 +1,575 @@
+<div class="min-h-screen bg-gradient-to-br from-paper via-white to-sakura-light/20 -mt-20">
+
+    <!-- Header Banner -->
+    <div class="bg-gradient-to-r from-red-watabi to-red-dark text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 pt-20">
+            <h1 class="text-4xl md:text-5xl font-bold mb-3">Riepilogo e Preventivo</h1>
+            <p class="text-white/90 text-lg">Verifica i dettagli del tuo viaggio e richiedi il preventivo personalizzato
+            </p>
+        </div>
+    </div>
+
+    @if(checkoutData) {
+    <div class="max-w-7xl mx-auto px-4 py-12">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+            <!-- Left Column - Summary -->
+            <div class="lg:col-span-2 space-y-6">
+
+                <!-- Tour Package Card -->
+                <div class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+                    <div class="bg-gradient-to-r from-gray-900 to-gray-800 p-6 text-white">
+                        <div class="flex items-center gap-3 mb-3">
+                            <i class="pi pi-map-marker text-3xl"></i>
+                            <div>
+                                <h2 class="text-2xl font-bold">{{ checkoutData.tourTitle }}</h2>
+                                <p class="text-white/80 text-sm">Tour selezionato</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <div class="flex gap-1 mb-2">
+                                    @for(star of getStarsArray(checkoutData.tourPackage.stars); track $index) {
+                                    <i class="pi pi-star-fill text-gold-temple text-lg"></i>
+                                    }
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-900">Pacchetto {{ checkoutData.tourPackage.name
+                                    }}</h3>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-sm text-gray-500">A partire da</div>
+                                <div class="text-3xl font-bold text-red-watabi">€{{ checkoutData.tourPackage.price }}
+                                </div>
+                                <div class="text-xs text-gray-500">per persona</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Extension Card -->
+                @if(selectedExtension) {
+                <div class="bg-white rounded-2xl shadow-lg border-2 border-jade overflow-hidden">
+                    <div class="bg-gradient-to-r from-jade to-jade-dark p-6 text-white">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <i class="pi pi-globe text-3xl"></i>
+                                <div>
+                                    <h2 class="text-2xl font-bold">Estensione Selezionata</h2>
+                                    <p class="text-white/80 text-sm">{{ selectedExtension.nights }} notti aggiuntive</p>
+                                </div>
+                            </div>
+                            <button (click)="showExtensionModal = true"
+                                class="bg-white text-jade px-4 py-2 rounded-lg font-semibold hover:bg-white/90 transition">
+                                <i class="pi pi-refresh mr-2"></i>
+                                Cambia
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4 p-6">
+                        <img [src]="selectedExtension.image" [alt]="selectedExtension.name"
+                            class="w-32 h-32 rounded-xl object-cover">
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">{{ selectedExtension.name }}</h3>
+                            <p class="text-sm text-gray-600 mb-3">{{ selectedExtension.description }}</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm text-gray-500">{{ selectedExtension.destination }}</span>
+                                <div class="flex items-center gap-3">
+                                    <span class="text-2xl font-bold text-jade">+€{{ selectedExtension.priceFrom
+                                        }}</span>
+                                    <button (click)="removeExtension()"
+                                        class="text-red-500 hover:text-red-700 text-sm font-semibold">
+                                        <i class="pi pi-times mr-1"></i>
+                                        Rimuovi
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                } @else {
+                <div class="bg-white rounded-2xl shadow-lg border-2 border-dashed border-gray-300 overflow-hidden">
+                    <div class="p-8 text-center">
+                        <i class="pi pi-globe text-gray-400 text-5xl mb-4"></i>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Aggiungi un'Estensione</h3>
+                        <p class="text-gray-600 mb-4">Prolunga il tuo viaggio con un'estensione mare o città</p>
+                        <button (click)="showExtensionModal = true"
+                            class="bg-gradient-to-r from-jade to-jade-dark text-white px-6 py-3 rounded-xl font-semibold hover:shadow-xl transition">
+                            <i class="pi pi-plus mr-2"></i>
+                            Scopri le Estensioni
+                        </button>
+                    </div>
+                </div>
+                }
+
+                <!-- Experiences Section -->
+                <div class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+                    <div class="bg-gradient-to-r from-torii to-torii-dark p-6 text-white">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <i class="pi pi-star text-3xl"></i>
+                                <div>
+                                    <h2 class="text-2xl font-bold">Esperienze Giapponesi</h2>
+                                    <p class="text-white/80 text-sm">Arricchisci il tuo viaggio con esperienze
+                                        autentiche</p>
+                                </div>
+                            </div>
+                            <button (click)="showExperienceModal = true"
+                                class="bg-white text-torii px-4 py-2 rounded-lg font-semibold hover:bg-white/90 transition">
+                                <i class="pi pi-plus mr-2"></i>
+                                Aggiungi
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="p-6">
+                        @if(selectedExperiences.length > 0) {
+                        <div class="space-y-3">
+                            @for(exp of selectedExperiences; track exp.id) {
+                            <div
+                                class="flex items-center gap-4 p-4 bg-gray-50 rounded-xl border border-gray-200 hover:border-torii transition group">
+                                <img [src]="exp.image" [alt]="exp.name" class="w-20 h-20 rounded-lg object-cover">
+                                <div class="flex-1">
+                                    <h4 class="font-bold text-gray-900">{{ exp.name }}</h4>
+                                    <p class="text-sm text-gray-600">{{ exp.description }}</p>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-xl font-bold text-torii">€{{ exp.price }}</div>
+                                    <button (click)="removeExperience(exp.id)"
+                                        class="text-xs text-red-500 hover:text-red-700 mt-1">
+                                        Rimuovi
+                                    </button>
+                                </div>
+                            </div>
+                            }
+                        </div>
+                        } @else {
+                        <div class="text-center py-8 text-gray-500">
+                            <i class="pi pi-inbox text-4xl mb-3 block"></i>
+                            <p>Nessuna esperienza selezionata</p>
+                            <button (click)="showExperienceModal = true"
+                                class="mt-4 text-torii font-semibold hover:underline">
+                                Scopri le esperienze disponibili
+                            </button>
+                        </div>
+                        }
+                    </div>
+                </div>
+
+                <!-- Participants Form -->
+                <div class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+                    <div class="bg-gradient-to-r from-bamboo to-bamboo-light p-6 text-white">
+                        <div class="flex items-center gap-3">
+                            <i class="pi pi-users text-3xl"></i>
+                            <div>
+                                <h2 class="text-2xl font-bold">Dati Partecipanti</h2>
+                                <p class="text-white/80 text-sm">Inserisci i dati di tutti i viaggiatori</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form [formGroup]="checkoutForm" class="p-6">
+                        <div formArrayName="participants" class="space-y-6">
+                            @for(participant of participants.controls; track $index; let i = $index) {
+                            <div [formGroupName]="i" class="p-6 bg-gray-50 rounded-xl border-2 border-gray-200">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h3 class="text-lg font-bold text-gray-900">
+                                        @if(i === 0) {
+                                        <span class="text-red-watabi">Intestatario della Prenotazione</span>
+                                        } @else {
+                                        Partecipante {{ i + 1 }}
+                                        }
+                                    </h3>
+                                    @if(i > 0) {
+                                    <button type="button" (click)="removeParticipant(i)"
+                                        class="text-red-500 hover:text-red-700 text-sm font-semibold">
+                                        <i class="pi pi-trash mr-1"></i>
+                                        Rimuovi
+                                    </button>
+                                    }
+                                </div>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-sm font-semibold text-gray-700 mb-2">Nome *</label>
+                                        <input type="text" formControlName="firstName"
+                                            class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-bamboo focus:outline-none transition"
+                                            placeholder="Mario">
+                                        @if(participant.get('firstName')?.invalid &&
+                                        participant.get('firstName')?.touched) {
+                                        <p class="text-red-500 text-xs mt-1">Il nome è obbligatorio</p>
+                                        }
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-sm font-semibold text-gray-700 mb-2">Cognome *</label>
+                                        <input type="text" formControlName="lastName"
+                                            class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-bamboo focus:outline-none transition"
+                                            placeholder="Rossi">
+                                        @if(participant.get('lastName')?.invalid &&
+                                        participant.get('lastName')?.touched) {
+                                        <p class="text-red-500 text-xs mt-1">Il cognome è obbligatorio</p>
+                                        }
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-sm font-semibold text-gray-700 mb-2">Data di Nascita
+                                            *</label>
+                                        <input type="date" formControlName="dateOfBirth"
+                                            class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-bamboo focus:outline-none transition">
+                                        @if(participant.get('dateOfBirth')?.invalid &&
+                                        participant.get('dateOfBirth')?.touched) {
+                                        <p class="text-red-500 text-xs mt-1">La data di nascita è obbligatoria</p>
+                                        }
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-sm font-semibold text-gray-700 mb-2">Email *</label>
+                                        <input type="email" formControlName="email"
+                                            class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-bamboo focus:outline-none transition"
+                                            placeholder="mario.rossi@email.com">
+                                        @if(participant.get('email')?.invalid && participant.get('email')?.touched) {
+                                        <p class="text-red-500 text-xs mt-1">Email non valida</p>
+                                        }
+                                    </div>
+
+                                    <div class="md:col-span-2">
+                                        <label class="block text-sm font-semibold text-gray-700 mb-2">Telefono *</label>
+                                        <input type="tel" formControlName="phone"
+                                            class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-bamboo focus:outline-none transition"
+                                            placeholder="+39 333 1234567">
+                                        @if(participant.get('phone')?.invalid && participant.get('phone')?.touched) {
+                                        <p class="text-red-500 text-xs mt-1">Telefono non valido</p>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            }
+                        </div>
+
+                        <button type="button" (click)="addParticipant()"
+                            class="mt-6 w-full py-3 border-2 border-bamboo text-bamboo font-semibold rounded-xl hover:bg-bamboo hover:text-white transition flex items-center justify-center gap-2">
+                            <i class="pi pi-user-plus"></i>
+                            Aggiungi Partecipante
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+
+            <!-- Right Column - Price Summary -->
+            <div class="lg:col-span-1">
+                <div class="sticky top-24 bg-white rounded-2xl shadow-2xl border-2 border-gray-200 overflow-hidden">
+                    <div class="bg-gradient-to-br from-red-watabi to-red-dark p-6 text-white">
+                        <h3 class="text-2xl font-bold mb-2">Riepilogo Preventivo</h3>
+                        <p class="text-white/80 text-sm">Prezzo stimato per {{ participants.length }} {{
+                            participants.length === 1 ? 'persona' : 'persone' }}</p>
+                    </div>
+
+                    <div class="p-6 space-y-4">
+                        <!-- Tour Package -->
+                        <div class="flex justify-between items-center pb-3 border-b">
+                            <div>
+                                <div class="font-semibold text-gray-900">{{ checkoutData.tourPackage.name }}</div>
+                                <div class="text-sm text-gray-500">{{ participants.length }} × €{{
+                                    checkoutData.tourPackage.price }}</div>
+                            </div>
+                            <div class="text-lg font-bold text-gray-900">
+                                €{{ checkoutData.tourPackage.price * participants.length }}
+                            </div>
+                        </div>
+
+                        <!-- Extension -->
+                        @if(selectedExtension) {
+                        <div class="flex justify-between items-center pb-3 border-b">
+                            <div>
+                                <div class="font-semibold text-gray-900">{{ selectedExtension.name }}</div>
+                                <div class="text-sm text-gray-500">{{ participants.length }} × €{{
+                                    selectedExtension.priceFrom }}</div>
+                            </div>
+                            <div class="text-lg font-bold text-jade">
+                                €{{ selectedExtension.priceFrom * participants.length }}
+                            </div>
+                        </div>
+                        }
+
+                        <!-- Experiences -->
+                        @if(selectedExperiences.length > 0) {
+                        <div class="pb-3 border-b">
+                            <div class="font-semibold text-gray-900 mb-2">Esperienze</div>
+                            @for(exp of selectedExperiences; track exp.id) {
+                            <div class="flex justify-between items-center text-sm mb-2">
+                                <span class="text-gray-600">{{ exp.name }}</span>
+                                <span class="font-semibold text-gray-900">€{{ exp.price * participants.length }}</span>
+                            </div>
+                            }
+                        </div>
+                        }
+
+                        <!-- Total -->
+                        <div class="pt-4 border-t-2 border-gray-300">
+                            <div class="flex justify-between items-center">
+                                <span class="text-lg font-bold text-gray-900">Totale Stimato</span>
+                                <span class="text-3xl font-bold text-red-watabi">€{{ calculateTotalPrice() }}</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-2">
+                                * Prezzo indicativo soggetto a conferma in base alla disponibilità e stagionalità
+                            </p>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button (click)="submitQuoteRequest()" [disabled]="checkoutForm.invalid || isSubmitting"
+                            [class.opacity-50]="checkoutForm.invalid || isSubmitting"
+                            [class.cursor-not-allowed]="checkoutForm.invalid || isSubmitting"
+                            class="w-full mt-6 py-4 bg-gradient-to-r from-red-watabi to-red-dark text-white font-bold text-lg rounded-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-3">
+                            @if(isSubmitting) {
+                            <i class="pi pi-spin pi-spinner"></i>
+                            <span>Invio in corso...</span>
+                            } @else {
+                            <i class="pi pi-send"></i>
+                            <span>Richiedi Preventivo</span>
+                            }
+                        </button>
+
+                        <!-- Info -->
+                        <div class="mt-4 p-4 bg-sakura-light/20 rounded-lg border border-sakura">
+                            <div class="flex items-start gap-2">
+                                <i class="pi pi-info-circle text-red-watabi mt-1"></i>
+                                <p class="text-xs text-gray-700">
+                                    Riceverai un preventivo dettagliato via email entro 24 ore. Non è richiesto alcun
+                                    pagamento immediato.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    }
+
+    <!-- Extension Modal -->
+    @if(showExtensionModal) {
+    <div class="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-[100] p-4"
+        (click)="showExtensionModal = false">
+        <div class="bg-white rounded-2xl max-w-5xl w-full max-h-[85vh] overflow-hidden shadow-2xl"
+            (click)="$event.stopPropagation()">
+
+            <div class="bg-gradient-to-r from-jade to-jade-dark p-6 text-white">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h2 class="text-3xl font-bold mb-2">Estensioni Disponibili</h2>
+                        <p class="text-white/90">Scegli un'estensione mare o città per il tuo viaggio</p>
+                    </div>
+                    <button (click)="showExtensionModal = false"
+                        class="text-white hover:bg-white/20 p-2 rounded-lg transition">
+                        <i class="pi pi-times text-xl"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="flex border-b border-gray-200 px-6 bg-gray-50">
+                <button [class.border-jade]="activeExtensionTab === 'mare'"
+                    [class.text-jade]="activeExtensionTab === 'mare'" (click)="activeExtensionTab = 'mare'"
+                    class="px-6 py-4 font-semibold border-b-2 transition-colors hover:text-jade flex items-center gap-2">
+                    <i class="pi pi-sun"></i>
+                    <span>Estensioni Mare</span>
+                    <span class="bg-jade text-white text-xs px-2 py-0.5 rounded-full">{{ mareExtensions.length }}</span>
+                </button>
+                <button [class.border-jade]="activeExtensionTab === 'citta'"
+                    [class.text-jade]="activeExtensionTab === 'citta'" (click)="activeExtensionTab = 'citta'"
+                    class="px-6 py-4 font-semibold border-b-2 transition-colors hover:text-jade flex items-center gap-2">
+                    <i class="pi pi-building"></i>
+                    <span>Estensioni Città</span>
+                    <span class="bg-jade text-white text-xs px-2 py-0.5 rounded-full">{{ cittaExtensions.length
+                        }}</span>
+                </button>
+            </div>
+
+            <div class="p-6 overflow-y-auto max-h-[55vh]">
+                <!-- Mare Tab -->
+                @if(activeExtensionTab === 'mare') {
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    @for(ext of mareExtensions; track ext.id) {
+                    <div (click)="toggleExtension(ext)" [class.ring-4]="isExtensionSelected(ext.id)"
+                        [class.ring-jade]="isExtensionSelected(ext.id)"
+                        class="border-2 rounded-xl overflow-hidden cursor-pointer hover:shadow-xl transition-all group">
+
+                        <div class="relative h-48 overflow-hidden">
+                            <img [src]="ext.image" [alt]="ext.name"
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            @if(isExtensionSelected(ext.id)) {
+                            <div
+                                class="absolute top-3 right-3 bg-jade text-white px-3 py-1 rounded-full text-sm font-bold">
+                                <i class="pi pi-check mr-1"></i>
+                                Selezionata
+                            </div>
+                            }
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            <div class="absolute bottom-3 left-3 right-3">
+                                <h3 class="text-2xl font-bold text-white">{{ ext.name }}</h3>
+                                <p class="text-white/90 text-sm">{{ ext.destination }}</p>
+                            </div>
+                        </div>
+
+                        <div class="p-4">
+                            <p class="text-gray-600 text-sm mb-3">{{ ext.description }}</p>
+                            <div class="space-y-2 mb-4">
+                                @for(feature of ext.features.slice(0, 2); track feature) {
+                                <div class="flex items-center gap-2 text-sm">
+                                    <i class="pi pi-check-circle text-jade"></i>
+                                    <span class="text-gray-700">{{ feature }}</span>
+                                </div>
+                                }
+                            </div>
+                            <div class="flex justify-between items-center pt-3 border-t">
+                                <div>
+                                    <span class="text-xs text-gray-500">Da</span>
+                                    <span class="text-2xl font-bold text-jade ml-1">€{{ ext.priceFrom }}</span>
+                                </div>
+                                <div class="text-sm text-gray-600">
+                                    <i class="pi pi-calendar mr-1"></i>
+                                    {{ ext.nights }} notti
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    }
+                </div>
+                }
+
+                <!-- Citta Tab -->
+                @if(activeExtensionTab === 'citta') {
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    @for(ext of cittaExtensions; track ext.id) {
+                    <div (click)="toggleExtension(ext)" [class.ring-4]="isExtensionSelected(ext.id)"
+                        [class.ring-jade]="isExtensionSelected(ext.id)"
+                        class="border-2 rounded-xl overflow-hidden cursor-pointer hover:shadow-xl transition-all group">
+
+                        <div class="relative h-48 overflow-hidden">
+                            <img [src]="ext.image" [alt]="ext.name"
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            @if(isExtensionSelected(ext.id)) {
+                            <div
+                                class="absolute top-3 right-3 bg-jade text-white px-3 py-1 rounded-full text-sm font-bold">
+                                <i class="pi pi-check mr-1"></i>
+                                Selezionata
+                            </div>
+                            }
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            <div class="absolute bottom-3 left-3 right-3">
+                                <h3 class="text-2xl font-bold text-white">{{ ext.name }}</h3>
+                                <p class="text-white/90 text-sm">{{ ext.destination }}</p>
+                            </div>
+                        </div>
+
+                        <div class="p-4">
+                            <p class="text-gray-600 text-sm mb-3">{{ ext.description }}</p>
+                            <div class="space-y-2 mb-4">
+                                @for(feature of ext.features.slice(0, 2); track feature) {
+                                <div class="flex items-center gap-2 text-sm">
+                                    <i class="pi pi-check-circle text-jade"></i>
+                                    <span class="text-gray-700">{{ feature }}</span>
+                                </div>
+                                }
+                            </div>
+                            <div class="flex justify-between items-center pt-3 border-t">
+                                <div>
+                                    <span class="text-xs text-gray-500">Da</span>
+                                    <span class="text-2xl font-bold text-jade ml-1">€{{ ext.priceFrom }}</span>
+                                </div>
+                                <div class="text-sm text-gray-600">
+                                    <i class="pi pi-calendar mr-1"></i>
+                                    {{ ext.nights }} notti
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    }
+                </div>
+                }
+            </div>
+
+            <div class="border-t bg-gray-50 p-6 flex gap-4">
+                <button (click)="removeExtension(); showExtensionModal = false"
+                    class="flex-1 px-6 py-3 border-2 border-gray-300 text-gray-700 font-semibold rounded-xl hover:bg-gray-100 transition">
+                    Nessuna Estensione
+                </button>
+                <button (click)="showExtensionModal = false" [disabled]="!selectedExtension"
+                    [class.opacity-50]="!selectedExtension" [class.cursor-not-allowed]="!selectedExtension"
+                    class="flex-1 px-6 py-3 bg-gradient-to-r from-jade to-jade-dark text-white font-semibold rounded-xl hover:shadow-xl transition">
+                    Conferma {{ selectedExtension ? '+ ' + selectedExtension.name : 'Selezione' }}
+                </button>
+            </div>
+        </div>
+    </div>
+    }
+
+    <!-- Experience Modal -->
+    @if(showExperienceModal) {
+    <div class="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-[100] p-4"
+        (click)="showExperienceModal = false">
+        <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[80vh] overflow-hidden shadow-2xl"
+            (click)="$event.stopPropagation()">
+
+            <div class="bg-gradient-to-r from-torii to-torii-dark p-6 text-white">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h2 class="text-3xl font-bold mb-2">Esperienze Autentiche</h2>
+                        <p class="text-white/90">Seleziona le esperienze che desideri vivere</p>
+                    </div>
+                    <button (click)="showExperienceModal = false"
+                        class="text-white hover:bg-white/20 p-2 rounded-lg transition">
+                        <i class="pi pi-times text-xl"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="p-6 overflow-y-auto max-h-[60vh]">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    @for(exp of availableExperiences; track exp.id) {
+                    <div (click)="toggleExperience(exp)" [class.ring-4]="isExperienceSelected(exp.id)"
+                        [class.ring-torii]="isExperienceSelected(exp.id)"
+                        class="border-2 rounded-xl overflow-hidden cursor-pointer hover:shadow-xl transition-all group">
+
+                        <div class="relative h-40 overflow-hidden">
+                            <img [src]="exp.image" [alt]="exp.name"
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            @if(isExperienceSelected(exp.id)) {
+                            <div
+                                class="absolute top-3 right-3 bg-torii text-white px-3 py-1 rounded-full text-sm font-bold">
+                                <i class="pi pi-check mr-1"></i>
+                                Selezionata
+                            </div>
+                            }
+                        </div>
+
+                        <div class="p-4">
+                            <h3 class="font-bold text-lg text-gray-900 mb-2">{{ exp.name }}</h3>
+                            <p class="text-sm text-gray-600 mb-3">{{ exp.description }}</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-2xl font-bold text-torii">€{{ exp.price }}</span>
+                                <span class="text-sm text-gray-500">per persona</span>
+                            </div>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+
+            <div class="border-t bg-gray-50 p-6 flex justify-end">
+                <button (click)="showExperienceModal = false"
+                    class="px-8 py-3 bg-gradient-to-r from-torii to-torii-dark text-white font-semibold rounded-xl hover:shadow-xl transition">
+                    Conferma Selezione
+                </button>
+            </div>
+        </div>
+    </div>
+    }
+
+</div>
