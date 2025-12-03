@@ -25,7 +25,7 @@ interface Tour {
 @Component({
   selector: 'app-tours',
   standalone: true,
-  imports: [CommonModule, Traveltype],
+  imports: [CommonModule],
   templateUrl: './tours.html',
   styleUrls: ['./tours.scss'],
 })

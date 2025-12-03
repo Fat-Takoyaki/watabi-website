@@ -8,7 +8,7 @@ import { TravelTypes } from "./sections/travel-type/travel-type";
 
 @Component({
   selector: 'app-home',
-  imports: [Header, Tours, Hero, JapanExperience, Watabi, TravelTypes],
+  imports: [Header, Tours, JapanExperience, Watabi, TravelTypes],
   templateUrl: './home.html',
   styleUrls: ['./home.scss'],
 })
