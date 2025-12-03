@@ -1,0 +1,97 @@
+<section class="py-20 bg-gradient-to-b from-white via-ocean-light/5 to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- Section Header -->
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                Luoghi <span class="text-red-watabi">indimenticabili</span> da esplorare
+            </h2>
+            <div class="w-24 h-1 bg-gradient-to-r from-red-watabi to-sakura mx-auto mb-6"></div>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                Dal fermento di Tokyo alla spiritualità di Kyoto, dalle isole tropicali di Okinawa alla maestosità
+                del Monte Fuji: il Giappone offre destinazioni per ogni tipo di viaggiatore. Scopri i luoghi che
+                renderanno unico il tuo viaggio.
+            </p>
+        </div>
+
+        <!-- Destinations Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            @for(dest of destinations; track dest.id) {
+            <div
+                class="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+
+                <!-- Image Container -->
+                <div class="relative h-72 overflow-hidden">
+                    <img [src]="dest.image" [alt]="dest.name"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+
+                    <!-- Gradient Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+
+                    <!-- Icon Badge -->
+                    <div
+                        class="absolute top-4 right-4 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg">
+                        <i [class]="'pi ' + dest.icon + ' text-red-watabi text-xl'"></i>
+                    </div>
+
+                    <!-- Title & Tagline -->
+                    <div class="absolute bottom-0 left-0 right-0 p-6">
+                        <h3 class="text-3xl font-bold text-white mb-1">{{ dest.name }}</h3>
+                        <p class="text-white/90 text-sm font-light">{{ dest.tagline }}</p>
+                    </div>
+                </div>
+
+                <!-- Content -->
+                <div class="p-6">
+                    <p class="text-gray-700 text-sm leading-relaxed mb-4">
+                        {{ dest.description }}
+                    </p>
+
+                    <!-- Highlights -->
+                    <div class="space-y-2 mb-6">
+                        <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+                            Da non perdere
+                        </div>
+                        @for(highlight of dest.highlights; track highlight) {
+                        <div class="flex items-center gap-2">
+                            <i class="pi pi-map-marker text-red-watabi text-xs"></i>
+                            <span class="text-sm text-gray-600">{{ highlight }}</span>
+                        </div>
+                        }
+                    </div>
+
+                    <!-- CTA Button -->
+                    <button (click)="navigateToBlog(dest.blogRoute)"
+                        class="w-full py-3 px-4 bg-gradient-to-r from-red-watabi to-red-dark text-white font-semibold rounded-xl hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 group">
+                        <span>Scopri {{ dest.name }}</span>
+                        <i class="pi pi-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+                </div>
+
+                <!-- Decorative Border -->
+                <div
+                    class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-red-watabi to-sakura transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500">
+                </div>
+            </div>
+            }
+        </div>
+
+        <!-- Bottom CTA -->
+        <div
+            class="text-center mt-12 p-8 bg-gradient-to-br from-sakura-light/20 to-wisteria-light/20 rounded-2xl border border-sakura-light">
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">
+                Vuoi esplorare altre destinazioni?
+            </h3>
+            <p class="text-gray-600 mb-6 max-w-2xl mx-auto">
+                Il Giappone ha molto altro da offrire: dalle Alpi Giapponesi a Hiroshima,
+                da Takayama a Nikko. Scopri tutte le destinazioni nella nostra guida completa.
+            </p>
+            <button (click)="navigateToBlog('/blog/destinazioni-giappone')"
+                class="inline-flex items-center gap-2 px-8 py-4 bg-white text-red-watabi font-bold rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 border-2 border-red-watabi">
+                <span>Guida completa alle destinazioni</span>
+                <i class="pi pi-external-link"></i>
+            </button>
+        </div>
+
+    </div>
+</section>

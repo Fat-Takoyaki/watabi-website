@@ -1,0 +1,79 @@
+:host {
+  display: block;
+}
+
+// Staggered card animation
+.grid > div {
+  animation: fadeInScale 0.7s ease-out backwards;
+
+  @for $i from 1 through 6 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{$i * 0.1}s;
+    }
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+// Enhanced hover effects
+.group {
+  &:hover {
+    img {
+      transform: scale(1.15) rotate(2deg);
+    }
+
+    .pi-arrow-right {
+      animation: arrowBounce 0.6s ease-in-out infinite;
+    }
+  }
+}
+
+@keyframes arrowBounce {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+}
+
+// Card shadow enhancement
+.shadow-lg {
+  transition: box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover\\:shadow-2xl:hover {
+  box-shadow: 0 25px 50px -12px rgba(220, 38, 38, 0.15),
+    0 12px 24px -6px rgba(220, 38, 38, 0.1);
+}
+
+// Responsive
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  h2 {
+    font-size: 2rem !important;
+  }
+
+  .relative.h-72 {
+    height: 250px;
+  }
+}

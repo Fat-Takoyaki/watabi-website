@@ -1,0 +1,80 @@
+:host {
+  display: block;
+}
+
+// Staggered animation for season cards
+.grid.grid-cols-1.md\\:grid-cols-2 > div {
+  animation: fadeInSlide 0.8s ease-out backwards;
+
+  @for $i from 1 through 4 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{$i * 0.15}s;
+    }
+  }
+}
+
+@keyframes fadeInSlide {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+// Info cards animation
+.grid.grid-cols-1.md\\:grid-cols-3 > div {
+  animation: fadeInUp 0.6s ease-out backwards;
+
+  @for $i from 1 through 3 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{0.8 + $i * 0.1}s;
+    }
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Hover effects
+.group:hover {
+  img {
+    transform: scale(1.15);
+    filter: brightness(1.1);
+  }
+}
+
+// Tag hover animation
+span[class*="gradient"] {
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  h2 {
+    font-size: 2rem !important;
+  }
+
+  .relative.h-48 {
+    height: 180px;
+  }
+
+  .grid.grid-cols-2 {
+    grid-template-columns: 1fr;
+  }
+}

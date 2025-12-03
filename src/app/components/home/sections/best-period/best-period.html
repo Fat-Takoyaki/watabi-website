@@ -1,0 +1,192 @@
+<section class="py-20 bg-gradient-to-b from-white via-sakura-light/5 to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- Section Header -->
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                Qual è il <span class="text-red-watabi">periodo migliore</span> per andare in Giappone?
+            </h2>
+            <div class="w-24 h-1 bg-gradient-to-r from-red-watabi to-sakura mx-auto mb-6"></div>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                Il Giappone è bellissimo tutto l'anno, ma ogni stagione offre esperienze uniche.
+                Scegli il periodo che rispecchia meglio ciò che vuoi vivere durante il tuo viaggio.
+            </p>
+        </div>
+
+        <!-- Seasons Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            @for(season of seasons; track season.id) {
+            <div
+                class="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500">
+
+                <!-- Header with Image -->
+                <div class="relative h-48 overflow-hidden">
+                    <img [src]="season.image" [alt]="season.name"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+
+                    <!-- Season Name & Months -->
+                    <div class="absolute bottom-0 left-0 right-0 p-6">
+                        <h3 class="text-3xl font-bold text-white mb-1">{{ season.name }}</h3>
+                        <div class="flex items-center gap-4 text-white/90 text-sm">
+                            <span class="flex items-center gap-2">
+                                <i class="pi pi-calendar"></i>
+                                {{ season.months }}
+                            </span>
+                            <span class="flex items-center gap-2">
+                                <i class="pi pi-cloud"></i>
+                                {{ season.temperature }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content -->
+                <div class="p-6">
+                    <!-- Description -->
+                    <p class="text-gray-700 text-sm leading-relaxed mb-4">
+                        {{ season.description }}
+                    </p>
+
+                    <!-- Highlights -->
+                    <div class="mb-4">
+                        <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Da non perdere</h4>
+                        <div class="flex flex-wrap gap-2">
+                            @for(highlight of season.highlights; track highlight) {
+                            <span
+                                [class]="'px-3 py-1 text-xs font-semibold text-white rounded-full ' + season.gradient">
+                                {{ highlight }}
+                            </span>
+                            }
+                        </div>
+                    </div>
+
+                    <!-- Pros & Cons -->
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <!-- Pros -->
+                        <div>
+                            <h5
+                                class="text-xs font-bold text-green-600 uppercase tracking-wider mb-2 flex items-center gap-1">
+                                <i class="pi pi-check-circle"></i>
+                                Pro
+                            </h5>
+                            <ul class="space-y-1">
+                                @for(pro of season.pros; track pro) {
+                                <li class="text-xs text-gray-600 flex items-start gap-1">
+                                    <i class="pi pi-plus text-green-500 text-xs mt-0.5"></i>
+                                    <span>{{ pro }}</span>
+                                </li>
+                                }
+                            </ul>
+                        </div>
+
+                        <!-- Cons -->
+                        <div>
+                            <h5
+                                class="text-xs font-bold text-red-600 uppercase tracking-wider mb-2 flex items-center gap-1">
+                                <i class="pi pi-times-circle"></i>
+                                Contro
+                            </h5>
+                            <ul class="space-y-1">
+                                @for(con of season.cons; track con) {
+                                <li class="text-xs text-gray-600 flex items-start gap-1">
+                                    <i class="pi pi-minus text-red-500 text-xs mt-0.5"></i>
+                                    <span>{{ con }}</span>
+                                </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Best For -->
+                    <div class="pt-4 border-t border-gray-100">
+                        <h5 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Ideale per</h5>
+                        <div class="flex flex-wrap gap-2">
+                            @for(best of season.bestFor; track best) {
+                            <span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded">
+                                {{ best }}
+                            </span>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Decorative Border -->
+                <div [class]="'absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r ' + season.gradient"></div>
+            </div>
+            }
+        </div>
+
+        <!-- Additional Info Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <!-- Alta Stagione -->
+            <div class="bg-gradient-to-br from-pink-50 to-pink-100/50 rounded-xl p-6 border-2 border-pink-200">
+                <div class="flex items-center gap-3 mb-3">
+                    <i class="pi pi-heart text-pink-600 text-2xl"></i>
+                    <h4 class="font-bold text-gray-900">Fioriture</h4>
+                </div>
+                <p class="text-sm text-gray-700 leading-relaxed">
+                    <strong>Marzo-Aprile</strong> (Hanami) e <strong>Novembre</strong> (Koyo) regalano i panorami più
+                    spettacolari dell’anno. Ideali per chi vuole vivere il Giappone nella sua massima bellezza.
+                </p>
+            </div>
+
+            <!-- Golden Week -->
+            <div class="bg-gradient-to-br from-yellow-50 to-yellow-100/50 rounded-xl p-6 border-2 border-yellow-200">
+                <div class="flex items-center gap-3 mb-3">
+                    <i class="pi pi-calendar text-yellow-600 text-2xl"></i>
+                    <h4 class="font-bold text-gray-900">Golden Week</h4>
+                </div>
+                <p class="text-sm text-gray-700 leading-relaxed">
+                    Fine aprile / inizio maggio è uno dei momenti più vivaci dell’anno: festival, eventi, atmosfera
+                    energica e città in festa. Perfetto per chi vuole un Giappone pieno di vita.
+                </p>
+            </div>
+
+            <!-- Bassa Stagione -->
+            <div class="bg-gradient-to-br from-green-50 to-green-100/50 rounded-xl p-6 border-2 border-green-200">
+                <div class="flex items-center gap-3 mb-3">
+                    <i class="pi pi-check-circle text-green-600 text-2xl"></i>
+                    <h4 class="font-bold text-gray-900">Risparmia</h4>
+                </div>
+                <p class="text-sm text-gray-700 leading-relaxed">
+                    <strong>Gennaio-Febbraio</strong> e <strong>Giugno-Luglio</strong> offrono un Giappone più
+                    tranquillo,
+                    con ottime occasioni di viaggio e la possibilità di esplorare con calma.
+                </p>
+            </div>
+        </div>
+
+
+        <!-- CTA Card -->
+        <div
+            class="relative rounded-2xl overflow-hidden bg-gradient-to-r from-red-watabi to-red-dark p-8 md:p-12 text-center text-white shadow-2xl">
+            <div class="relative z-10">
+                <h3 class="text-3xl font-bold mb-4">
+                    Hai bisogno di aiuto per scegliere?
+                </h3>
+                <p class="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
+                    Ogni periodo ha il suo fascino. Parlaci delle tue aspettative e ti aiuteremo
+                    a scegliere il momento perfetto per il tuo viaggio in Giappone.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button (click)="navigateToGuide()"
+                        class="px-8 py-4 bg-white text-red-watabi font-bold rounded-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300">
+                        Guida completa stagioni
+                    </button>
+                    <button
+                        class="px-8 py-4 bg-white/10 backdrop-blur-md text-white font-semibold rounded-xl border-2 border-white/30 hover:bg-white/20 transition-all duration-300">
+                        Chiedi una consulenza
+                    </button>
+                </div>
+            </div>
+
+            <!-- Decorative elements -->
+            <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2">
+            </div>
+            <div class="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2">
+            </div>
+        </div>
+
+    </div>
+</section>
