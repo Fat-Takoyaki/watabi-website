@@ -1,0 +1,74 @@
+<section class="py-20 bg-gradient-to-b from-white via-sakura-light/10 to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- Section Header -->
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="text-2xl md:text-4xl font-bold text-gray-900 mb-6">
+                Il Giappone: un'esperienza che ti cambia
+            </h2>
+            <div class="w-24 h-1 bg-gradient-to-r from-red-watabi to-sakura mx-auto mb-8"></div>
+            <h3 class="text-2xl text-gray-700 font-light mb-6">
+                Tradizione, spiritualità e meraviglia quotidiana
+            </h3>
+            <p class="text-lg text-gray-600 leading-relaxed">
+                Il Giappone è una terra di contrasti straordinari: templi millenari accanto a grattacieli futuristici,
+                giardini zen che convivono con quartieri vivaci e tecnologici. È un paese dove la spiritualità permea
+                ogni aspetto della vita quotidiana, dove l'ospitalità è un'arte e la natura è venerata con rispetto
+                profondo.
+            </p>
+            <p class="text-lg text-gray-600 leading-relaxed mt-4">
+                Una meta affascinante ma culturalmente distante, che <strong class="text-red-watabi">Watabi rende
+                    accessibile</strong>
+                grazie alla sua presenza sul territorio e alla profonda conoscenza delle sfumature culturali che fanno
+                la differenza
+                tra un viaggio e un'esperienza indimenticabile.
+            </p>
+        </div>
+
+        <!-- Feature Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            @for(feature of features; track feature.title) {
+            <div
+                class="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+
+                <!-- Image -->
+                <div class="relative h-48 overflow-hidden">
+                    <img [src]="feature.image" [alt]="feature.title"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+
+                    <!-- Icon -->
+                    <div
+                        class="absolute top-4 right-4 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg">
+                        <i [class]="'pi ' + feature.icon + ' text-red-watabi text-xl'"></i>
+                    </div>
+                </div>
+
+                <!-- Content -->
+                <div class="p-6">
+                    <h4 class="text-xl font-bold text-gray-900 mb-2">{{ feature.title }}</h4>
+                    <p class="text-gray-600 text-sm leading-relaxed">{{ feature.description }}</p>
+                </div>
+
+                <!-- Decorative element -->
+                <div
+                    class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-red-watabi to-sakura transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500">
+                </div>
+            </div>
+            }
+        </div>
+
+        <!-- Bottom CTA -->
+        <div class="mt-16 text-center">
+            <p class="text-gray-600 mb-6">
+                Scopri come possiamo rendere il tuo sogno giapponese una realtà
+            </p>
+            <a href="#watabi-approach"
+                class="inline-flex items-center gap-2 text-red-watabi font-semibold hover:gap-4 transition-all">
+                <span>Il nostro approccio</span>
+                <i class="pi pi-arrow-down"></i>
+            </a>
+        </div>
+
+    </div>
+</section>

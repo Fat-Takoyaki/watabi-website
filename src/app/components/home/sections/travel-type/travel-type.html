@@ -1,0 +1,85 @@
+<section id="travel-types" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- Section Header -->
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                Qual è il tuo <span class="text-red-watabi">tipo di viaggio</span>?
+            </h2>
+            <div class="w-24 h-1 bg-gradient-to-r from-red-watabi to-sakura mx-auto mb-6"></div>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Qualunque sia il tuo stile di viaggio, c'è un Giappone che ti aspetta
+            </p>
+        </div>
+
+        <!-- Travel Types Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            @for(type of travelTypes; track type.id) {
+            <div (click)="navigateToType(type.route)"
+                class="group relative bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 cursor-pointer">
+
+                <!-- Image -->
+                <div class="relative h-64 overflow-hidden">
+                    <img [src]="type.image" [alt]="type.title"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+
+                    <!-- Icon Badge -->
+                    <div
+                        [class]="'absolute top-4 right-4 w-14 h-14 rounded-full bg-gradient-to-br flex items-center justify-center shadow-xl ' + type.gradient">
+                        <i [class]="'pi ' + type.icon + ' text-white text-2xl'"></i>
+                    </div>
+
+                    <!-- Title Overlay -->
+                    <div class="absolute bottom-0 left-0 right-0 p-6">
+                        <h3 class="text-3xl font-bold text-white mb-1">{{ type.title }}</h3>
+                        <p class="text-white/90 text-sm font-light">{{ type.subtitle }}</p>
+                    </div>
+                </div>
+
+                <!-- Content -->
+                <div class="p-6 bg-white">
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        {{ type.description }}
+                    </p>
+
+                    <!-- Features -->
+                    <div class="space-y-2 mb-6">
+                        @for(feature of type.features; track feature) {
+                        <div class="flex items-center gap-2">
+                            <i class="pi pi-check-circle text-red-watabi text-sm"></i>
+                            <span class="text-sm text-gray-600">{{ feature }}</span>
+                        </div>
+                        }
+                    </div>
+
+                    <!-- CTA Button -->
+                    <button
+                        [class]="'w-full py-3 px-4 bg-gradient-to-r text-white font-semibold rounded-xl hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 ' + type.gradient">
+                        <span>Scopri di più</span>
+                        <i class="pi pi-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+                </div>
+
+                <!-- Decorative Border -->
+                <div
+                    [class]="'absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ' + type.gradient">
+                </div>
+            </div>
+            }
+        </div>
+
+        <!-- Bottom Note -->
+        <div class="mt-12 text-center">
+            <p class="text-gray-600 mb-4">
+                Non sai quale scegliere? Parliamone insieme
+            </p>
+            <a href="/contact"
+                class="inline-flex items-center gap-2 text-red-watabi font-semibold hover:gap-4 transition-all">
+                <span>Contattaci per una consulenza gratuita</span>
+                <i class="pi pi-arrow-right"></i>
+            </a>
+        </div>
+
+    </div>
+</section>

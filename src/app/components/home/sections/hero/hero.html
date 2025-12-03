@@ -1,0 +1,72 @@
+<section class="hero-section relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
+    <!-- Background Image -->
+    <div class="absolute inset-0 z-0">
+        <img src="https://images.unsplash.com/photo-1492571350019-22de08371fd3?w=1920&q=80" alt="Japan landscape"
+            class="w-full h-full object-cover object-center" />
+        <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="space-y-6">
+            <!-- Badge -->
+            <div
+                class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 fade-in-up">
+                <i class="pi pi-map-marker text-sakura"></i>
+                <span class="text-white text-sm font-medium">Agenzia con sede in Giappone</span>
+            </div>
+
+            <!-- Main Heading -->
+            <h1 class="text-5xl md:text-7xl font-bold text-white leading-tight fade-in-up delay-1">
+                Watabi – Il tuo viaggio<br />
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-sakura via-pink-watabi to-wisteria">
+                    in Giappone
+                </span><br />
+                con chi lo vive ogni giorno
+            </h1>
+
+            <!-- Subheading -->
+            <h2 class="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto font-light fade-in-up delay-2">
+                Un itinerario costruito per te, con la cura di chi conosce ogni dettaglio
+            </h2>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8 fade-in-up delay-3">
+                <button (click)="scrollToTravelTypes()"
+                    class="group px-8 py-4 bg-gradient-to-r from-red-watabi to-red-dark text-white font-bold rounded-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 flex items-center gap-3">
+                    <span>Trova il viaggio giusto per te</span>
+                    <i class="pi pi-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                </button>
+
+                <button (click)="navigateTo('/contact')"
+                    class="px-8 py-4 bg-white/10 backdrop-blur-md text-white font-semibold rounded-xl border-2 border-white/30 hover:bg-white/20 transition-all duration-300">
+                    Richiedi Preventivo
+                </button>
+            </div>
+
+            <!-- Trust Indicators -->
+            <div
+                class="flex flex-wrap justify-center items-center gap-8 pt-12 text-white/80 text-sm fade-in-up delay-4">
+                <div class="flex items-center gap-2">
+                    <i class="pi pi-check-circle text-sakura"></i>
+                    <span>100% Personalizzabile</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i class="pi pi-shield text-sakura"></i>
+                    <span>Assistenza H24 in Italiano</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i class="pi pi-star-fill text-sakura"></i>
+                    <span>500+ Viaggiatori Soddisfatti</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Icona Mouse che indica di scrollare -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce">
+        <div class="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center p-1">
+            <div class="w-1 h-3 bg-white/70 rounded-full"></div>
+        </div>
+    </div>
+</section>
