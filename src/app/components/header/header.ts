@@ -15,6 +15,9 @@ export class Header {
   @Input() subtitle: string = 'Un modo diverso di viaggiare';
   @Input() overlayOpacity: number = 0.3;
   @Input() minHeight: string = '550px';
+  isMobile(): boolean {
+    return window.innerWidth < 768;
+  }
 
   cloudImages = {
     cloud1: './assets/img/cloud-1.png',

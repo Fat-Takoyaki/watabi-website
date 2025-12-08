@@ -1,13 +1,13 @@
-<section id="travel-types" class="py-20 bg-white">
+<section id="travel-types" class="py-20 bg-[#8a2828]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <!-- Section Header -->
         <div class="text-center mb-16">
-            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                Qual è il tuo <span class="text-red-watabi">tipo di viaggio</span>?
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+                Qual è il tuo <span class="text-white/50">tipo di viaggio</span>?
             </h2>
             <div class="w-24 h-1 bg-gradient-to-r from-red-watabi to-sakura mx-auto mb-6"></div>
-            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto">
                 Qualunque sia il tuo stile di viaggio, c'è un Giappone che ti aspetta
             </p>
         </div>
@@ -16,7 +16,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             @for(type of travelTypes; track type.id) {
             <div (click)="navigateToType(type.route)"
-                class="group relative bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 cursor-pointer">
+                class="group relative bg-white rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 cursor-pointer">
 
                 <!-- Image -->
                 <div class="relative h-64 overflow-hidden">
@@ -71,11 +71,11 @@
 
         <!-- Bottom Note -->
         <div class="mt-12 text-center">
-            <p class="text-gray-600 mb-4">
+            <p class="text-white mb-4">
                 Non sai quale scegliere? Parliamone insieme
             </p>
             <a href="/contact"
-                class="inline-flex items-center gap-2 text-red-watabi font-semibold hover:gap-4 transition-all">
+                class="inline-flex items-center gap-2 text-white/90 font-semibold hover:gap-4 transition-all">
                 <span>Contattaci per una consulenza gratuita</span>
                 <i class="pi pi-arrow-right"></i>
             </a>

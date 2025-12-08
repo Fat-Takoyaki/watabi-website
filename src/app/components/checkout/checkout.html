@@ -51,7 +51,7 @@
         </div>
 
         <!-- Step Content -->
-        <div class="bg-white rounded-2xl shadow-2xl border-2 border-gray-200 overflow-hidden">
+        <div class="bg-white rounded-xl shadow-2xl border-2 border-gray-200 overflow-hidden">
 
             <!-- STEP 1: Dati Cliente -->
             @if(currentStep === 1) {
@@ -250,7 +250,7 @@
                     @for(pkg of availablePackages; track pkg.id) {
                     <div (click)="selectPackage(pkg)" [class.ring-4]="selectedPackage?.id === pkg.id"
                         [class.ring-red-watabi]="selectedPackage?.id === pkg.id"
-                        class="relative border-2 rounded-2xl overflow-hidden cursor-pointer hover:shadow-2xl transition-all duration-300 group flex flex-col">
+                        class="relative border-2 rounded-xl overflow-hidden cursor-pointer hover:shadow-2xl transition-all duration-300 group flex flex-col">
 
                         <!-- Selected Badge -->
                         @if(selectedPackage?.id === pkg.id) {
@@ -687,7 +687,7 @@
                     </div>
 
                     <!-- Totale Finale -->
-                    <div class="bg-gradient-to-r from-red-watabi to-red-dark text-white rounded-2xl p-8 shadow-xl">
+                    <div class="bg-gradient-to-r from-red-watabi to-red-dark text-white rounded-xl p-8 shadow-xl">
                         <div class="flex justify-between items-center">
                             <div>
                                 <h3 class="text-2xl font-bold mb-2">Totale Preventivo</h3>
@@ -768,7 +768,7 @@
 @if(showExtensionModal) {
 <div class="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-[100] p-4"
     (click)="showExtensionModal = false">
-    <div class="bg-white rounded-2xl max-w-5xl w-full max-h-[85vh] overflow-hidden shadow-2xl"
+    <div class="bg-white rounded-xl max-w-5xl w-full max-h-[85vh] overflow-hidden shadow-2xl"
         (click)="$event.stopPropagation()">
 
         <div class="bg-gradient-to-r from-jade to-jade-dark p-6 text-white">
@@ -923,7 +923,7 @@
 @if(showExperienceModal) {
 <div class="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-[100] p-4"
     (click)="showExperienceModal = false">
-    <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[80vh] overflow-hidden shadow-2xl"
+    <div class="bg-white rounded-xl max-w-4xl w-full max-h-[80vh] overflow-hidden shadow-2xl"
         (click)="$event.stopPropagation()">
 
         <div class="bg-gradient-to-r from-torii to-torii-dark p-6 text-white">

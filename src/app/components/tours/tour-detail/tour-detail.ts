@@ -6,6 +6,7 @@ import { RelatedTours } from '../related-tours/related-tours';
 import { ExtensionSelector } from '../extension-selector/extension-selector';
 import { ExtensionsService } from '../../../services/extensions.service';
 import { Extension } from '../../../models/extension.model';
+import { TourMap } from "../../tour-map/tour-map";
 
 interface TourStop {
   city: string;
@@ -41,7 +42,7 @@ interface SidebarInfo {
 @Component({
   selector: 'app-tour-detail',
   standalone: true,
-  imports: [CommonModule, Header, RelatedTours, ExtensionSelector],
+  imports: [CommonModule, Header, RelatedTours, ExtensionSelector, TourMap],
   templateUrl: './tour-detail.html',
   styleUrls: ['./tour-detail.scss'],
 })
@@ -181,19 +182,20 @@ export class TourDetail implements OnInit {
   sidebarInfo = [
     {
       icon: 'pi-map',
-      title: 'il Viaggio',
+      title: 'il Viaggio e Volo',
       items: [
         { label: 'Il nostro', highlight: 'Best Seller' },
         { label: 'Ideale per', highlight: 'tutti i tipi di viaggiatori' },
         { label: 'Personalizzabile con una notte in', highlight: 'Ryokan' },
+        { label: 'Volo da', highlight: 'Milano Malpensa' },
       ],
     },
-    {
+    /*{
       icon: 'pi-send',
       title: 'il Volo',
       description:
-        "In questo Tour il volo non è incluso. È possibile aggiungere il volo intercontinentale al pacchetto oppure provvedere in autonomia all'acquisto dello stesso.",
-    },
+        "",
+    },*/
     {
       icon: 'pi-star',
       title: 'i Viaggiatori',

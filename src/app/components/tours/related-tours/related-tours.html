@@ -16,7 +16,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             @for(tour of relatedTours; track tour.id) {
             <div (click)="viewTourDetail(tour.id)"
-                class="group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden cursor-pointer transform hover:-translate-y-2">
+                class="group relative bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden cursor-pointer transform hover:-translate-y-2">
 
                 <!-- Ribbon -->
                 @if(tour.ribbon) {

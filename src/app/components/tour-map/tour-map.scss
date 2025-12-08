@@ -1,0 +1,173 @@
+@import "leaflet/dist/leaflet.css";
+
+:host {
+  display: block;
+}
+
+.map-wrapper {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 768px) {
+    height: 400px;
+  }
+}
+
+.map-container {
+  width: 100%;
+  height: 100%;
+}
+
+// Custom marker style
+::ng-deep {
+  .custom-day-marker {
+    background: none;
+    border: none;
+  }
+
+  .marker-pin {
+    position: relative;
+    width: 20px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .marker-pin::before {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #dc2626;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    border: 1px solid #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  .marker-number {
+    position: relative;
+    z-index: 1;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 14px;
+    transform: translateY(-5px);
+  }
+
+  // Tooltip città
+  .city-label {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border: 1px solid #e5e7eb !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+    color: #1f2937 !important;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    padding: 4px 10px !important;
+    border-radius: 6px !important;
+
+    &::before {
+      border-top-color: #e5e7eb !important;
+    }
+  }
+
+  // Popup personalizzato
+  .leaflet-popup-content-wrapper {
+    border-radius: 8px;
+    padding: 0;
+  }
+
+  .leaflet-popup-content {
+    margin: 0;
+    min-width: 180px;
+  }
+
+  .popup-content {
+    padding: 12px;
+    text-align: center;
+  }
+
+  .popup-city {
+    font-size: 16px;
+    font-weight: bold;
+    color: #1f2937;
+    margin-bottom: 6px;
+  }
+
+  .popup-days {
+    font-size: 12px;
+    color: #6b7280;
+    margin-bottom: 4px;
+  }
+
+  .popup-nights {
+    font-size: 11px;
+    color: #9ca3af;
+    font-style: italic;
+  }
+
+  .leaflet-popup-close-button {
+    font-size: 20px !important;
+    padding: 4px 8px !important;
+  }
+}
+
+// Legend
+.map-legend {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 12px 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  @media (max-width: 640px) {
+    left: 10px;
+    bottom: 10px;
+    padding: 8px 12px;
+  }
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: #4b5563;
+  font-weight: 500;
+}
+
+.legend-marker {
+  width: 24px;
+  height: 24px;
+  background: #dc2626;
+  color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 11px;
+  border: 2px solid #ffffff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  flex-shrink: 0;
+}
+
+.legend-line {
+  width: 30px;
+  height: 3px;
+  background: #4a5fa8;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
