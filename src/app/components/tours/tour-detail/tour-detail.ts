@@ -74,7 +74,7 @@ interface TourStyleMetric {
 export class TourDetail implements OnInit, AfterViewInit, OnDestroy {
   tourId = 'yuki';
   backgroundImage =
-    'https://images.unsplash.com/photo-1602479185176-e48241133836?w=1920&q=80';
+    'https://images.unsplash.com/photo-1528164344705-47542687000d?w=1920&q=80';
 
   // Estensioni
   availableExtensionIds = ['dubai', 'singapore', 'maldive'];
