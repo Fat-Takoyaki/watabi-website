@@ -91,7 +91,7 @@ export class TourDetail implements OnInit, AfterViewInit, OnDestroy {
     'Quota calcolata su base 1 partecipante in un periodo di media stagione e da riconfermare tramite preventivo.';
 
   minParticipants = 1;
-  totalDays = 16;
+  totalDays = 15;
   totalNights = 14;
   accommodationType = '13 in Hotel, 1 in Ryokan';
   transportType = 'Autobus, Treno';
