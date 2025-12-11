@@ -613,7 +613,51 @@
                             </div>
                         </div>
                     </div>
-                    
+
+                    <!-- CALL TO ACTION - COME FUNZIONA IL TOUR INDIVIDUALE -->
+                    <div
+                        class="bg-gradient-to-br from-teal-500 to-teal-600 rounded-xl shadow-xl overflow-hidden border-2 border-teal-400">
+                        <div class="p-6 text-white">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div
+                                    class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                                    <i class="pi pi-info-circle text-white text-xl"></i>
+                                </div>
+                                <h3 class="text-lg font-bold">Come Funziona?</h3>
+                            </div>
+
+                            <p class="text-white/95 text-sm leading-relaxed mb-4">
+                                Scopri come organizziamo i <span class="font-bold">tour individuali su misura</span> per
+                                te e come possiamo personalizzare ogni aspetto del viaggio.
+                            </p>
+
+                            <ul class="space-y-3 mb-6">
+                                <li class="flex items-start gap-3">
+                                    <i class="pi pi-check-circle text-white flex-shrink-0 mt-0.5"></i>
+                                    <span class="text-sm text-white/95">Itinerario completamente personalizzabile</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <i class="pi pi-check-circle text-white flex-shrink-0 mt-0.5"></i>
+                                    <span class="text-sm text-white/95">Assistenza 24/7 durante il viaggio</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <i class="pi pi-check-circle text-white flex-shrink-0 mt-0.5"></i>
+                                    <span class="text-sm text-white/95">Partenza in qualsiasi data</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <i class="pi pi-check-circle text-white flex-shrink-0 mt-0.5"></i>
+                                    <span class="text-sm text-white/95">App dedicata con itinerario digitale</span>
+                                </li>
+                            </ul>
+
+                            <button (click)="navigateTo('/come-funziona-tour-individuale')"
+                                class="w-full bg-white text-teal-600 py-3 rounded-xl font-bold hover:bg-teal-50 transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                                <span>Scopri di più</span>
+                                <i class="pi pi-arrow-right text-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+
                     <!-- VIAGGIO E VOLO -->
                     <div class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
                         <!-- Header con gradiente -->
@@ -623,9 +667,11 @@
                                     class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
                                     <i class="pi pi-map text-white text-xl"></i>
                                 </div>
-                                <h3 class="text-xl font-bold text-white">Viaggio e Volo</h3>
+                                <div>
+                                    <h3 class="text-xl font-bold text-white">Viaggio e Volo</h3>
+                                    <p class="text-white/90 text-sm">Tutto quello che devi sapere sul tour</p>
+                                </div>
                             </div>
-                            <p class="text-white/90 text-sm">Tutto quello che devi sapere sul tour</p>
                         </div>
 
                         <!-- Content -->
@@ -691,64 +737,19 @@
                         </div>
                     </div>
 
-                    <!-- CALL TO ACTION - COME FUNZIONA IL TOUR INDIVIDUALE -->
-                    <div
-                        class="bg-gradient-to-br from-teal-500 to-teal-600 rounded-xl shadow-xl overflow-hidden border-2 border-teal-400">
-                        <div class="p-6 text-white">
-                            <div class="flex items-center gap-3 mb-4">
-                                <div
-                                    class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
-                                    <i class="pi pi-info-circle text-white text-xl"></i>
-                                </div>
-                                <h3 class="text-lg font-bold">Come Funziona?</h3>
-                            </div>
-
-                            <p class="text-white/95 text-sm leading-relaxed mb-4">
-                                Scopri come organizziamo i <span class="font-bold">tour individuali su misura</span> per
-                                te e come possiamo personalizzare ogni aspetto del viaggio.
-                            </p>
-
-                            <ul class="space-y-3 mb-6">
-                                <li class="flex items-start gap-3">
-                                    <i class="pi pi-check-circle text-white flex-shrink-0 mt-0.5"></i>
-                                    <span class="text-sm text-white/95">Itinerario completamente personalizzabile</span>
-                                </li>
-                                <li class="flex items-start gap-3">
-                                    <i class="pi pi-check-circle text-white flex-shrink-0 mt-0.5"></i>
-                                    <span class="text-sm text-white/95">Assistenza 24/7 durante il viaggio</span>
-                                </li>
-                                <li class="flex items-start gap-3">
-                                    <i class="pi pi-check-circle text-white flex-shrink-0 mt-0.5"></i>
-                                    <span class="text-sm text-white/95">Partenza in qualsiasi data</span>
-                                </li>
-                                <li class="flex items-start gap-3">
-                                    <i class="pi pi-check-circle text-white flex-shrink-0 mt-0.5"></i>
-                                    <span class="text-sm text-white/95">App dedicata con itinerario digitale</span>
-                                </li>
-                            </ul>
-
-                            <button (click)="navigateTo('/come-funziona-tour-individuale')"
-                                class="w-full bg-white text-teal-600 py-3 rounded-xl font-bold hover:bg-teal-50 transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
-                                <span>Scopri di più</span>
-                                <i class="pi pi-arrow-right text-sm"></i>
-                            </button>
-                        </div>
-                    </div>
-
                     <!-- ESTENSIONI DISPONIBILI -->
                     @if(availableExtensions && availableExtensions.length > 0) {
-                    <div
-                        class="bg-gradient-to-br from-sakura-light to-white rounded-xl shadow-lg border-2 border-sakura overflow-hidden">
+                    <div class="rounded-xl shadow-lg border-2 border-red-watabi overflow-hidden">
                         <!-- Header -->
-                        <div class="bg-gradient-to-r from-red-watabi/10 to-sakura p-6 border-b border-sakura">
+                        <div class="bg-gradient-to-br from-red-watabi to-red-dark p-6 border-b border-teal">
                             <div class="flex items-center gap-3 mb-2">
                                 <div
-                                    class="w-12 h-12 rounded-full bg-gradient-to-br from-red-watabi to-red-dark flex items-center justify-center">
+                                    class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
                                     <i class="pi pi-globe text-white text-xl"></i>
                                 </div>
                                 <div>
-                                    <h3 class="text-lg font-bold text-gray-900">Estensioni Mare & Città</h3>
-                                    <p class="text-xs text-gray-600">Arricchisci il tuo viaggio</p>
+                                    <h3 class="text-lg font-bold text-white">Estensioni Mare & Città</h3>
+                                    <p class="text-xs text-white">Arricchisci il tuo viaggio</p>
                                 </div>
                             </div>
                         </div>
@@ -837,7 +838,7 @@
                                 </div>
                                 <div>
                                     <h3 class="text-xl font-bold text-white">Optional</h3>
-                                    <p class="text-white/90 text-sm">Seleziona opzionali da aggiungere al tuo viaggio
+                                    <p class="text-white/90 text-sm">Opzioni aggiuntive selezionate per te
                                     </p>
                                 </div>
                             </div>
