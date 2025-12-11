@@ -56,6 +56,14 @@ interface SidebarInfo {
   contacts?: { type: string; value: string; link?: string }[];
 }
 
+interface TourStyleMetric {
+  icon: string;
+  label: string;
+  value: number; // 0-100
+  level: 'Basso' | 'Medio' | 'Alto' | 'Molto Alto';
+  color: 'purple' | 'teal' | 'orange' | 'blue' | 'emerald' | 'rose';
+}
+
 @Component({
   selector: 'app-tour-detail',
   standalone: true,
@@ -85,8 +93,8 @@ export class TourDetail implements OnInit, AfterViewInit, OnDestroy {
   private lastShowState = false;
   private readonly HYSTERESIS = 40; // px, margine per evitare flicker
 
-  tourTitle = 'Giappone Autentico';
-  tourSubtitle = 'Tour Yuki';
+  tourTitle = 'Giappone Classico';
+  tourSubtitle = 'Tour Giappone Classico 15 giorni';
   tourDescription =
     'Quota calcolata su base 1 partecipante in un periodo di media stagione e da riconfermare tramite preventivo.';
 
@@ -323,6 +331,51 @@ export class TourDetail implements OnInit, AfterViewInit, OnDestroy {
     },
   ];
 
+  tourStyleMetrics: TourStyleMetric[] = [
+    {
+      icon: 'pi-compass',
+      label: "Spirito d'Avventura",
+      value: 60,
+      level: 'Medio',
+      color: 'purple',
+    },
+    {
+      icon: 'pi-book',
+      label: 'Cultura e Tradizioni',
+      value: 95,
+      level: 'Molto Alto',
+      color: 'teal',
+    },
+    {
+      icon: 'pi-bolt',
+      label: 'Impegno Fisico',
+      value: 30,
+      level: 'Basso',
+      color: 'orange',
+    },
+    {
+      icon: 'pi-users',
+      label: 'Adatto Famiglie',
+      value: 85,
+      level: 'Alto',
+      color: 'blue',
+    },
+    {
+      icon: 'pi-image',
+      label: 'Paesaggi Naturali',
+      value: 90,
+      level: 'Molto Alto',
+      color: 'emerald',
+    },
+    {
+      icon: 'pi-heart',
+      label: 'Comfort e Relax',
+      value: 75,
+      level: 'Alto',
+      color: 'rose',
+    },
+  ];
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -337,8 +390,7 @@ export class TourDetail implements OnInit, AfterViewInit, OnDestroy {
     requestAnimationFrame(() => this.updateStickyCta());
   }
 
-  ngOnDestroy(): void {
-  }
+  ngOnDestroy(): void {}
 
   private updateStickyCta(): void {
     const scrollY = window.scrollY || window.pageYOffset;
@@ -440,5 +492,22 @@ export class TourDetail implements OnInit, AfterViewInit, OnDestroy {
 
   getActiveTab(city: string): 'description' | 'places' | 'excursions' {
     return this.activeTabs[city] || 'description';
+  }
+
+  getColorClasses(color: string, type: 'text' | 'bg'): string {
+    const colorMap = {
+      purple:
+        type === 'text' ? 'text-purple-600' : 'from-purple-500 to-purple-600',
+      teal: type === 'text' ? 'text-teal-600' : 'from-teal-500 to-teal-600',
+      orange:
+        type === 'text' ? 'text-orange-600' : 'from-orange-500 to-orange-600',
+      blue: type === 'text' ? 'text-blue-600' : 'from-blue-500 to-blue-600',
+      emerald:
+        type === 'text'
+          ? 'text-emerald-600'
+          : 'from-emerald-500 to-emerald-600',
+      rose: type === 'text' ? 'text-rose-600' : 'from-rose-500 to-rose-600',
+    };
+    return colorMap[color as keyof typeof colorMap] || '';
   }
 }

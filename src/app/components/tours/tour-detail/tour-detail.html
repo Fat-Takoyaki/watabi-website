@@ -34,8 +34,7 @@
                         </div>
 
                         <!-- Prezzo in Evidenza -->
-                        <div
-                            class="text-center lg:text-right flex-shrink-0 px-4 py-0 lg:ml-6">
+                        <div class="text-center lg:text-right flex-shrink-0 px-4 py-0 lg:ml-6">
                             <div class="text-xs font-semibold text-teal-700 uppercase tracking-wide mb-1">
                                 Prezzo da
                             </div>
@@ -232,7 +231,7 @@
                             <span class="font-semibold text-gray-900">Nota:</span>
                             Prezzo in media stagione. In <span class="font-semibold text-red-watabi">alta
                                 stagione</span>
-                            (ciliegi/autunno) è previsto un supplemento.
+                            (ciliegi/autunno) potrebbero essere applicati dei supplementi.
                             <span class="font-semibold text-teal-700">I nostri esperti ti risponderanno
                                 personalmente</span> con preventivo dettagliato.
                         </p>
@@ -570,6 +569,51 @@
             <div class="lg:col-span-1 mt-12">
                 <div class="sticky top-24 space-y-6">
 
+                    <!-- CARD STILE DI VIAGGIO -->
+                    <div class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
+                        <div class="bg-gradient-to-r from-red-watabi to-red-dark p-4">
+                            <div class="flex items-center gap-3">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                                    <i class="pi pi-chart-bar text-white text-lg"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-base font-bold text-white">Stile del Viaggio</h3>
+                                    <p class="text-xs text-white/90">A colpo d'occhio</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-5 space-y-4">
+                            @for(metric of tourStyleMetrics; track metric.label) {
+                            <div>
+                                <div class="flex items-center justify-between mb-2">
+                                    <div class="flex items-center gap-2">
+                                        <i [class]="'pi ' + metric.icon + ' text-' + metric.color + '-600 text-sm'"></i>
+                                        <span class="text-xs font-semibold text-gray-900">{{ metric.label }}</span>
+                                    </div>
+                                    <span [class]="'text-xs font-bold text-' + metric.color + '-600'">{{ metric.level
+                                        }}</span>
+                                </div>
+                                <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+                                    <div [class]="'h-full bg-gradient-to-r from-' + metric.color + '-500 to-' + metric.color + '-600 rounded-full transition-all duration-500'"
+                                        [style.width.%]="metric.value"></div>
+                                </div>
+                            </div>
+                            }
+                        </div>
+
+                        <div class="bg-gray-50 px-4 py-3 border-t border-gray-200">
+                            <div class="flex items-start gap-2">
+                                <i class="pi pi-info-circle text-teal-600 text-xs mt-0.5 flex-shrink-0"></i>
+                                <p class="text-xs text-gray-600 leading-relaxed">
+                                    Questi valori sono indicativi e possono variare in base alle <span
+                                        class="font-semibold">tue personalizzazioni</span>.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <!-- VIAGGIO E VOLO -->
                     <div class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
                         <!-- Header con gradiente -->
