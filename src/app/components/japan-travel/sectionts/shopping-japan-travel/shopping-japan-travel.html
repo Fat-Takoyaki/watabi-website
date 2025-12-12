@@ -1,0 +1,72 @@
+<div class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                Cosa acquistare in <span class="text-red-watabi">Giappone</span>
+            </h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Suggerimenti per lo shopping e i souvenir più autentici.
+            </p>
+        </div>
+
+        <!-- Shopping Categories Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+            @for(category of categories; track category.name) {
+            <div
+                class="group bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-200 hover:border-red-watabi hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+                <!-- Image -->
+                <div class="relative h-56 overflow-hidden">
+                    <img [src]="category.image" [alt]="category.name"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+
+                    <!-- Icon Badge -->
+                    <div
+                        class="absolute top-4 left-4 w-14 h-14 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <i [class]="'pi ' + category.icon + ' text-white text-2xl'"></i>
+                    </div>
+
+                    <!-- Name -->
+                    <h3 class="absolute bottom-4 left-4 text-2xl font-bold text-white">
+                        {{ category.name }}
+                    </h3>
+                </div>
+
+                <!-- Content -->
+                <div class="p-6">
+                    <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                        {{ category.description }}
+                    </p>
+
+                    <!-- Tips -->
+                    <div class="space-y-2">
+                        <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Dove trovarlo:</p>
+                        @for(tip of category.tips; track tip) {
+                        <div class="flex items-center gap-2 text-sm text-gray-700">
+                            <i class="pi pi-map-marker text-red-watabi text-xs"></i>
+                            <span>{{ tip }}</span>
+                        </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+
+        <!-- Info Calamite -->
+        <div class="max-w-4xl mx-auto">
+            <div class="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-xl">
+                <div class="flex items-start gap-4">
+                    <i class="pi pi-info-circle text-blue-600 text-2xl mt-1"></i>
+                    <div>
+                        <h4 class="font-bold text-gray-900 mb-2">💡 Consiglio di viaggio</h4>
+                        <p class="text-gray-700 text-sm leading-relaxed">
+                            Le <strong>calamite da frigo</strong> non sono così diffuse in Giappone come in altri paesi.
+                            Se ne vedete una che vi piace, prendetela senza rimpianti!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

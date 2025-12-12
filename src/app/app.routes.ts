@@ -15,12 +15,12 @@ export const routes: Routes = [
     data: { title: 'Home - WATABI' },
   },
 
-  // Navbar pages (redirect a home fino a quando non esistono)
   {
     path: 'japan-travel',
-    redirectTo: 'home',
-    pathMatch: 'full',
+    loadComponent: () => import('./components/japan-travel/japan-travel').then((m) => m.JapanTravel),
+    data: { title: 'Japan Travel - WATABI' },
   },
+  // Navbar pages (redirect a home fino a quando non esistono)
   {
     path: 'group-tours',
     redirectTo: 'home',

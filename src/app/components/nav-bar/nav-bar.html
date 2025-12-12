@@ -37,7 +37,7 @@
                     <div (click)="$event.stopPropagation()"
                         class="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-100 py-2 animate-[fadeIn_0.2s_ease-out_forwards]">
                         @for(child of item.children; track child.label) {
-                        <a [routerLink]="child.route" (click)="closeAllDropdowns()"
+                        <a [routerLink]="child.route" (click)="closeAll()"
                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-rose-50 hover:text-rose-600 transition-colors cursor-pointer">
                             {{ child.label }}
                         </a>
@@ -57,7 +57,7 @@
             </div>
 
             <!-- Mobile Menu Button -->
-            <button (click)="toggleMobileMenu()"
+            <button (click)="toggleMobileMenu($event)"
                 class="lg:hidden p-2 rounded-lg text-gray-700 bg-white hover:bg-gray-100 transition-colors">
                 @if(!isMobileMenuOpen) {
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

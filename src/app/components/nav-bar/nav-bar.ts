@@ -39,11 +39,11 @@ export class Navbar {
   ];
 
   constructor(private router: Router, private elementRef: ElementRef) {
-    // Chiudi dropdown quando cambia route
+    // Chiudi tutto quando cambia route
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe(() => {
-        this.closeAllDropdowns();
+        this.closeAll();
       });
   }
 
@@ -55,23 +55,22 @@ export class Navbar {
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent) {
     const clickedInside = this.elementRef.nativeElement.contains(event.target);
+
+    // Se clicco fuori dalla navbar, chiudi tutto
     if (!clickedInside) {
-      this.closeAllDropdowns();
-      this.closeMobileMenu();
+      this.closeAll();
     }
   }
 
-  // Chiudi dropdown quando premi ESC
   @HostListener('document:keydown.escape')
   onEscapePress() {
-    this.closeAllDropdowns();
-    this.closeMobileMenu();
+    this.closeAll();
   }
 
   getFiorituraLabel(): string {
     const now = new Date();
     const currentYear = now.getFullYear();
-    const currentMonth = now.getMonth(); // 0-11
+    const currentMonth = now.getMonth();
 
     // Se siamo dopo aprile (mese 3), mostriamo l'anno successivo
     const targetYear = currentMonth >= 3 ? currentYear + 1 : currentYear;
@@ -79,8 +78,14 @@ export class Navbar {
     return `Fioritura ${targetYear}`;
   }
 
-  toggleMobileMenu() {
+  toggleMobileMenu(event: Event) {
+    event.stopPropagation();
     this.isMobileMenuOpen = !this.isMobileMenuOpen;
+
+    // Chiudi dropdown quando apri/chiudi il menu mobile
+    this.openDropdown = null;
+
+    // Previeni lo scroll del body quando il menu è aperto
     if (this.isMobileMenuOpen) {
       document.body.style.overflow = 'hidden';
     } else {
@@ -93,14 +98,8 @@ export class Navbar {
       event.stopPropagation();
     }
 
+    // Toggle: se già aperto lo chiudo, altrimenti lo apro
     this.openDropdown = this.openDropdown === label ? null : label;
-  }
-
-  navigate(route?: string) {
-    if (route) {
-      this.router.navigate([route]);
-      this.closeMobileMenu();
-    }
   }
 
   closeMobileMenu() {
@@ -109,8 +108,10 @@ export class Navbar {
     document.body.style.overflow = '';
   }
 
-  closeAllDropdowns() {
+  closeAll() {
+    this.isMobileMenuOpen = false;
     this.openDropdown = null;
+    document.body.style.overflow = '';
   }
 
   hasChildren(item: MenuItem): boolean {

@@ -1,0 +1,32 @@
+// Animazione smooth per apertura/chiusura FAQ
+.max-h-0 {
+  max-height: 0;
+}
+
+.max-h-96 {
+  max-height: 24rem;
+}
+
+// Animazione rotazione chevron
+.rotate-180 {
+  transform: rotate(180deg);
+}
+
+// Transizioni fluide
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ease-in-out {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+// Opacità smooth
+.opacity-0 {
+  opacity: 0;
+}
+
+.opacity-100 {
+  opacity: 1;
+}
