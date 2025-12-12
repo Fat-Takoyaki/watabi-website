@@ -1,4 +1,4 @@
-<footer class="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white overflow-hidden">
+<footer class="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white overflow-hidden">
 
     <!-- Decorative Elements -->
     <div class="absolute top-0 right-0 w-96 h-96 bg-red-watabi/10 rounded-full blur-3xl"></div>
@@ -16,7 +16,7 @@
                         <img src="assets/img/logo_w.png" alt="WATABI Logo"
                             class="h-16 w-auto object-contain transition-transform group-hover:scale-105">
                     </a>
-                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
                         Agenzia Viaggi specializzata in Giappone. Creiamo esperienze uniche e indimenticabili nel Paese
                         del Sol Levante.
                     </p>
@@ -24,16 +24,16 @@
                     <!-- Contact Info -->
                     <div class="space-y-3">
                         <a [href]="'mailto:' + contactInfo.email"
-                            class="flex items-center gap-3 text-gray-400 transition-colors group">
+                            class="flex items-center gap-3 text-slate-400 transition-colors group">
                             <i class="pi pi-envelope text-red-watabi group-hover:scale-110 transition-transform"></i>
                             <span class="text-sm">{{ contactInfo.email }}</span>
                         </a>
                         <a [href]="'tel:' + contactInfo.phone"
-                            class="flex items-center gap-3 text-gray-400 transition-colors group">
+                            class="flex items-center gap-3 text-slate-400 transition-colors group">
                             <i class="pi pi-phone text-red-watabi group-hover:scale-110 transition-transform"></i>
                             <span class="text-sm">{{ contactInfo.phone }}</span>
                         </a>
-                        <div class="flex items-start gap-3 text-gray-400">
+                        <div class="flex items-start gap-3 text-slate-400">
                             <i class="pi pi-map-marker text-red-watabi mt-1"></i>
                             <span class="text-sm">{{ contactInfo.address }}</span>
                         </div>
@@ -58,7 +58,7 @@
                         @for(link of legalLinks; track link.label) {
                         <li>
                             <a [routerLink]="link.route"
-                                class="text-gray-400 transition-colors text-sm flex items-center gap-2 group cursor-pointer">
+                                class="text-slate-400 transition-colors text-sm flex items-center gap-2 group cursor-pointer">
                                 <i
                                     class="pi pi-angle-right text-xs opacity-0 group-hover:opacity-100 transition-opacity"></i>
                                 {{ link.label }}
@@ -72,7 +72,7 @@
                         @for(link of insuranceLinks; track link.label) {
                         <li>
                             <a [routerLink]="link.route"
-                                class="text-gray-400 transition-colors text-sm flex items-center gap-2 group cursor-pointer">
+                                class="text-slate-400 transition-colors text-sm flex items-center gap-2 group cursor-pointer">
                                 <i
                                     class="pi pi-angle-right text-xs opacity-0 group-hover:opacity-100 transition-opacity"></i>
                                 {{ link.label }}
@@ -97,7 +97,7 @@
                                         class="text-white font-semibold text-sm mb-1 group transition-colors">
                                         {{ link.label }}
                                     </h4>
-                                    <span class="text-gray-500 text-xs">Scopri di più →</span>
+                                    <span class="text-slate-500 text-xs">Scopri di più →</span>
                                 </div>
                             </div>
                         </a>
@@ -131,14 +131,14 @@
             <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
 
                 <!-- Copyright -->
-                <div class="text-gray-400 text-center md:text-left">
+                <div class="text-slate-400 text-center md:text-left">
                     {{ currentYear }} © <span class="font-semibold text-red-watabi">Watabi</span> - Tutti I Diritti
                     Riservati
                     <span class="mx-2">|</span>
-                    <span class="text-gray-500">P.IVA 05290800753</span>
+                    <span class="text-slate-500">P.IVA 05290800753</span>
                 </div>
 
-                <div class="flex items-center gap-2 text-gray-400">
+                <div class="flex items-center gap-2 text-slate-400">
                     <span>Made with</span>
                     <i class="pi pi-heart-fill text-red-watabi animate-pulse"></i>
                     <span>in Italy</span>

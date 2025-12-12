@@ -92,7 +92,7 @@ export class BestPeriod {
       highlights: ['Neve e sci', 'Onsen invernali', 'Capodanno giapponese'],
       pros: ['Bassa stagione', 'Prezzi convenienti', 'Onsen perfetti'],
       cons: ['Freddo intenso', 'Giorni più corti', 'Alcuni siti chiusi'],
-      gradient: 'from-zen-gray to-ocean',
+      gradient: 'from-zen-slate to-ocean',
       image:
         'https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=800&q=80',
       bestFor: ['Sci', 'Onsen', 'Budget'],

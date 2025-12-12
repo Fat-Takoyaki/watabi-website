@@ -1,10 +1,10 @@
 <div class="py-20 bg-gradient-to-br from-slate-200 to-slate-100">
     <div class="max-w-7xl mx-auto px-4">
         <div class="text-center mb-16">
-            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
                 Cosa vedere in <span class="text-red-watabi">Giappone</span>
             </h2>
-            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p class="text-xl text-slate-600 max-w-3xl mx-auto">
                 Un paese affascinante ed esotico. Scopri le mete imperdibili del tuo viaggio.
             </p>
         </div>
@@ -13,7 +13,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             @for(dest of destinations; track dest.name; let i = $index) {
             @if(showAll || dest.popular) {
-            <div [class]="'group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 bg-white border border-gray-200 ' + 
+            <div [class]="'group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 bg-white border border-slate-200 ' + 
                          (shouldAnimate && !dest.popular && showAll ? 'animate-fade-in-up' : '')"
                 [style.animation-delay]="(shouldAnimate && !dest.popular && showAll ? ((i - getPopularCount()) * 50) : 0) + 'ms'">
                 <!-- Image -->
@@ -39,14 +39,14 @@
 
                 <!-- Content -->
                 <div class="p-5">
-                    <p class="text-gray-600 text-sm mb-4 leading-relaxed line-clamp-2">
+                    <p class="text-slate-600 text-sm mb-4 leading-relaxed line-clamp-2">
                         {{ dest.description }}
                     </p>
 
                     <!-- Highlights -->
                     <div class="flex flex-wrap gap-2">
                         @for(highlight of dest.highlights.slice(0, 3); track highlight) {
-                        <span class="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded-full">
+                        <span class="text-xs px-2 py-1 bg-slate-100 text-slate-700 rounded-full">
                             {{ highlight }}
                         </span>
                         }

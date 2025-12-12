@@ -2,10 +2,10 @@
     <div class="max-w-7xl mx-auto px-4">
         <!-- Header with Tabs Style -->
         <div class="text-center mb-10">
-            <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">
+            <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-3">
                 Preparati al <span class="text-red-watabi">Viaggio</span>
             </h2>
-            <p class="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto mb-8">
+            <p class="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto mb-8">
                 Immergiti nella cultura giapponese ancora prima di partire
             </p>
 
@@ -13,14 +13,14 @@
             <div class="flex justify-center gap-3 flex-wrap">
                 <button (click)="selectedTab = 'books'" [class]="selectedTab === 'books' 
                         ? 'bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-lg scale-105' 
-                        : 'bg-white text-gray-700 hover:bg-gray-50 shadow-md'"
+                        : 'bg-white text-slate-700 hover:bg-slate-50 shadow-md'"
                     class="px-6 py-3 rounded-full font-semibold text-sm transition-all duration-300 flex items-center gap-2">
                     <i class="pi pi-book"></i>
                     <span>Libri</span>
                 </button>
                 <button (click)="selectedTab = 'movies'" [class]="selectedTab === 'movies' 
                         ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg scale-105' 
-                        : 'bg-white text-gray-700 hover:bg-gray-50 shadow-md'"
+                        : 'bg-white text-slate-700 hover:bg-slate-50 shadow-md'"
                     class="px-6 py-3 rounded-full font-semibold text-sm transition-all duration-300 flex items-center gap-2">
                     <i class="pi pi-video"></i>
                     <span>Film</span>
@@ -33,7 +33,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-7xl mx-auto">
             @for(book of books; track book.title) {
             <div
-                class="group relative bg-white rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-500 border border-gray-200 hover:border-amber-300 hover:-translate-y-2 cursor-pointer">
+                class="group relative bg-white rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-500 border border-slate-200 hover:border-amber-300 hover:-translate-y-2 cursor-pointer">
                 <!-- Gradient Top Bar -->
                 <div
                     class="h-2 bg-gradient-to-r from-amber-400 via-orange-400 to-amber-500 group-hover:h-3 transition-all duration-300">
@@ -51,7 +51,7 @@
 
                         <!-- Title -->
                         <h4
-                            class="font-bold text-gray-900 text-sm leading-snug pt-1 group-hover:text-amber-600 transition-colors">
+                            class="font-bold text-slate-900 text-sm leading-snug pt-1 group-hover:text-amber-600 transition-colors">
                             {{ book.title }}
                         </h4>
                     </div>
@@ -60,7 +60,7 @@
                     <div class="flex justify-center">
                         <div class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-amber-50 rounded-full">
                             <i class="pi pi-user text-xs text-amber-600"></i>
-                            <span class="text-gray-700 font-medium text-xs">{{ book.author }}</span>
+                            <span class="text-slate-700 font-medium text-xs">{{ book.author }}</span>
                         </div>
                     </div>
                 </div>
@@ -79,7 +79,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-7xl mx-auto">
             @for(movie of movies; track movie.title) {
             <div
-                class="group relative bg-white rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-500 border border-gray-200 hover:border-purple-300 hover:-translate-y-2 cursor-pointer">
+                class="group relative bg-white rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-500 border border-slate-200 hover:border-purple-300 hover:-translate-y-2 cursor-pointer">
                 <!-- Gradient Top Bar -->
                 <div
                     class="h-2 bg-gradient-to-r from-purple-400 via-pink-400 to-purple-500 group-hover:h-3 transition-all duration-300">
@@ -97,7 +97,7 @@
 
                         <!-- Title -->
                         <h4
-                            class="font-bold text-gray-900 text-sm leading-snug pt-1 group-hover:text-purple-600 transition-colors">
+                            class="font-bold text-slate-900 text-sm leading-snug pt-1 group-hover:text-purple-600 transition-colors">
                             {{ movie.title }}
                         </h4>
                     </div>
@@ -106,7 +106,7 @@
                     <div class="flex justify-center">
                         <div class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-purple-50 rounded-full">
                             <i class="pi pi-user text-xs text-purple-600"></i>
-                            <span class="text-gray-700 font-medium text-xs">{{ movie.director }}</span>
+                            <span class="text-slate-700 font-medium text-xs">{{ movie.director }}</span>
                         </div>
                     </div>
                 </div>

@@ -187,7 +187,7 @@ export class Tours {
       case 'red':
         return `${baseClasses} bg-gradient-to-r from-red-watabi to-red-dark text-white`;
       default:
-        return `${baseClasses} bg-gradient-to-r from-zen-gray to-zen-dark text-white`;
+        return `${baseClasses} bg-gradient-to-r from-zen-slate to-zen-dark text-white`;
     }
   }
 }

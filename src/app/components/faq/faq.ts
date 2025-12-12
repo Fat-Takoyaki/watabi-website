@@ -27,7 +27,7 @@ export class Faq {
   selectedCategory: string = 'all';
 
   categories: FAQCategory[] = [
-    { id: 'all', name: 'Tutte', icon: 'pi-list', color: 'gray' },
+    { id: 'all', name: 'Tutte', icon: 'pi-list', color: 'slate' },
     {
       id: 'pratica',
       name: 'Info Pratiche',
@@ -209,7 +209,7 @@ export class Faq {
   getCategoryColor(categoryId: string): string {
     const colorMap: { [key: string]: string } = {
       red: 'bg-gradient-to-br from-red-500 to-red-700',
-      gray: 'bg-gradient-to-br from-gray-500 to-gray-700',
+      slate: 'bg-gradient-to-br from-slate-500 to-slate-700',
       blue: 'bg-gradient-to-br from-blue-500 to-blue-700',
       teal: 'bg-gradient-to-br from-teal-500 to-teal-700',
       gold: 'bg-gradient-to-br from-yellow-500 to-yellow-700',
@@ -217,13 +217,13 @@ export class Faq {
     };
 
     const category = this.categories.find((c) => c.id === categoryId);
-    return category ? colorMap[category.color] : colorMap['gray'];
+    return category ? colorMap[category.color] : colorMap['slate'];
   }
 
   getCategoryButtonClass(categoryId: string): string {
     const colorMap: { [key: string]: string } = {
       red: 'bg-gradient-to-br from-red-500 to-red-700 text-white shadow-lg scale-105',
-      gray: 'bg-gradient-to-br from-gray-500 to-gray-700 text-white shadow-lg scale-105',
+      slate: 'bg-gradient-to-br from-slate-500 to-slate-700 text-white shadow-lg scale-105',
       blue: 'bg-gradient-to-br from-blue-500 to-blue-700 text-white shadow-lg scale-105',
       teal: 'bg-gradient-to-br from-teal-500 to-teal-700 text-white shadow-lg scale-105',
       gold: 'bg-gradient-to-br from-yellow-500 to-yellow-700 text-white shadow-lg scale-105',
@@ -233,15 +233,15 @@ export class Faq {
 
     if (this.selectedCategory === categoryId) {
       const category = this.categories.find((c) => c.id === categoryId);
-      return category ? colorMap[category.color] : colorMap['gray'];
+      return category ? colorMap[category.color] : colorMap['slate'];
     }
-    return 'bg-white text-gray-700 hover:bg-gray-100 shadow-md hover:shadow-lg';
+    return 'bg-white text-slate-700 hover:bg-slate-100 shadow-md hover:shadow-lg';
   }
 
   getCategoryIconColor(categoryId: string): string {
     const colorMap: { [key: string]: string } = {
       red: 'text-red-600',
-      gray: 'text-gray-600',
+      slate: 'text-slate-600',
       blue: 'text-blue-600',
       teal: 'text-teal-600',
       gold: 'text-yellow-600',
@@ -249,6 +249,6 @@ export class Faq {
     };
 
     const category = this.categories.find((c) => c.id === categoryId);
-    return category ? colorMap[category.color] : colorMap['gray'];
+    return category ? colorMap[category.color] : colorMap['slate'];
   }
 }

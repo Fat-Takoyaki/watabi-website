@@ -3,11 +3,11 @@
 
         <!-- Section Header -->
         <div class="text-center mb-16">
-            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
                 Qual è il <span class="text-red-watabi">periodo migliore</span> per andare in Giappone?
             </h2>
             <div class="w-24 h-1 bg-gradient-to-r from-red-watabi to-sakura mx-auto mb-6"></div>
-            <p class="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            <p class="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
                 Il Giappone è bellissimo tutto l'anno, ma ogni stagione offre esperienze uniche.
                 Scegli il periodo che rispecchia meglio ciò che vuoi vivere durante il tuo viaggio.
             </p>
@@ -44,13 +44,13 @@
                 <!-- Content -->
                 <div class="p-6">
                     <!-- Description -->
-                    <p class="text-gray-700 text-sm leading-relaxed mb-4">
+                    <p class="text-slate-700 text-sm leading-relaxed mb-4">
                         {{ season.description }}
                     </p>
 
                     <!-- Highlights -->
                     <div class="mb-4">
-                        <h4 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Da non perdere</h4>
+                        <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Da non perdere</h4>
                         <div class="flex flex-wrap gap-2">
                             @for(highlight of season.highlights; track highlight) {
                             <span
@@ -72,7 +72,7 @@
                             </h5>
                             <ul class="space-y-1">
                                 @for(pro of season.pros; track pro) {
-                                <li class="text-xs text-gray-600 flex items-start gap-1">
+                                <li class="text-xs text-slate-600 flex items-start gap-1">
                                     <i class="pi pi-plus text-green-500 text-xs mt-0.5"></i>
                                     <span>{{ pro }}</span>
                                 </li>
@@ -89,7 +89,7 @@
                             </h5>
                             <ul class="space-y-1">
                                 @for(con of season.cons; track con) {
-                                <li class="text-xs text-gray-600 flex items-start gap-1">
+                                <li class="text-xs text-slate-600 flex items-start gap-1">
                                     <i class="pi pi-minus text-red-500 text-xs mt-0.5"></i>
                                     <span>{{ con }}</span>
                                 </li>
@@ -99,11 +99,11 @@
                     </div>
 
                     <!-- Best For -->
-                    <div class="pt-4 border-t border-gray-100">
-                        <h5 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Ideale per</h5>
+                    <div class="pt-4 border-t border-slate-100">
+                        <h5 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Ideale per</h5>
                         <div class="flex flex-wrap gap-2">
                             @for(best of season.bestFor; track best) {
-                            <span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded">
+                            <span class="px-2 py-1 bg-slate-100 text-slate-700 text-xs font-medium rounded">
                                 {{ best }}
                             </span>
                             }
@@ -123,9 +123,9 @@
             <div class="bg-gradient-to-br from-pink-50 to-pink-100/50 rounded-xl p-6 border-2 border-pink-200">
                 <div class="flex items-center gap-3 mb-3">
                     <i class="pi pi-heart text-pink-600 text-2xl"></i>
-                    <h4 class="font-bold text-gray-900">Fioriture</h4>
+                    <h4 class="font-bold text-slate-900">Fioriture</h4>
                 </div>
-                <p class="text-sm text-gray-700 leading-relaxed">
+                <p class="text-sm text-slate-700 leading-relaxed">
                     <strong>Marzo-Aprile</strong> (Hanami) e <strong>Novembre</strong> (Koyo) regalano i panorami più
                     spettacolari dell’anno. Ideali per chi vuole vivere il Giappone nella sua massima bellezza.
                 </p>
@@ -135,9 +135,9 @@
             <div class="bg-gradient-to-br from-yellow-50 to-yellow-100/50 rounded-xl p-6 border-2 border-yellow-200">
                 <div class="flex items-center gap-3 mb-3">
                     <i class="pi pi-calendar text-yellow-600 text-2xl"></i>
-                    <h4 class="font-bold text-gray-900">Golden Week</h4>
+                    <h4 class="font-bold text-slate-900">Golden Week</h4>
                 </div>
-                <p class="text-sm text-gray-700 leading-relaxed">
+                <p class="text-sm text-slate-700 leading-relaxed">
                     Fine aprile / inizio maggio è uno dei momenti più vivaci dell’anno: festival, eventi, atmosfera
                     energica e città in festa. Perfetto per chi vuole un Giappone pieno di vita.
                 </p>
@@ -147,9 +147,9 @@
             <div class="bg-gradient-to-br from-green-50 to-green-100/50 rounded-xl p-6 border-2 border-green-200">
                 <div class="flex items-center gap-3 mb-3">
                     <i class="pi pi-check-circle text-green-600 text-2xl"></i>
-                    <h4 class="font-bold text-gray-900">Risparmia</h4>
+                    <h4 class="font-bold text-slate-900">Risparmia</h4>
                 </div>
-                <p class="text-sm text-gray-700 leading-relaxed">
+                <p class="text-sm text-slate-700 leading-relaxed">
                     <strong>Gennaio-Febbraio</strong> e <strong>Giugno-Luglio</strong> offrono un Giappone più
                     tranquillo,
                     con ottime occasioni di viaggio e la possibilità di esplorare con calma.

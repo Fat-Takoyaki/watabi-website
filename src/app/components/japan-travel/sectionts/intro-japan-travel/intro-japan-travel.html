@@ -1,10 +1,10 @@
-<div class="bg-gradient-to-br from-slate-200 to-white py-8 sm:py-12 border-b border-gray-200">
+<div class="bg-gradient-to-br from-slate-200 to-white py-8 sm:py-12 border-b border-slate-200">
     <div class="max-w-7xl mx-auto px-4">
         <div class="max-w-4xl mx-auto">
-            <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6 text-center">
+            <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-4 sm:mb-6 text-center">
                 Il vostro viaggio in Giappone <span class="text-red-watabi">inizia qui</span>
             </h2>
-            <div class="prose prose-sm sm:prose-lg max-w-none text-gray-700 leading-relaxed space-y-3 sm:space-y-4">
+            <div class="prose prose-sm sm:prose-lg max-w-none text-slate-700 leading-relaxed space-y-3 sm:space-y-4">
                 <p class="text-sm sm:text-base">
                     Benvenuti in Giappone, una terra lontana e affascinante, capace di offrire esperienze uniche a chi
                     decide di venire a scoprirla con i propri occhi. Offrire la migliore esperienza di viaggio al
@@ -21,14 +21,14 @@
             <div class="mt-6 sm:mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
             @for(card of uspCards; track card.title) {
                 <div
-                    class="flex items-center gap-3 p-3 sm:p-4 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                    class="flex items-center gap-3 p-3 sm:p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
                     <div
                         class="w-10 h-10 rounded-full bg-gradient-to-br from-teal-500 to-teal-600 flex items-center justify-center flex-shrink-0">
                         <i [class]="'pi ' + card.icon + ' text-white text-sm sm:text-base'"></i>
                     </div>
                     <div>
-                        <div class="text-sm font-bold text-gray-900">{{ card.title }}</div>
-                        <div class="text-xs text-gray-600">{{ card.description }}</div>
+                        <div class="text-sm font-bold text-slate-900">{{ card.title }}</div>
+                        <div class="text-xs text-slate-600">{{ card.description }}</div>
                     </div>
                 </div>
                 }

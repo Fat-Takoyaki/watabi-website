@@ -1,12 +1,12 @@
-<div class="bg-gradient-to-br from-gray-50 to-white py-16">
+<div class="bg-gradient-to-br from-slate-200 to-white py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <!-- Header -->
         <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                Potrebbero Interessarti Anche
+            <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+                Potrebbero <span class="text-red-watabi">Interessarti</span> Anche
             </h2>
-            <p class="text-gray-600 max-w-2xl mx-auto">
+            <p class="text-slate-600 max-w-2xl mx-auto">
                 Scopri altri tour selezionati per te in base alle tue preferenze
             </p>
         </div>
@@ -48,50 +48,50 @@
                 <!-- Content -->
                 <div class="p-6">
                     <!-- Subtitle -->
-                    <p class="text-gray-600 font-medium mb-4">{{ tour.subtitle }}</p>
+                    <p class="text-slate-600 font-medium mb-4">{{ tour.subtitle }}</p>
 
                     <!-- Features -->
                     <div class="space-y-2 mb-4">
                         @for(feature of tour.features.slice(0, 2); track feature) {
-                        <div class="flex items-center gap-2 text-sm text-gray-700">
-                            <i class="pi pi-check-circle text-pink-watabi"></i>
+                        <div class="flex items-center gap-2 text-sm text-slate-700">
+                            <i class="pi pi-check-circle text-red-watabi"></i>
                             <span>{{ feature }}</span>
                         </div>
                         }
                     </div>
 
                     <!-- Duration -->
-                    <div class="flex items-center gap-2 text-sm text-gray-600 mb-4">
-                        <i class="pi pi-calendar text-pink-watabi"></i>
+                    <div class="flex items-center gap-2 text-sm text-slate-600 mb-4">
+                        <i class="pi pi-calendar text-red-watabi"></i>
                         <span>{{ tour.duration }}</span>
                     </div>
 
                     <!-- Divider -->
-                    <div class="border-t border-gray-200 my-4"></div>
+                    <div class="border-t border-slate-200 my-4"></div>
 
                     <!-- Price & CTA -->
                     <div class="flex justify-between items-center">
                         <div>
                             @if(tour.priceOriginal) {
                             <div class="flex items-baseline gap-2">
-                                <span class="text-xs text-gray-500">Da</span>
-                                <span class="text-sm text-gray-400 line-through">€ {{ tour.priceOriginal }}</span>
+                                <span class="text-xs text-slate-500">Da</span>
+                                <span class="text-sm text-slate-400 line-through">€ {{ tour.priceOriginal }}</span>
                             </div>
                             <div class="flex items-baseline gap-1">
-                                <span class="text-2xl font-bold text-pink-watabi">€ {{ tour.price }}</span>
-                                <span class="text-sm text-gray-600">pp</span>
+                                <span class="text-2xl font-bold text-red-watabi">€ {{ tour.price }}</span>
+                                <span class="text-sm text-slate-600">pp</span>
                             </div>
                             } @else {
                             <div class="flex items-baseline gap-2">
-                                <span class="text-xs text-gray-500">Da</span>
-                                <span class="text-2xl font-bold text-pink-watabi">€ {{ tour.price }}</span>
+                                <span class="text-xs text-slate-500">Da</span>
+                                <span class="text-2xl font-bold text-red-watabi">€ {{ tour.price }}</span>
                             </div>
-                            <span class="text-sm text-gray-600">a persona</span>
+                            <span class="text-sm text-slate-600">a persona</span>
                             }
                         </div>
 
                         <button (click)="viewTourDetail(tour.id); $event.stopPropagation()"
-                            class="px-4 py-2 bg-gradient-to-r from-pink-watabi to-pink-dark text-white font-semibold rounded-lg hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 flex items-center gap-2">
+                            class="px-4 py-2 bg-gradient-to-r from-red-watabi to-red-dark text-white font-semibold rounded-lg hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 flex items-center gap-2">
                             <span class="text-sm">Scopri</span>
                             <i class="pi pi-arrow-right text-sm"></i>
                         </button>
@@ -103,15 +103,15 @@
         } @else {
         <!-- No Results -->
         <div class="text-center py-12">
-            <i class="pi pi-info-circle text-gray-400 text-5xl mb-4"></i>
-            <p class="text-gray-600">Nessun tour correlato disponibile al momento</p>
+            <i class="pi pi-info-circle text-slate-400 text-5xl mb-4"></i>
+            <p class="text-slate-600">Nessun tour correlato disponibile al momento</p>
         </div>
         }
 
         <!-- View All CTA -->
         <div class="text-center mt-12">
             <button
-                class="inline-flex items-center gap-2 px-8 py-4 bg-white border-2 border-pink-watabi text-pink-watabi font-bold rounded-xl hover:bg-pink-watabi hover:text-white transition-all duration-300 transform hover:-translate-y-1 shadow-lg">
+                class="inline-flex items-center gap-2 px-8 py-4 bg-white border-2 border-red-watabi text-red-watabi font-bold rounded-xl hover:bg-red-watabi hover:text-white transition-all duration-300 transform hover:-translate-y-1 shadow-lg">
                 <span>Vedi Tutti i Tour</span>
                 <i class="pi pi-arrow-right"></i>
             </button>

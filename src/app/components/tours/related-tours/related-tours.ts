@@ -213,11 +213,11 @@ export class RelatedTours implements OnInit {
       case 'purple':
         return `${baseClasses} bg-purple-600 text-white`;
       case 'gold':
-        return `${baseClasses} bg-gradient-to-r from-yellow-400 to-yellow-600 text-gray-900`;
+        return `${baseClasses} bg-gradient-to-r from-yellow-400 to-yellow-600 text-slate-900`;
       case 'red':
         return `${baseClasses} bg-red-600 text-white`;
       default:
-        return `${baseClasses} bg-gray-800 text-white`;
+        return `${baseClasses} bg-slate-800 text-white`;
     }
   }
 }

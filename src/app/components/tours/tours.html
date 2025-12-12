@@ -2,10 +2,10 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <!-- Header Section -->
         <div class="text-center mb-12">
-            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
                 I nostri Tour in Giappone
             </h2>
-            <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+            <p class="text-slate-600 text-lg max-w-2xl mx-auto">
                 Scopri i nostri tour esclusivi e viaggi su misura per il Giappone
             </p>
         </div>
@@ -13,7 +13,7 @@
         <!-- Tours Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             @for(offer of tours; track offer.id) {
-            <div class="group relative bg-white rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-red-200 flex flex-col cursor-pointer"
+            <div class="group relative bg-white rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-300 border border-slate-100 hover:border-red-200 flex flex-col cursor-pointer"
                 (click)="viewDetails(offer.id)">
 
                 <!-- Image Section - More compact -->
@@ -60,14 +60,14 @@
                     <div class="flex flex-wrap gap-2 mb-4">
                         @if(offer.dates) {
                         <div
-                            class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-gray-50 rounded-lg text-xs text-gray-700">
+                            class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-slate-50 rounded-lg text-xs text-slate-700">
                             <i class="pi pi-calendar text-red-watabi text-xs"></i>
                             <span class="font-medium">{{ offer.dates }}</span>
                         </div>
                         }
                         @if(offer.departure) {
                         <div
-                            class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-gray-50 rounded-lg text-xs text-gray-700">
+                            class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-slate-50 rounded-lg text-xs text-slate-700">
                             <i class="pi pi-map-marker text-red-watabi text-xs"></i>
                             <span class="font-medium">{{ offer.departure }}</span>
                         </div>
@@ -78,43 +78,43 @@
                     <div class="mb-4 flex-1">
                         <ul class="space-y-1.5">
                             @for(feature of offer.features.slice(0, 3); track feature) {
-                            <li class="flex items-start gap-2 text-sm text-gray-600">
+                            <li class="flex items-start gap-2 text-sm text-slate-600">
                                 <i class="pi pi-check text-red-watabi text-xs mt-0.5 flex-shrink-0"></i>
                                 <span class="leading-snug">{{ feature }}</span>
                             </li>
                             }
                         </ul>
                         @if(offer.features.length > 3) {
-                        <span class="text-xs text-gray-500 mt-1 inline-block">+{{ offer.features.length - 3 }}
+                        <span class="text-xs text-slate-500 mt-1 inline-block">+{{ offer.features.length - 3 }}
                             altro...</span>
                         }
                     </div>
 
                     <!-- Price Section - Card style -->
-                    <div class="bg-gradient-to-br from-gray-200 to-transparent rounded-xl p-4 mb-3">
+                    <div class="bg-gradient-to-br from-slate-200 to-transparent rounded-xl p-4 mb-3">
                         @if(offer.priceDiscounted && offer.priceOriginal) {
                         <div class="flex items-center justify-between mb-1">
-                            <span class="text-xs text-gray-500 line-through">€{{ offer.priceOriginal }}</span>
+                            <span class="text-xs text-slate-500 line-through">€{{ offer.priceOriginal }}</span>
                             <span
                                 class="text-xs font-bold text-red-600 bg-red-100 px-2 py-0.5 rounded-full">SCONTO</span>
                         </div>
                         <div class="flex items-baseline justify-between">
                             <div>
                                 <span class="text-2xl font-bold text-red-watabi">€{{ offer.priceDiscounted }}</span>
-                                <span class="text-xs text-gray-600 ml-1">/ persona</span>
+                                <span class="text-xs text-slate-600 ml-1">/ persona</span>
                             </div>
                         </div>
                         } @else if(offer.priceFrom) {
                         <div class="flex items-baseline justify-between">
                             <div>
-                                <span class="text-xs text-gray-500 block mb-0.5">A partire da</span>
+                                <span class="text-xs text-slate-500 block mb-0.5">A partire da</span>
                                 <span class="text-2xl font-bold text-red-watabi">€{{ offer.priceFrom }}</span>
-                                <span class="text-xs text-gray-600 ml-1">/ persona</span>
+                                <span class="text-xs text-slate-600 ml-1">/ persona</span>
                             </div>
                         </div>
                         } @else {
                         <div class="text-center">
-                            <span class="text-sm font-semibold text-gray-600">Disponibile presto</span>
+                            <span class="text-sm font-semibold text-slate-600">Disponibile presto</span>
                         </div>
                         }
                     </div>
