@@ -21,9 +21,10 @@ export class Navbar {
   isMobileMenuOpen = false;
   openDropdown: string | null = null;
   isMobile = false;
+  currentRoute = '';
 
   menuItems: MenuItem[] = [
-    { label: 'Home', route: '/' },
+    { label: 'Home', route: '' },
     { label: 'Viaggio in Giappone', route: '/japan-travel' },
     { label: 'Tour di Gruppo', route: '/group-tours' },
     { label: 'Tour Speciali', route: '/special-tours' },
@@ -43,7 +44,8 @@ export class Navbar {
     // Chiudi tutto quando cambia route
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe(() => {
+      .subscribe((event: NavigationEnd) => {
+        this.currentRoute = event.urlAfterRedirects;
         this.closeAll();
       });
   }
@@ -117,5 +119,12 @@ export class Navbar {
 
   hasChildren(item: MenuItem): boolean {
     return !!item.children && item.children.length > 0;
+  }
+
+  isLinkActive(route: string | undefined): boolean {
+    if (!route) return this.currentRoute === '/'; // FIX HOME
+    if (route === '/') return this.currentRoute === '/'; // FIX ULTERIORE
+
+    return this.currentRoute.startsWith(route);
   }
 }

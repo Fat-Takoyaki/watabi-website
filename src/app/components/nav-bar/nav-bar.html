@@ -28,7 +28,7 @@
                             'text-white hover:bg-white/20': !isScrolled,
                             'text-gray-700 hover:bg-gray-50': isScrolled
                         }"
-                        class="px-4 py-2.5 text-sm font-medium transition-all duration-200 flex items-center gap-1.5 cursor-pointer rounded-xl group">
+                        class="px-4 py-2.5 text-sm font-medium transition-all duration-200 flex items-center gap-1.5 cursor-pointer rounded-4xl group">
                         <span>{{ item.label }}</span>
                         <i class="pi pi-chevron-down text-[10px] transition-transform duration-300 group-hover:translate-y-0.5"
                             [ngClass]="{ 'rotate-180': openDropdown === item.label }">
@@ -37,7 +37,7 @@
 
                     @if(openDropdown === item.label) {
                     <div (click)="$event.stopPropagation()"
-                        class="absolute top-full text-center -left-10 mt-3 w-44 bg-white text-gray-700 rounded-2xl shadow-2xl border border-gray-100 py-2 overflow-hidden animate-slideDown">
+                        class="absolute top-full text-center -left-10 mt-3 w-44 bg-white text-gray-700 rounded-3xl shadow-2xl border border-gray-100 py-2 overflow-hidden animate-slideDown">
                         @for(child of item.children; track child.label; let i = $index) {
                         <a [routerLink]="child.route" (click)="closeAll()" [style.animation-delay]="(i * 30) + 'ms'"
                             class="block px-5 py-3 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-rose-50 hover:to-orange-50 hover:text-rose-600 transition-all duration-200 cursor-pointer font-medium animate-fadeInLeft opacity-0 hover:pl-6">
@@ -48,15 +48,16 @@
                     }
                 </div>
                 } @else {
-                <a [routerLink]="item.route" routerLinkActive="active-link"
-                    [routerLinkActiveOptions]="{ exact: item.route === '/' }" [ngClass]="{
-                        'text-white hover:bg-white/20': !isScrolled,
-                        'text-gray-700 hover:bg-gray-50': isScrolled
-                    }"
-                    class="px-4 py-2.5 font-medium text-sm transition-all duration-200 cursor-pointer rounded-xl relative overflow-hidden group">
+                <a [routerLink]="item.route" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }"
+                    [ngClass]="{
+                        'text-white hover:bg-white/20': !isScrolled && !isLinkActive(item.route),
+                        'text-gray-700 hover:bg-gray-50': isScrolled,
+                        'bg-white/80 text-gray-700 shadow-md': !isScrolled && isLinkActive(item.route)
+                    }" class="px-4 py-2.5 font-medium text-sm transition-all duration-200 cursor-pointer rounded-3xl
+                    relative overflow-hidden group">
                     <span class="relative z-10">{{ item.label }}</span>
                     <span
-                        class="absolute inset-0 bg-gradient-to-r from-rose-500 to-orange-500 opacity-0 group-hover:opacity-10 transition-opacity duration-200 rounded-xl"></span>
+                        class="absolute inset-0 bg-gradient-to-r from-rose-500 to-orange-500 opacity-0 group-hover:opacity-10 transition-opacity duration-200 rounded-3xl"></span>
                 </a>
                 }
                 }
@@ -82,8 +83,8 @@
 
     <!-- Mobile Menu -->
     @if(isMobileMenuOpen) {
-    <div
-        class="lg:hidden backdrop-blur-xl shadow-2xl animate-[slideDown_0.3s_ease-out_forwards]" style="background-color: white;">
+    <div class="lg:hidden backdrop-blur-xl shadow-2xl animate-[slideDown_0.3s_ease-out_forwards]"
+        style="background-color: white;">
         <div class="max-w-7xl mx-auto px-4 py-6 space-y-2 backdrop-blur-xl">
             @for(item of menuItems; track item.label; let i = $index) {
             @if(hasChildren(item)) {
@@ -99,20 +100,20 @@
                 @if(openDropdown === item.label) {
                 <div class="pl-2 pt-2 space-y-1 animate-[fadeIn_0.2s_ease-out_forwards]">
                     @for(child of item.children; track child.label) {
-                    <a [routerLink]="child.route" (click)="closeMobileMenu()"
-                        routerLinkActive="!bg-red-watabi !text-white font-bold"
-                        [routerLinkActiveOptions]="{ exact: child.route === '/' }"
-                        class="block px-4 py-2.5 text-sm text-slate-700 hover:bg-gradient-to-r hover:from-rose-50 hover:to-orange-50 hover:text-rose-600 rounded-xl transition-all duration-200 cursor-pointer font-medium hover:pl-5">
+                    <a [routerLink]="child.route" (click)="closeMobileMenu()" [ngClass]="{
+                            '!bg-red-watabi !text-white font-bold': isLinkActive(child.route)
+                        }" class="block px-4 py-2.5 text-sm text-slate-700 hover:bg-gradient-to-r hover:from-rose-50 hover:to-orange-50 hover:text-rose-600 rounded-xl transition-all duration-200 cursor-pointer font-medium hover:pl-5">
                         {{ child.label }}
                     </a>
+
                     }
                 </div>
                 }
             </div>
             } @else {
-            <a [routerLink]="item.route" (click)="closeMobileMenu()"
-                routerLinkActive="!bg-red-watabi !text-white font-bold"
-                [routerLinkActiveOptions]="{ exact: item.route === '/' }"
+            <a [routerLink]="item.route" (click)="closeMobileMenu()" [ngClass]="{
+                    '!bg-red-watabi !text-white font-bold': isLinkActive(item.route)
+                }"
                 class="block px-4 py-3 text-slate-700 hover:bg-gradient-to-r hover:from-rose-50 hover:to-orange-50 hover:text-rose-600 font-semibold text-sm transition-all duration-200 rounded-xl cursor-pointer">
                 {{ item.label }}
             </a>

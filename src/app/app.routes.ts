@@ -4,20 +4,24 @@ export const routes: Routes = [
   // Redirect root to home
   {
     path: '',
-    redirectTo: 'home',
+    loadComponent: () => import('./components/home/home').then((m) => m.Home),
     pathMatch: 'full',
+    data: { title: 'Home - WATABI' },
   },
 
   // Home page (app.component per ora)
   {
     path: 'home',
-    loadComponent: () => import('./components/home/home').then((m) => m.Home),
-    data: { title: 'Home - WATABI' },
+    redirectTo: '',
+    pathMatch: 'full',
   },
 
   {
     path: 'japan-travel',
-    loadComponent: () => import('./components/japan-travel/japan-travel').then((m) => m.JapanTravel),
+    loadComponent: () =>
+      import('./components/japan-travel/japan-travel').then(
+        (m) => m.JapanTravel
+      ),
     data: { title: 'Japan Travel - WATABI' },
   },
   // Navbar pages (redirect a home fino a quando non esistono)
