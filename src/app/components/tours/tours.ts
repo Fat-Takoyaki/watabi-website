@@ -19,7 +19,7 @@ interface Tour {
     color: 'pink' | 'purple' | 'blue' | 'red';
   };
   image: string;
-  availableExtensions: string[]; 
+  availableExtensions: string[];
 }
 
 @Component({
@@ -31,6 +31,56 @@ interface Tour {
 })
 export class Tours {
   tours: Tour[] = [
+    {
+      id: 'classico',
+      title: 'Giappone Classico',
+      category: 'VIAGGIO SU MISURA',
+      features: ['12 Notti', 'Volo Escluso'],
+      priceFrom: 2290,
+      hasItinerary: true,
+      ribbon: { text: 'BEST SELLER', color: 'blue' },
+      image:
+        'https://images.unsplash.com/photo-1492571350019-22de08371fd3?w=800&q=80',
+      availableExtensions: [
+        'maldive',
+        'bali',
+        'okinawa',
+        'thailandia',
+        'dubai',
+        'singapore',
+      ],
+    },
+    {
+      id: 'famiglia',
+      title: 'Giappone Famiglia',
+      category: 'VIAGGIO SU MISURA',
+      features: ['10 Notti', 'Volo Escluso'],
+      priceFrom: 1890,
+      hasItinerary: true,
+      ribbon: { text: 'BEST SELLER', color: 'blue' },
+      image:
+        'https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=800&q=80',
+      availableExtensions: ['okinawa', 'singapore', 'dubai'],
+    },
+    {
+      id: 'fantastico',
+      title: 'Giappone Fantastico',
+      category: 'VIAGGIO SU MISURA',
+      features: ['18 Notti', 'Volo Escluso'],
+      priceFrom: 3390,
+      hasItinerary: true,
+      ribbon: { text: 'BEST SELLER', color: 'blue' },
+      image:
+        'https://images.unsplash.com/photo-1478436127897-769e1b3f0f36?w=800&q=80',
+      availableExtensions: [
+        'maldive',
+        'bali',
+        'okinawa',
+        'thailandia',
+        'dubai',
+        'singapore',
+      ],
+    },
     {
       id: 'yuki',
       title: 'Yuki',
@@ -44,7 +94,7 @@ export class Tours {
       ribbon: { text: 'PROMOZIONE', color: 'red' },
       image:
         'https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=800&q=80',
-      availableExtensions: ['dubai', 'singapore'], 
+      availableExtensions: ['dubai', 'singapore'],
     },
     {
       id: 'satsuki',
@@ -114,56 +164,6 @@ export class Tours {
       image:
         'https://images.unsplash.com/photo-1513407030348-c983a97b98d8?w=800&q=80',
       availableExtensions: ['okinawa', 'bali'],
-    },
-    {
-      id: 'famiglia',
-      title: 'Giappone Famiglia',
-      category: 'VIAGGIO SU MISURA',
-      features: ['10 Notti', 'Volo Escluso'],
-      priceFrom: 1890,
-      hasItinerary: true,
-      ribbon: { text: 'BEST SELLER', color: 'blue' },
-      image:
-        'https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=800&q=80',
-      availableExtensions: ['okinawa', 'singapore', 'dubai'],
-    },
-    {
-      id: 'classico',
-      title: 'Giappone Classico',
-      category: 'VIAGGIO SU MISURA',
-      features: ['12 Notti', 'Volo Escluso'],
-      priceFrom: 2290,
-      hasItinerary: true,
-      ribbon: { text: 'BEST SELLER', color: 'blue' },
-      image:
-        'https://images.unsplash.com/photo-1492571350019-22de08371fd3?w=800&q=80',
-      availableExtensions: [
-        'maldive',
-        'bali',
-        'okinawa',
-        'thailandia',
-        'dubai',
-        'singapore',
-      ],
-    },
-    {
-      id: 'fantastico',
-      title: 'Giappone Fantastico',
-      category: 'VIAGGIO SU MISURA',
-      features: ['18 Notti', 'Volo Escluso'],
-      priceFrom: 3390,
-      hasItinerary: true,
-      ribbon: { text: 'BEST SELLER', color: 'blue' },
-      image:
-        'https://images.unsplash.com/photo-1478436127897-769e1b3f0f36?w=800&q=80',
-      availableExtensions: [
-        'maldive',
-        'bali',
-        'okinawa',
-        'thailandia',
-        'dubai',
-        'singapore',
-      ],
     },
   ];
 
