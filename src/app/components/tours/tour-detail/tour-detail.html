@@ -11,7 +11,8 @@
             <div class="bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden">
 
                 <!-- Header Card: Badge + Titolo + Prezzo -->
-                <div class="bg-gradient-to-r from-slate-50 to-white px-4 sm:px-6 lg:px-8 py-5 border-b border-slate-200">
+                <div
+                    class="bg-gradient-to-r from-slate-50 to-white px-4 sm:px-6 lg:px-8 py-5 border-b border-slate-200">
                     <!-- Badge Personalizzabile
                     <div class="mx-auto text-center mb-3">
                         <span
@@ -46,86 +47,34 @@
                     </div>
                 </div>
 
-                <!-- Body Card: Info Grid -->
-                <div class="px-4 sm:px-6 lg:px-8 py-5">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3 sm:gap-4">
-
-                        <!-- Numero Partecipanti -->
-                        <div
-                            class="flex items-center gap-3 p-2.5 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors">
+                <div class="bg-gradient-to-br from-slate-50 to-white py-4 sm:py-6 border-b border-slate-200">
+                    <div class="max-w-7xl mx-auto px-6">
+                        <div class="mx-auto">
+                            <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-4 sm:mb-6 text-center">
+                                Cosa troverai nel <span class="text-red-watabi">{{ tourTitle }}</span>
+                            </h2>
                             <div
-                                class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center flex-shrink-0">
-                                <i class="pi pi-users text-white text-base"></i>
+                                class="prose prose-sm sm:prose-lg max-w-none text-slate-700 leading-relaxed space-y-3 sm:space-y-4">
+                                <p class="text-xs sm:text-base">
+                                    {{ tourIntroduction }}
+                                </p>
                             </div>
-                            <div>
-                                <div class="text-xs text-red-watabi font-semibold uppercase">Partecipanti</div>
-                                <div class="text-xs text-slate-900">min. {{ minParticipants }}</div>
-                            </div>
-                        </div>
 
-                        <!-- Durata -->
-                        <div
-                            class="flex items-center gap-3 p-2.5 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors">
-                            <div
-                                class="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center flex-shrink-0">
-                                <i class="pi pi-calendar text-white text-base"></i>
-                            </div>
-                            <div>
-                                <div class="text-xs text-red-watabi font-semibold uppercase">Durata</div>
-                                <div class="text-xs text-slate-900">{{ totalDays }} giorni</div>
-                            </div>
-                        </div>
-
-                        <!-- Pernottamenti -->
-                        <div
-                            class="flex items-center gap-3 p-2.5 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors">
-                            <div
-                                class="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center flex-shrink-0">
-                                <i class="pi pi-home text-white text-base"></i>
-                            </div>
-                            <div>
-                                <div class="text-xs text-red-watabi font-semibold uppercase">Pernottamenti</div>
-                                <div class="text-xs text-slate-900">{{ totalNights }} {{ totalNights === 1 ?
-                                    'notte' : 'notti' }}</div>
-                            </div>
-                        </div>
-
-                        <!-- Trasporti -->
-                        <div
-                            class="flex items-center gap-3 p-2.5 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors">
-                            <div
-                                class="w-10 h-10 rounded-lg bg-gradient-to-br from-teal-500 to-teal-600 flex items-center justify-center flex-shrink-0">
-                                <i class="pi pi-car text-white text-base"></i>
-                            </div>
-                            <div>
-                                <div class="text-xs text-red-watabi font-semibold uppercase">Trasporti</div>
-                                <div class="text-xs text-slate-900">{{ transportType }}</div>
-                            </div>
-                        </div>
-
-                        <!-- Pasti -->
-                        <div
-                            class="flex items-center gap-3 p-2.5 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors">
-                            <div
-                                class="w-10 h-10 rounded-lg bg-gradient-to-br from-rose-500 to-rose-600 flex items-center justify-center flex-shrink-0">
-                                <i class="pi pi-shopping-bag text-white text-base"></i>
-                            </div>
-                            <div>
-                                <div class="text-xs text-red-watabi font-semibold uppercase">Pasti</div>
-                                <div class="text-xs text-slate-900">{{ mealsIncluded }}</div>
-                            </div>
-                        </div>
-
-                        <!-- Periodo Consigliato -->
-                        <div
-                            class="flex items-center gap-3 p-2.5 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors">
-                            <div
-                                class="w-10 h-10 rounded-lg bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center flex-shrink-0">
-                                <i class="pi pi-calendar-clock text-white text-base"></i>
-                            </div>
-                            <div>
-                                <div class="text-xs text-red-watabi font-semibold uppercase">Periodo</div>
-                                <div class="text-xs text-slate-900">{{ recommendedPeriod }}</div>
+                            <!-- Quick Highlights - Responsive Grid -->
+                            <div class="mt-6 sm:mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+                                @for(highlight of quickHighlights; track highlight.label) {
+                                <div
+                                    class="flex items-center gap-3 p-3 sm:p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                                    <div
+                                        class="w-10 h-10 rounded-full bg-gradient-to-br from-teal-500 to-teal-600 flex items-center justify-center flex-shrink-0">
+                                        <i [class]="'pi ' + highlight.icon + ' text-white text-sm sm:text-base'"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm font-bold text-slate-900">{{ highlight.label }}</div>
+                                        <div class="text-xs text-slate-600">{{ highlight.value }}</div>
+                                    </div>
+                                </div>
+                                }
                             </div>
                         </div>
                     </div>
@@ -135,78 +84,6 @@
                 <div
                     class="px-4 sm:px-6 lg:px-8 py-5 bg-gradient-to-br from-teal-50/50 to-blue-50/50 border-t border-slate-200">
                     <div class="max-w-5xl mx-auto">
-                        <!-- Header Tips -->
-                        <div class="text-center mb-4">
-                            <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-1">
-                                <i class="pi pi-lightbulb text-amber-500 mr-1 text-sm"></i>
-                                Personalizza il Tuo Viaggio
-                            </h3>
-                            <p class="text-xs text-slate-600">Aggiungi estensioni, esperienze e servizi extra</p>
-                        </div>
-
-                        <!-- Tips Grid -->
-                        <div class="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 mb-4">
-                            <!-- TIP 1 -->
-                            <div
-                                class="bg-white rounded-lg p-3 border border-teal-200 hover:border-teal-400 hover:shadow-md transition-all cursor-pointer">
-                                <div class="flex items-center gap-2 mb-2">
-                                    <div
-                                        class="w-8 h-8 rounded-lg bg-teal-100 flex items-center justify-center flex-shrink-0">
-                                        <i class="pi pi-globe text-teal-600 text-sm"></i>
-                                    </div>
-                                    <h4 class="font-bold text-xs text-slate-900">Estensioni</h4>
-                                </div>
-                                <p class="text-xs text-slate-600 leading-relaxed">
-                                    Mare o città asiatiche
-                                </p>
-                            </div>
-
-                            <!-- TIP 2 -->
-                            <div
-                                class="bg-white rounded-lg p-3 border border-purple-200 hover:border-purple-400 hover:shadow-md transition-all cursor-pointer">
-                                <div class="flex items-center gap-2 mb-2">
-                                    <div
-                                        class="w-8 h-8 rounded-lg bg-purple-100 flex items-center justify-center flex-shrink-0">
-                                        <i class="pi pi-calendar-plus text-purple-600 text-sm"></i>
-                                    </div>
-                                    <h4 class="font-bold text-xs text-slate-900">Date Libere</h4>
-                                </div>
-                                <p class="text-xs text-slate-600 leading-relaxed">
-                                    Parti quando vuoi
-                                </p>
-                            </div>
-
-                            <!-- TIP 3 -->
-                            <div
-                                class="bg-white rounded-lg p-3 border border-amber-200 hover:border-amber-400 hover:shadow-md transition-all cursor-pointer">
-                                <div class="flex items-center gap-2 mb-2">
-                                    <div
-                                        class="w-8 h-8 rounded-lg bg-amber-100 flex items-center justify-center flex-shrink-0">
-                                        <i class="pi pi-star text-amber-600 text-sm"></i>
-                                    </div>
-                                    <h4 class="font-bold text-xs text-slate-900">Upgrade</h4>
-                                </div>
-                                <p class="text-xs text-slate-600 leading-relaxed">
-                                    Hotel 4★ o Ryokan
-                                </p>
-                            </div>
-
-                            <!-- TIP 4 -->
-                            <div
-                                class="bg-white rounded-lg p-3 border border-rose-200 hover:border-rose-400 hover:shadow-md transition-all cursor-pointer">
-                                <div class="flex items-center gap-2 mb-2">
-                                    <div
-                                        class="w-8 h-8 rounded-lg bg-rose-100 flex items-center justify-center flex-shrink-0">
-                                        <i class="pi pi-sparkles text-rose-600 text-sm"></i>
-                                    </div>
-                                    <h4 class="font-bold text-xs text-slate-900">Esperienze</h4>
-                                </div>
-                                <p class="text-xs text-slate-600 leading-relaxed">
-                                    Guide, transfer, attività
-                                </p>
-                            </div>
-                        </div>
-
                         <!-- CTA - P -->
                         <div class="text-center">
                             <button (click)="requestQuote()"
@@ -273,37 +150,7 @@
 
 
     <!-- Tour Intro Section -->
-    <div class="bg-gradient-to-br from-slate-50 to-white py-8 sm:py-12 border-b border-slate-200">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="max-w-4xl mx-auto">
-                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-4 sm:mb-6 text-center">
-                    Cosa troverai nel <span class="text-red-watabi">Tour Yuki</span>
-                </h2>
-                <div class="prose prose-sm sm:prose-lg max-w-none text-slate-700 leading-relaxed space-y-3 sm:space-y-4">
-                    <p class="text-sm sm:text-base">
-                        {{ tourIntroduction }}
-                    </p>
-                </div>
 
-                <!-- Quick Highlights - Responsive Grid -->
-                <div class="mt-6 sm:mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-                    @for(highlight of quickHighlights; track highlight.label) {
-                    <div
-                        class="flex items-center gap-3 p-3 sm:p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
-                        <div
-                            class="w-10 h-10 rounded-full bg-gradient-to-br from-teal-500 to-teal-600 flex items-center justify-center flex-shrink-0">
-                            <i [class]="'pi ' + highlight.icon + ' text-white text-sm sm:text-base'"></i>
-                        </div>
-                        <div>
-                            <div class="text-sm font-bold text-slate-900">{{ highlight.label }}</div>
-                            <div class="text-xs text-slate-600">{{ highlight.value }}</div>
-                        </div>
-                    </div>
-                    }
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- Breadcrumbs 
     <div class="max-w-7xl mx-auto px-4 py-6">
         <div class="flex items-center gap-2 text-sm">
@@ -416,7 +263,8 @@
                         <!-- Tab: Luoghi di Interesse -->
                         @if(getActiveTab(stop.city) === 'places') {
                         <div class="space-y-3 animate-fade-in">
-                            <p class="text-sm text-slate-600 mb-4">I principali luoghi che visiterai durante il soggiorno
+                            <p class="text-sm text-slate-600 mb-4">I principali luoghi che visiterai durante il
+                                soggiorno
                                 a {{ stop.city }}:</p>
                             @for(place of stop.highlights; track place) {
                             <div
@@ -474,6 +322,74 @@
                     </div>
                 </div>
                 }
+                <!-- Header Tips -->
+                <div class="text-center mb-4">
+                    <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-1">
+                        <i class="pi pi-lightbulb text-amber-500 mr-1 text-sm"></i>
+                        Personalizza il Tuo Viaggio
+                    </h3>
+                    <p class="text-xs text-slate-600">Aggiungi estensioni, esperienze e servizi extra</p>
+                </div>
+
+                <!-- Tips Grid -->
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 mb-4">
+                    <!-- TIP 1 -->
+                    <div
+                        class="bg-white rounded-lg p-3 border border-teal-200 hover:border-teal-400 hover:shadow-md transition-all cursor-pointer">
+                        <div class="flex items-center gap-2 mb-2">
+                            <div class="w-8 h-8 rounded-lg bg-teal-100 flex items-center justify-center flex-shrink-0">
+                                <i class="pi pi-globe text-teal-600 text-sm"></i>
+                            </div>
+                            <h4 class="font-bold text-xs text-slate-900">Estensioni</h4>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Mare o città asiatiche
+                        </p>
+                    </div>
+
+                    <!-- TIP 2 -->
+                    <div
+                        class="bg-white rounded-lg p-3 border border-purple-200 hover:border-purple-400 hover:shadow-md transition-all cursor-pointer">
+                        <div class="flex items-center gap-2 mb-2">
+                            <div
+                                class="w-8 h-8 rounded-lg bg-purple-100 flex items-center justify-center flex-shrink-0">
+                                <i class="pi pi-calendar-plus text-purple-600 text-sm"></i>
+                            </div>
+                            <h4 class="font-bold text-xs text-slate-900">Date Libere</h4>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Parti quando vuoi
+                        </p>
+                    </div>
+
+                    <!-- TIP 3 -->
+                    <div
+                        class="bg-white rounded-lg p-3 border border-amber-200 hover:border-amber-400 hover:shadow-md transition-all cursor-pointer">
+                        <div class="flex items-center gap-2 mb-2">
+                            <div class="w-8 h-8 rounded-lg bg-amber-100 flex items-center justify-center flex-shrink-0">
+                                <i class="pi pi-star text-amber-600 text-sm"></i>
+                            </div>
+                            <h4 class="font-bold text-xs text-slate-900">Upgrade</h4>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Hotel 4★ o Ryokan
+                        </p>
+                    </div>
+
+                    <!-- TIP 4 -->
+                    <div
+                        class="bg-white rounded-lg p-3 border border-rose-200 hover:border-rose-400 hover:shadow-md transition-all cursor-pointer">
+                        <div class="flex items-center gap-2 mb-2">
+                            <div class="w-8 h-8 rounded-lg bg-rose-100 flex items-center justify-center flex-shrink-0">
+                                <i class="pi pi-sparkles text-rose-600 text-sm"></i>
+                            </div>
+                            <h4 class="font-bold text-xs text-slate-900">Esperienze</h4>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Guide, transfer, attività
+                        </p>
+                    </div>
+                </div>
 
                 <!-- Price Packages -->
                 <div class="space-y-6">
@@ -779,12 +695,14 @@
                                         <!-- Info -->
                                         <div class="flex-1 min-w-0">
                                             <div class="flex items-start justify-between mb-1">
-                                                <h4 class="font-bold text-sm text-slate-900 truncate">{{ ext.name }}</h4>
+                                                <h4 class="font-bold text-sm text-slate-900 truncate">{{ ext.name }}
+                                                </h4>
                                                 @if(selectedExtension?.id === ext.id) {
                                                 <i class="pi pi-check-circle text-red-watabi flex-shrink-0 ml-2"></i>
                                                 }
                                             </div>
-                                            <p class="text-xs text-slate-600 mb-2 line-clamp-2">{{ ext.description }}</p>
+                                            <p class="text-xs text-slate-600 mb-2 line-clamp-2">{{ ext.description }}
+                                            </p>
                                             <div class="flex items-center justify-between">
                                                 <span class="text-red-watabi font-bold text-sm">da €{{ ext.priceFrom
                                                     }}</span>
@@ -868,7 +786,8 @@
                                 class="flex items-start gap-3 p-3 bg-teal-50 rounded-lg border border-teal-200 hover:border-teal-400 transition-colors cursor-pointer">
                                 <i class="pi pi-shield text-teal-600 mt-1 flex-shrink-0"></i>
                                 <div class="flex-1">
-                                    <h4 class="font-semibold text-sm text-slate-900 mb-1">Assicurazione Annullamento</h4>
+                                    <h4 class="font-semibold text-sm text-slate-900 mb-1">Assicurazione Annullamento
+                                    </h4>
                                     <p class="text-xs text-slate-600">Viaggia senza pensieri</p>
                                 </div>
                             </div>
