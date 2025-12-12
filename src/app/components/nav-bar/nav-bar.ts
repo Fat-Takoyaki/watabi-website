@@ -24,7 +24,7 @@ export class Navbar {
   currentRoute = '';
 
   menuItems: MenuItem[] = [
-    { label: 'Home', route: '' },
+    //{ label: 'Home', route: '' },
     { label: 'Viaggio in Giappone', route: '/japan-travel' },
     { label: 'Tour di Gruppo', route: '/group-tours' },
     { label: 'Tour Speciali', route: '/special-tours' },
