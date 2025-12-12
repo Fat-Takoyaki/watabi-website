@@ -185,9 +185,27 @@ export class Faq {
   }
 
   toggleFaq(faq: FAQ): void {
-    faq.isOpen = !faq.isOpen;
-  }
+    // Se clicco sulla FAQ "Watabi" (none), non fare nulla
+    if (faq.category === 'none') {
+      return;
+    }
 
+    // Se la FAQ che sto aprendo è già aperta, la chiudo
+    if (faq.isOpen) {
+      faq.isOpen = false;
+      return;
+    }
+
+    // Chiudi tutte le FAQ tranne "Watabi"
+    this.faqs.forEach((f) => {
+      if (f.category !== 'none') {
+        f.isOpen = false;
+      }
+    });
+
+    // Apri la FAQ selezionata
+    faq.isOpen = true;
+  }
   getCategoryColor(categoryId: string): string {
     const colorMap: { [key: string]: string } = {
       red: 'bg-gradient-to-br from-red-500 to-red-700',
