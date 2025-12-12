@@ -1,7 +1,7 @@
 <nav [ngClass]="{
-    'bg-white shadow-md': isScrolled,
-    'bg-black/10 backdrop-blur-sm': !isScrolled
-  }" class="fixed top-0 left-0 right-0 z-99 transition-all duration-300">
+  'bg-gradient-to-b from-black/30 to-transparent backdrop-blur-sm': !isScrolled && !isMobile,
+  'bg-white/95 backdrop-blur-md shadow-lg': isScrolled || isMobile
+}" class="fixed top-0 left-0 right-0 z-99 transition-all duration-500">
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-20">
@@ -9,36 +9,38 @@
             <!-- Logo -->
             <div class="flex-shrink-0">
                 <a routerLink="/" class="flex items-center group cursor-pointer">
-                    @if (!isScrolled){
+                    @if (!isScrolled && !isMobile){
                     <img src="assets/img/logo_w.png" alt="WATABI Logo"
-                        class="h-8 w-auto object-contain transition-transform group-hover:scale-105">
+                        class="h-9 w-auto object-contain transition-all duration-300 group-hover:scale-110 drop-shadow-lg">
                     } @else {
-
                     <img src="assets/img/logo_bw.png" alt="WATABI Logo"
-                        class="h-8 w-auto object-contain transition-transform group-hover:scale-105">
+                        class="h-9 w-auto object-contain transition-all duration-300 group-hover:scale-110">
                     }
                 </a>
             </div>
+
             <!-- Desktop Menu -->
-            <div class="hidden lg:flex lg:items-center lg:gap-1 ">
+            <div class="hidden lg:flex lg:items-center lg:gap-2">
                 @for(item of menuItems; track item.label) {
                 @if(hasChildren(item)) {
                 <div class="relative">
-                    <button (click)="toggleDropdown(item.label, $event)"
-                        class="px-4 py-2 text-slate-700 hover:text-rose-600 text-sm transition-colors font-semibold flex items-center gap-1 cursor-pointer  bg-black/10 rounded-lg"
-                        [ngClass]="{ 'text-white': !isScrolled, ' bg-white/20': !isScrolled, 'bg-black/10': isScrolled }">
-                        {{ item.label }}
-                        <i class="pi pi-chevron-down text-xs transition-transform duration-200"
+                    <button (click)="toggleDropdown(item.label, $event)" [ngClass]="{
+                            'text-white hover:bg-white/20': !isScrolled,
+                            'text-gray-700 hover:bg-gray-50': isScrolled
+                        }"
+                        class="px-4 py-2.5 text-sm font-medium transition-all duration-200 flex items-center gap-1.5 cursor-pointer rounded-xl group">
+                        <span>{{ item.label }}</span>
+                        <i class="pi pi-chevron-down text-[10px] transition-transform duration-300 group-hover:translate-y-0.5"
                             [ngClass]="{ 'rotate-180': openDropdown === item.label }">
                         </i>
                     </button>
 
                     @if(openDropdown === item.label) {
                     <div (click)="$event.stopPropagation()"
-                        class="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-xl border border-slate-100 py-2 animate-[fadeIn_0.2s_ease-out_forwards]">
-                        @for(child of item.children; track child.label) {
-                        <a [routerLink]="child.route" (click)="closeAll()"
-                            class="block px-4 py-2 text-sm text-slate-700 hover:bg-rose-50 hover:text-rose-600 transition-colors cursor-pointer">
+                        class="absolute top-full text-center -left-10 mt-3 w-44 bg-white text-gray-700 rounded-2xl shadow-2xl border border-gray-100 py-2 overflow-hidden animate-slideDown">
+                        @for(child of item.children; track child.label; let i = $index) {
+                        <a [routerLink]="child.route" (click)="closeAll()" [style.animation-delay]="(i * 30) + 'ms'"
+                            class="block px-5 py-3 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-rose-50 hover:to-orange-50 hover:text-rose-600 transition-all duration-200 cursor-pointer font-medium animate-fadeInLeft opacity-0 hover:pl-6">
                             {{ child.label }}
                         </a>
                         }
@@ -46,11 +48,15 @@
                     }
                 </div>
                 } @else {
-                <a [routerLink]="item.route" routerLinkActive="text-rose-600 font-bold"
-                    [routerLinkActiveOptions]="{ exact: item.route === '/' }"
-                    [ngClass]="{ 'text-white': !isScrolled, ' bg-white/20': !isScrolled, 'bg-black/10': isScrolled }"
-                    class="px-4 py-2 text-slate-700 hover:text-rose-600 font-semibold text-sm transition-colors cursor-pointer rounded-lg">
-                    {{ item.label }}
+                <a [routerLink]="item.route" routerLinkActive="active-link"
+                    [routerLinkActiveOptions]="{ exact: item.route === '/' }" [ngClass]="{
+                        'text-white hover:bg-white/20': !isScrolled,
+                        'text-gray-700 hover:bg-gray-50': isScrolled
+                    }"
+                    class="px-4 py-2.5 font-medium text-sm transition-all duration-200 cursor-pointer rounded-xl relative overflow-hidden group">
+                    <span class="relative z-10">{{ item.label }}</span>
+                    <span
+                        class="absolute inset-0 bg-gradient-to-r from-rose-500 to-orange-500 opacity-0 group-hover:opacity-10 transition-opacity duration-200 rounded-xl"></span>
                 </a>
                 }
                 }
@@ -58,15 +64,15 @@
 
             <!-- Mobile Menu Button -->
             <button (click)="toggleMobileMenu($event)"
-                class="lg:hidden p-2 rounded-lg text-slate-700 bg-white hover:bg-slate-100 transition-colors">
+                class="lg:hidden p-2.5 rounded-xl hover:scale-105 transition-all duration-200 shadow-lg backdrop-blur-sm bg-white/90 text-gray-700">
                 @if(!isMobileMenuOpen) {
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16">
                     </path>
                 </svg>
                 } @else {
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12">
                     </path>
                 </svg>
                 }
@@ -76,24 +82,27 @@
 
     <!-- Mobile Menu -->
     @if(isMobileMenuOpen) {
-    <div class="lg:hidden bg-white border-t border-slate-100 shadow-lg">
-        <div class="max-w-7xl mx-auto px-4 py-4 space-y-1">
-            @for(item of menuItems; track item.label) {
+    <div
+        class="lg:hidden backdrop-blur-xl shadow-2xl animate-[slideDown_0.3s_ease-out_forwards]" style="background-color: white;">
+        <div class="max-w-7xl mx-auto px-4 py-6 space-y-2 backdrop-blur-xl">
+            @for(item of menuItems; track item.label; let i = $index) {
             @if(hasChildren(item)) {
-            <div class="border-b border-slate-100 last:border-b-0">
+            <div class="border-b border-gray-200 last:border-b-0 pb-2">
                 <button (click)="toggleDropdown(item.label)"
-                    class="w-full flex justify-between items-center px-4 py-3 text-slate-700 hover:bg-rose-50 hover:text-rose-600 font-medium text-sm transition-colors rounded-lg">
+                    class="w-full flex justify-between items-center px-4 py-3 text-slate-700 hover:bg-gradient-to-r hover:from-rose-50 hover:to-orange-50 hover:text-rose-600 font-semibold text-sm transition-all duration-200 rounded-xl">
                     {{ item.label }}
-                    <i class="pi pi-chevron-down text-xs transition-transform duration-200"
+                    <i class="pi pi-chevron-down text-xs transition-transform duration-300"
                         [ngClass]="{ 'rotate-180': openDropdown === item.label }">
                     </i>
                 </button>
 
                 @if(openDropdown === item.label) {
-                <div class="pl-4 pb-2 space-y-1">
+                <div class="pl-2 pt-2 space-y-1 animate-[fadeIn_0.2s_ease-out_forwards]">
                     @for(child of item.children; track child.label) {
                     <a [routerLink]="child.route" (click)="closeMobileMenu()"
-                        class="block px-4 py-2 text-sm text-slate-600 hover:bg-rose-50 hover:text-rose-600 rounded-lg transition-colors cursor-pointer">
+                        routerLinkActive="!bg-red-watabi !text-white font-bold"
+                        [routerLinkActiveOptions]="{ exact: child.route === '/' }"
+                        class="block px-4 py-2.5 text-sm text-slate-700 hover:bg-gradient-to-r hover:from-rose-50 hover:to-orange-50 hover:text-rose-600 rounded-xl transition-all duration-200 cursor-pointer font-medium hover:pl-5">
                         {{ child.label }}
                     </a>
                     }
@@ -102,9 +111,9 @@
             </div>
             } @else {
             <a [routerLink]="item.route" (click)="closeMobileMenu()"
-                routerLinkActive="bg-rose-50 text-rose-600 font-semibold"
+                routerLinkActive="!bg-red-watabi !text-white font-bold"
                 [routerLinkActiveOptions]="{ exact: item.route === '/' }"
-                class="block px-4 py-3 text-slate-700 hover:bg-rose-50 hover:text-rose-600 font-medium text-sm transition-colors rounded-lg cursor-pointer">
+                class="block px-4 py-3 text-slate-700 hover:bg-gradient-to-r hover:from-rose-50 hover:to-orange-50 hover:text-rose-600 font-semibold text-sm transition-all duration-200 rounded-xl cursor-pointer">
                 {{ item.label }}
             </a>
             }

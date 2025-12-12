@@ -20,6 +20,7 @@ export class Navbar {
   isScrolled = false;
   isMobileMenuOpen = false;
   openDropdown: string | null = null;
+  isMobile = false;
 
   menuItems: MenuItem[] = [
     { label: 'Home', route: '/' },
