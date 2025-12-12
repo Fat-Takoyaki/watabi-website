@@ -11,6 +11,7 @@ interface Movie {
   director: string;
 }
 
+
 @Component({
   selector: 'app-prepare-japan-travel',
   standalone: true,
@@ -38,4 +39,6 @@ export class PrepareJapanTravel {
     { title: 'Rashomon', director: 'Akira Kurosawa' },
     { title: 'Viaggio a Tokyo', director: 'Yasujiro Ozu' }
   ];
+  
+  selectedTab: 'books' | 'movies' = 'books';
 }
