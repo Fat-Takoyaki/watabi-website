@@ -28,7 +28,7 @@ export class WhatsIncluded {
       icon: 'pi-home',
     },
     {
-      text: "Japan Rail Pass o biglietti ferroviari secondo l'itinerario",
+      text: "Biglietti ferroviari secondo l'itinerario",
       icon: 'pi-directions',
     },
     {

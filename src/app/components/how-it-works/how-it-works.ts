@@ -43,7 +43,7 @@ export class HowItWorks {
         'Ricevi una proposta dettagliata entro 3-5 giorni',
         'Include tappe, alloggi, esperienze e preventivo completo',
         'Modifiche illimitate fino alla tua piena soddisfazione',
-        'Consigli su periodo migliore, JR Pass e ottimizzazioni',
+        'Consigli su periodo migliore e ottimizzazioni',
       ],
       gradient: 'from-purple-500 to-purple-700',
     },
@@ -55,7 +55,7 @@ export class HowItWorks {
       icon: 'pi-check-circle',
       details: [
         'Prenotazione di tutti gli alloggi e esperienze',
-        'Acquisto Japan Rail Pass o biglietti ferroviari',
+        'Acquisto biglietti ferroviari',
         'Invio documentazione e informazioni pre-partenza',
         'Supporto per voli, assicurazioni e servizi extra',
       ],
