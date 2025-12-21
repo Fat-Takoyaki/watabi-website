@@ -1,0 +1,60 @@
+<section class="py-16 sm:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- Section Header -->
+        <div class="text-center mb-12 sm:mb-16">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-4 sm:mb-6">
+                Perché scegliere un viaggio <span class="text-red-watabi">su misura</span> con Watabi
+            </h2>
+            <div class="w-24 h-1 bg-gradient-to-r from-red-watabi to-sakura mx-auto mb-6 sm:mb-8"></div>
+            <p class="text-lg sm:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+                Costruire il tuo itinerario perfetto significa affidarti a chi conosce davvero il Giappone e sa
+                trasformare i tuoi desideri in un'esperienza indimenticabile
+            </p>
+        </div>
+
+        <!-- Benefits Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 sm:gap-8 mb-12">
+            @for(benefit of benefits; track benefit.title) {
+            <div
+                class="group relative bg-gradient-to-br from-slate-50 to-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 p-6 sm:p-8 border border-slate-200 overflow-hidden">
+
+                <!-- Hover Effect Background -->
+                <div
+                    [class]="'absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-5 transition-opacity duration-300 ' + benefit.gradient">
+                </div>
+
+                <!-- Icon -->
+                <div
+                    [class]="'relative w-16 h-16 rounded-xl bg-gradient-to-br flex items-center justify-center mb-5 shadow-lg transform group-hover:scale-110 transition-transform duration-300 ' + benefit.gradient">
+                    <i [class]="'pi ' + benefit.icon + ' text-white text-2xl'"></i>
+                </div>
+
+                <!-- Content -->
+                <div class="relative">
+                    <h3 class="text-sm font-bold text-slate-900 mb-3">{{ benefit.title }}</h3>
+                    <p class="text-slate-600 leading-relaxed text-xs">{{ benefit.description }}</p>
+                </div>
+
+                <!-- Bottom Border Animation -->
+                <div
+                    [class]="'absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ' + benefit.gradient">
+                </div>
+            </div>
+            }
+        </div>
+
+        <!-- Bottom CTA -->
+        <div class="text-center">
+            <p class="text-slate-700 mb-6 text-lg">
+                Pronto a creare il tuo viaggio ideale?
+            </p>
+            <a href="/"
+                class="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-red-watabi to-red-dark text-white font-bold rounded-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300">
+                <span>Contattaci ora</span>
+                <i class="pi pi-arrow-right"></i>
+            </a>
+        </div>
+
+    </div>
+</section>

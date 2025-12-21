@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class HeroJapanTravel {
   heroImage =
-    'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=1920&q=80';
+    'https://images.unsplash.com/photo-1542051841857-5f90071e7989?w=1920&q=80';
 
   stats = [
     { value: '18+', label: 'Itinerari' },

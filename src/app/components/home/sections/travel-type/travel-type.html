@@ -1,24 +1,24 @@
-<section id="travel-types" class="py-20 bg-[#8a2828]">
+<section id="travel-types" class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <!-- Section Header -->
         <div class="text-center mb-16">
-            <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
-                Qual è il tuo <span class="text-white/50">tipo di viaggio</span>?
+            <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
+                Qual è il tuo <span class="text-red-watabi">tipo di viaggio</span>?
             </h2>
-            <p class="text-xl text-slate-100 max-w-3xl mx-auto">
+            <p class="text-xl text-slate-700 max-w-3xl mx-auto">
                 Qualunque sia il tuo stile di viaggio, c'è un Giappone che ti aspetta
             </p>
         </div>
 
         <!-- Travel Types Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
             @for(type of travelTypes; track type.id) {
             <div (click)="navigateToType(type.route)"
-                class="group relative bg-white rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 cursor-pointer">
+                class="group relative bg-white rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 cursor-pointer flex flex-col">
 
                 <!-- Image -->
-                <div class="relative h-64 overflow-hidden">
+                <div class="relative h-64 overflow-hidden flex-shrink-0">
                     <img [src]="type.image" [alt]="type.title"
                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
@@ -37,13 +37,13 @@
                 </div>
 
                 <!-- Content -->
-                <div class="p-6 bg-white">
+                <div class="p-6 bg-white flex flex-col flex-grow">
                     <p class="text-slate-700 leading-relaxed mb-4">
                         {{ type.description }}
                     </p>
 
                     <!-- Features -->
-                    <div class="space-y-2 mb-6">
+                    <div class="space-y-2 mb-6 flex-grow">
                         @for(feature of type.features; track feature) {
                         <div class="flex items-center gap-2">
                             <i class="pi pi-check-circle text-red-watabi text-sm"></i>
@@ -67,15 +67,111 @@
             </div>
             }
         </div>
+        <!-- Special Tours Banner - Hanami Edition -->
+        <div (click)="navigateToType(specialTour.route)"
+            class="group relative rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-1 cursor-pointer mb-12">
+
+            <!-- Background Image -->
+            <div class="absolute inset-0">
+                <img [src]="specialTour.image" [alt]="specialTour.title"
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                <div class="absolute inset-0 bg-gradient-to-r from-pink-900/95 via-pink-800/90 to-rose-900/95"></div>
+            </div>
+
+            <!-- Decorative Sakura Pattern Overlay -->
+            <div class="absolute inset-0 opacity-10">
+                <div class="absolute inset-0"
+                    style="background-image: url('data:image/svg+xml,%3Csvg width=\'80\' height=\'80\' viewBox=\'0 0 80 80\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M40 40L20 20M40 40L60 20M40 40L20 60M40 40L60 60\' stroke=\'%23ffffff\' stroke-width=\'0.5\'/%3E%3C/g%3E%3C/svg%3E');">
+                </div>
+            </div>
+
+            <div class="relative flex flex-col lg:flex-row items-center gap-6 p-8 lg:p-10">
+
+                <!-- Icon Badge with Sakura -->
+                <div
+                    class="flex-shrink-0 w-20 h-20 lg:w-24 lg:h-24 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center shadow-2xl border-4 border-pink-200/40 group-hover:scale-110 transition-transform duration-300 relative">
+                    <i class="pi pi-sun text-pink-50 text-4xl lg:text-5xl"></i>
+                    <!-- Floating Sakura Petals Effect -->
+                    <div class="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-pink-300/60 backdrop-blur-sm"></div>
+                    <div class="absolute -bottom-1 -left-1 w-4 h-4 rounded-full bg-pink-200/60 backdrop-blur-sm"></div>
+                </div>
+
+                <!-- Content -->
+                <div class="flex-grow text-center lg:text-left">
+                    <div class="flex items-center justify-center lg:justify-start gap-3 mb-3">
+                        <span
+                            class="px-4 py-1.5 bg-pink-200/30 backdrop-blur-sm rounded-full text-white text-xs font-bold uppercase tracking-wider border border-pink-200/40 flex items-center gap-2">
+                            <i class="pi pi-sparkles text-pink-200"></i>
+                            Primavera 2026
+                        </span>
+                        <span
+                            class="px-4 py-1.5 bg-rose-200/30 backdrop-blur-sm rounded-full text-white text-xs font-bold uppercase tracking-wider border border-rose-200/40">
+                            Posti Limitati
+                        </span>
+                    </div>
+
+                    <h3
+                        class="text-3xl lg:text-4xl font-bold text-white mb-2 flex items-center justify-center lg:justify-start gap-3">
+                        <span>Tour Hanami 2026</span>
+                        <span class="text-2xl">🌸</span>
+                    </h3>
+                    <p class="text-xl text-pink-50 mb-4 font-light">Vivi la magia della fioritura dei ciliegi</p>
+                    <p class="text-white/90 text-base leading-relaxed max-w-3xl">
+                        Un viaggio esclusivo durante il periodo più magico dell'anno in Giappone. Ammira i sakura in
+                        fiore nei luoghi più iconici, partecipa a picnic sotto i ciliegi e vivi la tradizione
+                        dell'hanami con esperienze autentiche.
+                    </p>
+
+                    <!-- Features Inline -->
+                    <div class="flex flex-wrap justify-center lg:justify-start gap-3 mt-6">
+                        @for(feature of specialTour.features; track feature) {
+                        <div
+                            class="flex items-center gap-2 px-4 py-2 bg-white/15 backdrop-blur-md rounded-lg border border-white/25 hover:bg-white/25 transition-colors">
+                            <i class="pi pi-check-circle text-pink-200 text-sm"></i>
+                            <span class="text-sm text-white font-medium">{{ feature }}</span>
+                        </div>
+                        }
+                    </div>
+
+                    <!-- Dates Info -->
+                    <div
+                        class="mt-4 inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20">
+                        <i class="pi pi-calendar text-pink-200"></i>
+                        <span class="text-sm text-white">Partenze: Marzo - Aprile 2026</span>
+                    </div>
+                </div>
+
+                <!-- CTA -->
+                <div class="flex-shrink-0">
+                    <button
+                        class="px-8 py-4 bg-white text-pink-600 font-bold rounded-xl hover:bg-pink-50 hover:shadow-2xl transition-all duration-300 flex items-center gap-3 text-lg group-hover:scale-105 shadow-xl">
+                        <span>Scopri il tour</span>
+                        <i class="pi pi-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Animated Border -->
+            <div
+                class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-pink-300 via-rose-300 to-pink-300 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500">
+            </div>
+
+            <!-- Floating Sakura Petals Animation (Optional) -->
+            <div class="absolute top-10 right-10 w-8 h-8 rounded-full bg-pink-200/20 backdrop-blur-sm animate-pulse">
+            </div>
+            <div
+                class="absolute bottom-20 left-20 w-6 h-6 rounded-full bg-rose-200/20 backdrop-blur-sm animate-pulse delay-150">
+            </div>
+        </div>
 
         <!-- Bottom Note -->
         <div class="mt-12 text-center">
-            <p class="text-white mb-4">
-                Non sai quale scegliere? Parliamone insieme
+            <p class="text-slate-700 mb-4">
+                Non sai quale scegliere? Ogni viaggio Watabi è completamente personalizzabile.
             </p>
             <a href="/contact"
-                class="inline-flex items-center gap-2 text-red-watabi text-xl bg-white rounded-lg p-4 font-semibold hover:gap-4 transition-all">
-                <span>Contattaci per una consulenza gratuita</span>
+                class="inline-flex items-center gap-2 bg-red-watabi text-xl text-white rounded-lg p-4 font-semibold hover:gap-4 transition-all">
+                <span>Scopri di più su i Viaggi su Misura</span>
                 <i class="pi pi-arrow-right"></i>
             </a>
         </div>

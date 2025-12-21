@@ -1,4 +1,4 @@
-<div class="bg-gradient-to-br from-slate-200 to-white py-8 sm:py-12 border-b border-slate-200">
+<div class="bg-white py-8 sm:py-12 border-b border-slate-200">
     <div class="max-w-7xl mx-auto px-4">
         <div class="max-w-4xl mx-auto">
             <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-4 sm:mb-6 text-center">
@@ -6,22 +6,18 @@
             </h2>
             <div class="prose prose-sm sm:prose-lg max-w-none text-slate-700 leading-relaxed space-y-3 sm:space-y-4">
                 <p class="text-sm sm:text-base">
-                    Benvenuti in Giappone, una terra lontana e affascinante, capace di offrire esperienze uniche a chi
-                    decide di venire a scoprirla con i propri occhi. Offrire la migliore esperienza di viaggio al
-                    pubblico italiano è lo scopo con il quale nasce <strong>Watabi</strong>, tour operator
-                    specializzato.
-                    Specializzarci in maniera esclusiva su questa destinazione ci ha permesso di affinare tutti gli
-                    aspetti di viaggio con in mente un principio guida fondamentale: <strong>la libertà del
-                        viaggiatore</strong>. Il nostro viaggio in Giappone è pensato per il viaggiatore contemporaneo,
-                    libero di definire i propri ritmi all'interno di un contesto di organizzazione ed efficienza.
+                    Costruire il tuo itinerario perfetto significa affidarti a chi conosce davvero il Giappone e sa
+                    trasformare i tuoi desideri in un'esperienza indimenticabile. Con <strong>Watabi</strong>, tour
+                    operator specializzato esclusivamente sul Giappone, ogni viaggio nasce dal dialogo con te e dalla
+                    nostra esperienza diretta sul territorio.
                 </p>
             </div>
 
             <!-- Quick Highlights - Responsive Grid -->
-            <div class="mt-6 sm:mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
-            @for(card of uspCards; track card.title) {
+            <div class="mt-6 sm:mt-8 flex flex-wrap justify-center gap-3 sm:gap-4">
+                @for(card of uspCards; track card.title) {
                 <div
-                    class="flex items-center gap-3 p-3 sm:p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                    class="flex items-center gap-3 p-3 sm:p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow w-full sm:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-0.75rem)]">
                     <div
                         class="w-10 h-10 rounded-full bg-gradient-to-br from-teal-500 to-teal-600 flex items-center justify-center flex-shrink-0">
                         <i [class]="'pi ' + card.icon + ' text-white text-sm sm:text-base'"></i>
@@ -32,6 +28,19 @@
                     </div>
                 </div>
                 }
+            </div>
+
+
+            <!-- Bottom CTA -->
+            <div class="text-center mt-8 sm:mt-10">
+                <p class="text-slate-700 mb-4 text-sm sm:text-base">
+                    Pronto a creare il tuo viaggio ideale?
+                </p>
+                <a href="/"
+                    class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-red-watabi to-red-dark text-white font-bold text-sm rounded-xl hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+                    <span>Contattaci ora</span>
+                    <i class="pi pi-arrow-right"></i>
+                </a>
             </div>
         </div>
     </div>

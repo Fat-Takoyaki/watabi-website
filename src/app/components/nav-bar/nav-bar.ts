@@ -16,7 +16,7 @@ interface MenuItem {
   templateUrl: './nav-bar.html',
   styleUrls: ['./nav-bar.scss'],
 })
-export class Navbar {
+export class NavBar {
   isScrolled = false;
   isMobileMenuOpen = false;
   openDropdown: string | null = null;
@@ -25,16 +25,17 @@ export class Navbar {
 
   menuItems: MenuItem[] = [
     //{ label: 'Home', route: '' },
-    { label: 'Viaggio in Giappone', route: '/japan-travel' },
-    { label: 'Tour di Gruppo', route: '/group-tours' },
-    { label: 'Tour Speciali', route: '/special-tours' },
-    { label: 'Viaggi di Nozze', route: '/honeymoon' },
-    { label: this.getFiorituraLabel(), route: '/fioritura' },
+    //{ label: 'Viaggio in Giappone', route: '/viaggio-in-giappone' },
+    { label: 'Viaggio in Giappone su Misura', route: '/viaggio-su-misura-giappone' },
+    { label: 'Viaggio in Giappone i Gruppo', route: '/viaggio-di-gruppo-giappone' },
+    { label: 'Viaggio in Giappone di Nozze', route: '/viaggi-di-nozze' },
+
+    { label: this.getFiorituraLabel(), route: '/pacchetti-offerte-giappone' },
+    { label: 'Chi è Watabi', route: '/tour-opererator-giappone' },
     {
-      label: 'Contatti',
+      label: 'Altro',
       children: [
         { label: 'CONTATTACI', route: '/contact' },
-        { label: 'TOUR OPERATOR', route: '/tour-operator' },
         { label: 'BLOG', route: '/blog' },
       ],
     },

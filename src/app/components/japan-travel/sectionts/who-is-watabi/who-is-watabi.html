@@ -1,0 +1,61 @@
+<section class="py-16 sm:py-20 bg-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- Section Header -->
+        @if(showHeader) {
+        <div class="text-center mb-12 sm:mb-8">
+            <h2
+                class="text-2xl sm:text-3xl font-extrabold text-slate-900 uppercase mb-4 sm:mb-6 flex items-center justify-center gap-3">
+                <span>Chi è</span>
+                <img src="assets/img/logo_bw.png" alt="WATABI Logo"
+                    class="h-8 w-auto object-contain transition-all duration-300 hover:scale-110">
+            </h2>
+            <div class="w-24 h-1 bg-gradient-to-r from-red-watabi to-sakura mx-auto mb-6 sm:mb-8"></div>
+            <p class="text-lg sm:text-xl text-slate-700 font-light max-w-3xl mx-auto leading-relaxed">
+                Il tuo punto di riferimento per il Giappone
+            </p>
+        </div>
+        }
+
+        <!-- Main Content -->
+        <div class="max-w-5xl mx-auto mb-12">
+            <div class="bg-white rounded-2xl shadow-xl p-8 sm:p-12 border border-slate-200">
+                <div class="prose prose-sm max-w-none">
+                    <p class="text-sm text-slate-700 leading-relaxed mb-6">
+                        <strong class="text-red-watabi">Watabi</strong> è un tour operator italiano nato da una passione
+                        profonda per il Giappone e da un'esperienza diretta maturata sul campo. Da oltre 14 anni
+                        accompagniamo i viaggiatori italiani alla scoperta del Giappone autentico, con proposte curate
+                        nei minimi dettagli e supporto costante prima e durante il viaggio.
+                    </p>
+                    <p class="text-sm text-slate-700 leading-relaxed mb-6">
+                        Con una <strong>sede operativa in Giappone</strong> e un team che conosce il paese "da dentro",
+                        Watabi unisce la competenza locale all'ascolto tipico dell'accoglienza italiana. Non siamo solo
+                        un'agenzia: siamo italiani che hanno scelto di vivere in Giappone per passione e che hanno fatto
+                        di questa passione il loro lavoro.
+                    </p>
+                    <p class="text-sm text-slate-700 leading-relaxed">
+                        La nostra <strong>specializzazione assoluta sul Giappone</strong> ci permette di offrire
+                        itinerari che vanno oltre l'organizzazione logistica: ogni viaggio è pensato per farti vivere il
+                        paese in profondità, con la libertà di esplorare al tuo ritmo ma con il supporto costante di chi
+                        questo paese lo conosce davvero.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            @for(feature of features; track feature.title) {
+            <div
+                class="group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 p-6 border border-slate-200 text-center">
+                <div
+                    [class]="'w-16 h-16 rounded-full bg-gradient-to-br flex items-center justify-center mx-auto mb-4 shadow-lg transform group-hover:scale-110 transition-transform duration-300 ' + feature.gradient">
+                    <i [class]="'pi ' + feature.icon + ' text-white text-2xl'"></i>
+                </div>
+                <h4 class="text-md font-bold text-slate-900 mb-2">{{ feature.title }}</h4>
+                <p class="text-xs text-slate-600">{{ feature.description }}</p>
+            </div>
+            }
+        </div>
+    </div>
+</section>

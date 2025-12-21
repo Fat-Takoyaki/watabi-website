@@ -1,0 +1,103 @@
+<section class="py-16 sm:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- Section Header -->
+        <div class="text-center mb-12 sm:mb-16">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-4 sm:mb-6">
+                Come funziona un viaggio <span class="text-red-watabi">su misura</span> con Watabi
+            </h2>
+            <div class="w-24 h-1 bg-gradient-to-r from-red-watabi to-sakura mx-auto mb-6 sm:mb-8"></div>
+            <p class="text-lg sm:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+                Un processo semplice, trasparente e costruito attorno a te. Dal primo contatto al ritorno a casa, ti
+                accompagniamo in ogni fase del tuo viaggio.
+            </p>
+        </div>
+
+        <!-- Steps Timeline -->
+        <div class="relative max-w-5xl mx-auto">
+
+            <!-- Vertical Line (hidden on mobile) -->
+            <div
+                class="hidden lg:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-slate-200 via-slate-300 to-slate-200 transform -translate-x-1/2">
+            </div>
+
+            <!-- Steps -->
+            <div class="space-y-12 lg:space-y-16">
+                @for(step of steps; track step.number; let i = $index) {
+                <div
+                    [class]="'relative flex flex-col lg:flex-row items-center gap-6 lg:gap-12 ' + (isEven(i) ? 'lg:flex-row' : 'lg:flex-row-reverse')">
+
+                    <!-- Step Number Badge (center on desktop) -->
+                    <div class="hidden lg:flex absolute left-1/2 transform -translate-x-1/2 w-20 h-20 rounded-full bg-gradient-to-br shadow-2xl items-center justify-center z-10 border-4 border-white"
+                        [class]="step.gradient">
+                        <span class="text-3xl font-bold text-white">{{ step.number }}</span>
+                    </div>
+
+                    <!-- Content Card -->
+                    <div [class]="'w-full lg:w-[calc(50%-3rem)] ' + (isEven(i) ? 'lg:text-right' : 'lg:text-left')">
+                        <div
+                            class="group bg-gradient-to-br from-slate-50 to-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 p-6 sm:p-8 border border-slate-200 relative overflow-hidden">
+
+                            <!-- Mobile Number Badge -->
+                            <div class="lg:hidden flex items-center gap-4 mb-4">
+                                <div
+                                    [class]="'w-16 h-16 rounded-full bg-gradient-to-br flex items-center justify-center shadow-lg flex-shrink-0 ' + step.gradient">
+                                    <span class="text-2xl font-bold text-white">{{ step.number }}</span>
+                                </div>
+                                <div
+                                    [class]="'w-12 h-12 rounded-full bg-gradient-to-br flex items-center justify-center shadow-md ' + step.gradient">
+                                    <i [class]="'pi ' + step.icon + ' text-white text-xl'"></i>
+                                </div>
+                            </div>
+
+                            <!-- Desktop Icon -->
+                            <div
+                                [class]="'hidden lg:flex w-16 h-16 rounded-full bg-gradient-to-br items-center justify-center shadow-lg mb-6 ' + step.gradient + ' ' + (isEven(i) ? 'ml-auto' : 'mr-auto')">
+                                <i [class]="'pi ' + step.icon + ' text-white text-2xl'"></i>
+                            </div>
+
+                            <!-- Title & Description -->
+                            <h3 class="text-2xl font-bold text-slate-900 mb-3">{{ step.title }}</h3>
+                            <p class="text-slate-700 leading-relaxed mb-6">{{ step.description }}</p>
+
+                            <!-- Details List -->
+                            <div class="space-y-2">
+                                @for(detail of step.details; track detail) {
+                                <div
+                                    [class]="'flex items-start gap-3 ' + (isEven(i) ? 'lg:flex-row-reverse lg:text-right' : '')">
+                                    <i class="pi pi-check-circle text-red-watabi text-sm mt-1 flex-shrink-0"></i>
+                                    <span class="text-sm text-slate-600">{{ detail }}</span>
+                                </div>
+                                }
+                            </div>
+
+                            <!-- Hover Border -->
+                            <div
+                                [class]="'absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ' + step.gradient">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                }
+            </div>
+        </div>
+
+        <!-- Bottom CTA -->
+        <div
+            class="mt-16 text-center bg-gradient-to-r from-slate-50 to-blue-50 rounded-2xl p-8 sm:p-12 border border-blue-100">
+            <h3 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-4">
+                Pronto a iniziare la progettazione del tuo viaggio?
+            </h3>
+            <p class="text-slate-700 mb-6 text-lg max-w-2xl mx-auto">
+                Il primo step è semplice: raccontaci cosa sogni di vivere in Giappone. Penseremo noi al resto.
+            </p>
+            <a href="/"
+                class="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-red-watabi to-red-dark text-white font-bold rounded-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300">
+                <span>Inizia ora</span>
+                <i class="pi pi-arrow-right"></i>
+            </a>
+        </div>
+
+    </div>
+</section>

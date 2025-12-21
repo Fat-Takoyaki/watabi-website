@@ -1,0 +1,77 @@
+<section class="py-12 sm:py-16 bg-gradient-to-br from-slate-100 to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- Section Header -->
+        <div class="text-center mb-10 sm:mb-12">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-3 sm:mb-4">
+                Cosa dicono i viaggiatori che hanno scelto un <span class="text-red-watabi">viaggio su misura</span>
+            </h2>
+            <div class="w-20 h-1 bg-gradient-to-r from-red-watabi to-sakura mx-auto mb-4 sm:mb-5"></div>
+            <p class="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto">
+                Le testimonianze autentiche di chi ha già vissuto la propria esperienza giapponese con Watabi
+            </p>
+        </div>
+
+        <!-- Testimonials Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 mb-10">
+            @for(testimonial of testimonials; track testimonial.name) {
+            <div
+                class="group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-slate-200 flex flex-col">
+
+                <!-- Header with Image -->
+                <div class="relative h-40 overflow-hidden flex-shrink-0">
+                    <img [src]="testimonial.image" [alt]="testimonial.name"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+
+                    <!-- Highlight Badge -->
+                    @if(testimonial.highlight) {
+                    <div
+                        class="absolute top-3 left-3 px-3 py-1.5 bg-red-watabi/90 backdrop-blur-sm rounded-full flex items-center">
+                        <span class="text-white text-xs font-medium">{{ testimonial.highlight }}</span>
+                    </div>
+                    }
+                </div>
+
+                <!-- Content -->
+                <div class="p-5 flex flex-col flex-grow">
+                    <!-- Rating -->
+                    <div class="flex gap-0.5 mb-2">
+                        @for(star of getStars(testimonial.rating); track $index) {
+                        <i class="pi pi-star-fill text-amber-400 text-xs"></i>
+                        }
+                    </div>
+
+                    <!-- Name and Type -->
+                    <h4 class="text-base font-bold text-slate-900 mb-0.5">{{ testimonial.name }}</h4>
+                    <p class="text-xs text-red-watabi font-semibold mb-0.5">{{ testimonial.travelType }}</p>
+                    <p class="text-xs text-slate-500 mb-3">{{ testimonial.date }}</p>
+
+                    <!-- Testimonial Text -->
+                    <p class="text-sm text-slate-700 leading-relaxed italic flex-grow">
+                        "{{ testimonial.text }}"
+                    </p>
+                </div>
+
+                <!-- Bottom Border Animation -->
+                <div
+                    class="h-1 bg-gradient-to-r from-red-watabi to-sakura transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500">
+                </div>
+            </div>
+            }
+        </div>
+
+        <!-- CTA -->
+        <div class="text-center">
+            <p class="text-slate-700 mb-4 text-base">
+                Vuoi leggere altre esperienze di viaggio?
+            </p>
+            <button (click)="navigateToReviews()"
+                class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-red-watabi to-red-dark text-white font-bold rounded-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300">
+                <span>Leggi tutte le recensioni</span>
+                <i class="pi pi-arrow-right text-sm"></i>
+            </button>
+        </div>
+
+    </div>
+</section>

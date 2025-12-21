@@ -15,16 +15,31 @@ export const routes: Routes = [
     redirectTo: '',
     pathMatch: 'full',
   },
-
+  // {
+  //   path: 'viaggio-su-misura-giappone',
+  //   loadComponent: () =>
+  //     import('./components/japan-travel/japan-travel').then(
+  //       (m) => m.JapanTravel
+  //     ),
+  //   data: { title: 'Japan Travel - WATABI' },
+  // },
   {
-    path: 'japan-travel',
+    path: 'viaggio-su-misura-giappone',
     loadComponent: () =>
-      import('./components/japan-travel/japan-travel').then(
-        (m) => m.JapanTravel
+      import('./components/tailor-made/tailor-made').then(
+        (m) => m.TailorMade
       ),
-    data: { title: 'Japan Travel - WATABI' },
+    data: { title: 'Tour su Misura - WATABI' },
   },
-  // Navbar pages (redirect a home fino a quando non esistono)
+  {
+    path: 'tour-opererator-giappone',
+    loadComponent: () =>
+      import('./components/tour-operator-japan/tour-operator-japan').then(
+        (m) => m.TourOperatorJapan
+      ),
+    data: { title: 'Tour Operator Giappone - WATABI' },
+  },
+  // NavBar pages (redirect a home fino a quando non esistono)
   {
     path: 'group-tours',
     redirectTo: 'home',

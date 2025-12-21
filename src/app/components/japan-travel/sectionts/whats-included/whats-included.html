@@ -1,0 +1,105 @@
+<section class="py-16 sm:py-20 bg-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- Section Header -->
+        <div class="text-center mb-12 sm:mb-16">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-4 sm:mb-6">
+                Cosa è <span class="text-red-watabi">Incluso</span> <br />
+                <span class="text-2xl font-light">(e cosa puoi aggiungere)</span>
+            </h2>
+            <div class="w-24 h-1 bg-gradient-to-r from-red-watabi to-sakura mx-auto mb-6 sm:mb-8"></div>
+            <p class="text-lg sm:text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
+                Ogni viaggio su misura è costruito in base alle tue esigenze, ma ci sono alcuni elementi che Watabi
+                include sempre per garantire comfort, sicurezza e autenticità. Altri servizi possono essere aggiunti
+                secondo le tue preferenze.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+            <!-- NON INCLUSO -->
+            <div
+                class="bg-gradient-to-br from-slate-50 to-white rounded-2xl shadow-lg p-6 sm:p-8 border-2 border-slate-200">
+                <div class="flex items-center gap-3 mb-6">
+                    <div
+                        class="w-14 h-14 rounded-full bg-gradient-to-br from-slate-500 to-slate-700 flex items-center justify-center shadow-lg">
+                        <i class="pi pi-info-circle text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900">Non Incluso</h3>
+                </div>
+
+                <div class="space-y-3">
+                    @for(item of notIncluded; track item.text) {
+                    <div
+                        class="flex items-start gap-3 p-3 bg-white rounded-lg border border-slate-100 hover:border-slate-300 transition-colors">
+                        <i [class]="'pi ' + item.icon + ' text-slate-500 text-sm mt-1 flex-shrink-0'"></i>
+                        <span class="text-sm text-slate-700">{{ item.text }}</span>
+                    </div>
+                    }
+                </div>
+            </div>
+
+            <!-- INCLUSO -->
+            <div
+                class="bg-gradient-to-br from-teal-50 to-white rounded-2xl shadow-lg p-6 sm:p-8 border-2 border-teal-200">
+                <div class="flex items-center gap-3 mb-6">
+                    <div
+                        class="w-14 h-14 rounded-full bg-gradient-to-br from-teal-500 to-teal-700 flex items-center justify-center shadow-lg">
+                        <i class="pi pi-check text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900">Sempre Incluso</h3>
+                </div>
+
+                <div class="space-y-3">
+                    @for(item of included; track item.text) {
+                    <div
+                        class="flex items-start gap-3 p-3 bg-white rounded-lg border border-teal-100 hover:border-teal-300 transition-colors">
+                        <i [class]="'pi ' + item.icon + ' text-teal-600 text-sm mt-1 flex-shrink-0'"></i>
+                        <span class="text-sm text-slate-700">{{ item.text }}</span>
+                    </div>
+                    }
+                </div>
+            </div>
+
+            <!-- SERVIZI EXTRA -->
+            <div
+                class="bg-gradient-to-br from-blue-50 to-white rounded-2xl shadow-lg p-6 sm:p-8 border-2 border-blue-200">
+                <div class="flex items-center gap-3 mb-6">
+                    <div
+                        class="w-14 h-14 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center shadow-lg">
+                        <i class="pi pi-plus-circle text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900">Servizi Extra</h3>
+                </div>
+
+                <div class="space-y-3">
+                    @for(item of extraServices; track item.text) {
+                    <div
+                        class="flex items-start gap-3 p-3 bg-white rounded-lg border border-blue-100 hover:border-blue-300 transition-colors">
+                        <i [class]="'pi ' + item.icon + ' text-blue-600 text-sm mt-1 flex-shrink-0'"></i>
+                        <span class="text-sm text-slate-700">{{ item.text }}</span>
+                    </div>
+                    }
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Bottom Note -->
+        <div
+            class="mt-12 bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl p-6 sm:p-8 border-l-4 border-amber-500">
+            <div class="flex items-start gap-4">
+                <i class="pi pi-lightbulb text-amber-600 text-2xl mt-1 flex-shrink-0"></i>
+                <div>
+                    <h4 class="font-bold text-slate-900 mb-2 text-lg">Massima trasparenza sui costi</h4>
+                    <p class="text-slate-700 leading-relaxed">
+                        Durante la fase di progettazione, riceverai un preventivo dettagliato con tutti i costi
+                        suddivisi per voce. Potrai decidere cosa includere e cosa gestire in autonomia, mantenendo
+                        sempre il pieno controllo del tuo budget.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>

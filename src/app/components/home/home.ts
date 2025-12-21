@@ -8,10 +8,11 @@ import { TravelTypes } from "./sections/travel-type/travel-type";
 import { BestPeriod } from "./sections/best-period/best-period";
 import { Destinations } from "./sections/destinations/destinations";
 import { Faq } from "../faq/faq";
+import { WhoIsWatabi } from "../japan-travel/sectionts/who-is-watabi/who-is-watabi";
 
 @Component({
   selector: 'app-home',
-  imports: [Header, Tours, JapanExperience, Watabi, TravelTypes, BestPeriod, Destinations, Faq],
+  imports: [Header, Tours, JapanExperience, TravelTypes, BestPeriod, Destinations, Faq, WhoIsWatabi],
   templateUrl: './home.html',
   styleUrls: ['./home.scss'],
 })
