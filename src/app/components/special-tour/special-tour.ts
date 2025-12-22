@@ -37,7 +37,6 @@ export class SpecialTour {
     route: '/hanami-tour',
     icon: 'pi-sun',
     features: [
-      'Previsioni fioritura ottimizzate',
       'Parchi e giardini esclusivi',
       'Picnic hanami tradizionali',
       'Guida esperta italiana',
