@@ -9,10 +9,11 @@ import { BestPeriod } from "./sections/best-period/best-period";
 import { Destinations } from "./sections/destinations/destinations";
 import { Faq } from "../faq/faq";
 import { WhoIsWatabi } from "../japan-travel/sectionts/who-is-watabi/who-is-watabi";
+import { Testimonials } from "../japan-travel/sectionts/testimonials/testimonials";
 
 @Component({
   selector: 'app-home',
-  imports: [Header, Tours, JapanExperience, TravelTypes, BestPeriod, Destinations, Faq, Watabi],
+  imports: [Header, Tours, JapanExperience, TravelTypes, BestPeriod, Destinations, Faq, Watabi, Testimonials],
   templateUrl: './home.html',
   styleUrls: ['./home.scss'],
 })
