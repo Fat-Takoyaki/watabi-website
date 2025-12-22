@@ -12,7 +12,7 @@ import { WhoIsWatabi } from "../japan-travel/sectionts/who-is-watabi/who-is-wata
 
 @Component({
   selector: 'app-home',
-  imports: [Header, Tours, JapanExperience, TravelTypes, BestPeriod, Destinations, Faq, WhoIsWatabi],
+  imports: [Header, Tours, JapanExperience, TravelTypes, BestPeriod, Destinations, Faq, Watabi],
   templateUrl: './home.html',
   styleUrls: ['./home.scss'],
 })
