@@ -10,10 +10,11 @@ import { Destinations } from "./sections/destinations/destinations";
 import { Faq } from "../faq/faq";
 import { WhoIsWatabi } from "../japan-travel/sectionts/who-is-watabi/who-is-watabi";
 import { Testimonials } from "../japan-travel/sectionts/testimonials/testimonials";
+import { CtaJapanTravel } from "../japan-travel/sectionts/cta-japan-travel/cta-japan-travel";
 
 @Component({
   selector: 'app-home',
-  imports: [Header, Tours, JapanExperience, TravelTypes, BestPeriod, Destinations, Faq, Watabi, Testimonials],
+  imports: [Header, Tours, JapanExperience, TravelTypes, BestPeriod, Destinations, Faq, Watabi, Testimonials, CtaJapanTravel],
   templateUrl: './home.html',
   styleUrls: ['./home.scss'],
 })
