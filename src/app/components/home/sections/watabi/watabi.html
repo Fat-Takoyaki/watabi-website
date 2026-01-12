@@ -1,14 +1,13 @@
 <section id="watabi-approach" class="py-20 bg-gradient-to-br from-slate-200 to-transparent">
+    @if (content) {
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <!-- Section Header -->
         <div class="text-center mb-16">
-            <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
-                Il nostro modo di farti <span class="text-red-watabi">scoprire</span> il Giappone
+            <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6" [innerHTML]="content.header.title">
             </h2>
             <div class="w-24 h-1 bg-gradient-to-r from-red-watabi to-sakura mx-auto mb-8"></div>
-            <h3 class="text-2xl text-slate-700 font-light mb-6">
-                Viaggiare in Giappone con Watabi
+            <h3 class="text-2xl text-slate-700 font-light mb-6" [innerHTML]="content.header.subtitle">
             </h3>
         </div>
 
@@ -18,7 +17,7 @@
             <!-- Left: Image -->
             <div class="relative">
                 <div class="relative rounded-xl overflow-hidden shadow-2xl">
-                    <img src="https://images.unsplash.com/photo-1528164344705-47542687000d?w=800&q=80" alt="Watabi Team"
+                    <img [src]="content.mainContent.imageUrl" [alt]="content.mainContent.imageAlt"
                         class="w-full h-[340px] md:h-[640px] object-cover" />
                     <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
 
@@ -30,8 +29,10 @@
                                 <i class="pi pi-check text-white text-xl"></i>
                             </div>
                             <div>
-                                <div class="font-bold text-slate-900">100% Personalizzabile</div>
-                                <div class="text-xs text-slate-600">Itinerari su misura</div>
+                                <div class="font-bold text-slate-900" [innerHTML]="content.mainContent.badge.title">
+                                </div>
+                                <div class="text-xs text-slate-600" [innerHTML]="content.mainContent.badge.subtitle">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -45,39 +46,14 @@
 
             <!-- Right: Text Content -->
             <div class="space-y-6">
-                <p class="text-lg text-slate-700 leading-relaxed">
-                    <strong class="text-red-watabi">Watabi</strong> non è solo un'agenzia di viaggi: siamo italiani che
-                    hanno scelto di vivere
-                    in Giappone per passione e che hanno fatto di questa passione il loro lavoro.
+                @for(paragraph of content.mainContent.paragraphs; track $index) {
+                <p class="text-lg text-slate-700 leading-relaxed" [innerHTML]="paragraph">
                 </p>
-
-                <p class="text-lg text-slate-700 leading-relaxed">
-                    La nostra <strong>specializzazione assoluta sul Giappone</strong> ci permette di offrire un servizio
-                    che va oltre
-                    l'organizzazione logistica: ogni itinerario è pensato per farti vivere il paese in profondità, con
-                    la libertà
-                    di esplorare al tuo ritmo ma con il supporto costante di chi questo paese lo conosce davvero.
-                </p>
-
-                <p class="text-lg text-slate-700 leading-relaxed">
-                    Grazie al nostro presente sul territorio a:<strong>Tokyo, Kyoto e Osaka</strong>, manteniamo rapporti diretti con strutture, guide e
-                    fornitori locali.
-                    Questo ci permette di garantirti prezzi competitivi, disponibilità anche in alta stagione e
-                    un'assistenza
-                    immediata in italiano durante tutto il viaggio.
-                </p>
-
-                <p class="text-lg text-slate-700 leading-relaxed">
-                    Che tu voglia un tour classico, un viaggio di nozze romantico o un'avventura in famiglia,
-                    costruiremo
-                    insieme l'esperienza giapponese perfetta per te, con <strong>flessibilità totale</strong> e la
-                    sicurezza di
-                    avere sempre qualcuno che parla la tua lingua a disposizione.
-                </p>
+                }
 
                 <button (click)="navigateToAbout()"
                     class="mt-6 inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-red-watabi to-red-dark text-white font-bold rounded-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300">
-                    <span>Scopri chi siamo</span>
+                    <span [innerHTML]="content.mainContent.ctaButton.text"></span>
                     <i class="pi pi-arrow-right"></i>
                 </button>
             </div>
@@ -85,7 +61,7 @@
 
         <!-- Strengths Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            @for(strength of strengths; track strength.title) {
+            @for(strength of content.strengths; track strength.title) {
             <div
                 class="group relative bg-white rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-100 overflow-hidden">
 
@@ -102,8 +78,8 @@
 
                 <!-- Content -->
                 <div class="relative">
-                    <h4 class="text-lg font-bold text-slate-900 mb-2">{{ strength.title }}</h4>
-                    <p class="text-sm text-slate-600 leading-relaxed">{{ strength.description }}</p>
+                    <h4 class="text-lg font-bold text-slate-900 mb-2" [innerHTML]="strength.title"></h4>
+                    <p class="text-sm text-slate-600 leading-relaxed" [innerHTML]="strength.description"></p>
                 </div>
 
                 <!-- Hover Border -->
@@ -115,4 +91,13 @@
         </div>
 
     </div>
+    }
+
+    <!-- Loading State -->
+    @if (!content) {
+    <div class="text-center py-20">
+        <i class="pi pi-spin pi-spinner text-4xl text-red-watabi"></i>
+        <p class="mt-4 text-slate-600">Caricamento contenuti...</p>
+    </div>
+    }
 </section>

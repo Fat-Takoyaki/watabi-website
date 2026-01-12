@@ -1,19 +1,18 @@
-<section id="travel-types" class="py-20 bg-white">
+<section id="trova-il-tuo-viaggio" class="py-20 bg-white">
+    @if (content) {
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <!-- Section Header -->
         <div class="text-center mb-16">
-            <h2 class="text-4xl md:text-5xl font-bold text-slate-800 mb-6">
-                Qual è il tuo <span class="text-red-watabi">tipo di viaggio</span>?
+            <h2 class="text-4xl md:text-5xl font-bold text-slate-800 mb-6" [innerHTML]="content.header.title">
             </h2>
-            <p class="text-xl text-slate-700 max-w-3xl mx-auto">
-                Qualunque sia il tuo stile di viaggio, c'è un Giappone che ti aspetta
+            <p class="text-xl text-slate-700 max-w-3xl mx-auto" [innerHTML]="content.header.subtitle">
             </p>
         </div>
 
         <!-- Travel Types Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
-            @for(type of travelTypes; track type.id) {
+            @for(type of content.travelTypes; track type.id) {
             <div (click)="navigateToType(type.route)"
                 class="group relative bg-white rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 cursor-pointer flex flex-col">
 
@@ -31,15 +30,14 @@
 
                     <!-- Title Overlay -->
                     <div class="absolute bottom-0 left-0 right-0 p-6">
-                        <h3 class="text-3xl font-bold text-white mb-1">{{ type.title }}</h3>
-                        <p class="text-white/90 text-sm font-light">{{ type.subtitle }}</p>
+                        <h3 class="text-3xl font-bold text-white mb-1" [innerHTML]="type.title"></h3>
+                        <p class="text-white/90 text-sm font-light" [innerHTML]="type.subtitle"></p>
                     </div>
                 </div>
 
                 <!-- Content -->
                 <div class="p-6 bg-white flex flex-col flex-grow">
-                    <p class="text-slate-700 leading-relaxed mb-4">
-                        {{ type.description }}
+                    <p class="text-slate-700 leading-relaxed mb-4" [innerHTML]="type.description">
                     </p>
 
                     <!-- Features -->
@@ -47,7 +45,7 @@
                         @for(feature of type.features; track feature) {
                         <div class="flex items-center gap-2">
                             <i class="pi pi-check-circle text-red-watabi text-sm"></i>
-                            <span class="text-sm text-slate-600">{{ feature }}</span>
+                            <span class="text-sm text-slate-600" [innerHTML]="feature"></span>
                         </div>
                         }
                     </div>
@@ -67,13 +65,14 @@
             </div>
             }
         </div>
+
         <!-- Special Tours Banner - Hanami Edition -->
-        <div (click)="navigateToType(specialTour.route)"
+        <div (click)="navigateToType(content.specialTour.route)"
             class="group relative rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-1 cursor-pointer mb-12">
 
             <!-- Background Image -->
             <div class="absolute inset-0">
-                <img [src]="specialTour.image" [alt]="specialTour.title"
+                <img [src]="content.specialTour.image" [alt]="content.specialTour.title"
                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                 <div class="absolute inset-0 bg-gradient-to-r from-pink-900/95 via-pink-800/90 to-rose-900/95"></div>
             </div>
@@ -90,8 +89,7 @@
                 <!-- Icon Badge with Sakura -->
                 <div
                     class="flex-shrink-0 w-20 h-20 lg:w-24 lg:h-24 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center shadow-2xl border-4 border-pink-200/40 group-hover:scale-110 transition-transform duration-300 relative">
-                    <i class="pi pi-sun text-pink-50 text-4xl lg:text-5xl"></i>
-                    <!-- Floating Sakura Petals Effect -->
+                    <i [class]="'pi ' + content.specialTour.icon + ' text-pink-50 text-4xl lg:text-5xl'"></i>
                     <div class="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-pink-300/60 backdrop-blur-sm"></div>
                     <div class="absolute -bottom-1 -left-1 w-4 h-4 rounded-full bg-pink-200/60 backdrop-blur-sm"></div>
                 </div>
@@ -102,33 +100,31 @@
                         <span
                             class="px-4 py-1.5 bg-pink-200/30 backdrop-blur-sm rounded-full text-white text-xs font-bold uppercase tracking-wider border border-pink-200/40 flex items-center gap-2">
                             <i class="pi pi-sparkles text-pink-200"></i>
-                            Primavera 2026
+                            <span [innerHTML]="content.specialTour.badge"></span>
                         </span>
                         <span
-                            class="px-4 py-1.5 bg-rose-200/30 backdrop-blur-sm rounded-full text-white text-xs font-bold uppercase tracking-wider border border-rose-200/40">
-                            Posti Limitati
+                            class="px-4 py-1.5 bg-rose-200/30 backdrop-blur-sm rounded-full text-white text-xs font-bold uppercase tracking-wider border border-rose-200/40"
+                            [innerHTML]="content.specialTour.badgeSecondary">
                         </span>
                     </div>
 
                     <h3
                         class="text-3xl lg:text-4xl font-bold text-white mb-2 flex items-center justify-center lg:justify-start gap-3">
-                        <span>Tour Hanami 2026</span>
+                        <span [innerHTML]="content.specialTour.title"></span>
                         <span class="text-2xl">🌸</span>
                     </h3>
-                    <p class="text-xl text-pink-50 mb-4 font-light">Vivi la magia della fioritura dei ciliegi</p>
-                    <p class="text-white/90 text-base leading-relaxed max-w-3xl">
-                        Un viaggio esclusivo durante il periodo più magico dell'anno in Giappone. Ammira i sakura in
-                        fiore nei luoghi più iconici, partecipa a picnic sotto i ciliegi e vivi la tradizione
-                        dell'hanami con esperienze autentiche.
+                    <p class="text-xl text-pink-50 mb-4 font-light" [innerHTML]="content.specialTour.subtitle"></p>
+                    <p class="text-white/90 text-base leading-relaxed max-w-3xl"
+                        [innerHTML]="content.specialTour.description">
                     </p>
 
                     <!-- Features Inline -->
                     <div class="flex flex-wrap justify-center lg:justify-start gap-3 mt-6">
-                        @for(feature of specialTour.features; track feature) {
+                        @for(feature of content.specialTour.features; track feature) {
                         <div
                             class="flex items-center gap-2 px-4 py-2 bg-white/15 backdrop-blur-md rounded-lg border border-white/25 hover:bg-white/25 transition-colors">
                             <i class="pi pi-check-circle text-pink-200 text-sm"></i>
-                            <span class="text-xs text-white font-medium">{{ feature }}</span>
+                            <span class="text-xs text-white font-medium" [innerHTML]="feature"></span>
                         </div>
                         }
                     </div>
@@ -137,7 +133,7 @@
                     <div
                         class="mt-4 inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20">
                         <i class="pi pi-calendar text-pink-200"></i>
-                        <span class="text-sm text-white">Partenze: Marzo - Aprile 2026</span>
+                        <span class="text-sm text-white" [innerHTML]="content.specialTour.dates"></span>
                     </div>
                 </div>
 
@@ -156,7 +152,7 @@
                 class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-pink-300 via-rose-300 to-pink-300 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500">
             </div>
 
-            <!-- Floating Sakura Petals Animation (Optional) -->
+            <!-- Floating Sakura Petals Animation -->
             <div class="absolute top-10 right-10 w-8 h-8 rounded-full bg-pink-200/20 backdrop-blur-sm animate-pulse">
             </div>
             <div
@@ -166,15 +162,23 @@
 
         <!-- Bottom Note -->
         <div class="mt-12 text-center">
-            <p class="text-white mb-4">
-                Non sai quale scegliere? Ogni viaggio Watabi è completamente personalizzabile.
+            <p [class]="(content.footer.noteColor || 'text-slate-700') + ' mb-4'" [innerHTML]="content.footer.note">
             </p>
-            <a href="/contact"
+            <a [href]="content.footer.ctaLink"
                 class="inline-flex items-center gap-2 bg-red-watabi text-xl text-white rounded-lg p-4 font-semibold hover:gap-4 transition-all">
-                <span>Scopri di più su i Viaggi su Misura</span>
+                <span [innerHTML]="content.footer.ctaText"></span>
                 <i class="pi pi-arrow-right"></i>
             </a>
         </div>
 
     </div>
+    }
+
+    <!-- Loading State -->
+    @if (!content) {
+    <div class="text-center py-20">
+        <i class="pi pi-spin pi-spinner text-4xl text-red-watabi"></i>
+        <p class="mt-4 text-slate-600">Caricamento contenuti...</p>
+    </div>
+    }
 </section>

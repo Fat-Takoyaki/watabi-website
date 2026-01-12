@@ -4,8 +4,7 @@
     <!-- Background Image -->
     <div class="absolute inset-0 z-0 bg-white">
         <!-- White Gradient Fade to Bottom -->
-        <div class="absolute inset-x-0 -bottom-1 h-64 z-40 gradient-fade-white">
-        </div>
+        <div class="absolute inset-x-0 -bottom-1 h-64 z-40 gradient-fade-white"></div>
 
         <img [src]="backgroundImage" alt="Header Background"
             class="w-full h-full object-cover opacity-70 object-right md:object-center">
@@ -15,10 +14,9 @@
         </div>
     </div>
 
-    <!-- Clouds - NASCOSTI SU MOBILE -->
+    <!-- Clouds - hidden on mobile -->
     <div class="absolute inset-0 overflow-y-clip hidden md:block">
-
-        <!-- Cloud - Center Large -->
+        <!-- Center Large -->
         <img [src]="cloudImages.cloud1" alt="Cloud 1"
             class="z-20 min-w-[520px] w-full h-auto absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2">
 
@@ -30,8 +28,8 @@
     </div>
 
     <!-- Text Content -->
-    <div
-        class="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 z-60 flex flex-col items-center px-4 w-full max-w-6xl text-header">
+    <div class="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 z-60
+               flex flex-col items-center px-4 w-full max-w-6xl text-header">
 
         <!-- Title -->
         <div class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight text-center mb-3 font-bold uppercase">
@@ -39,11 +37,23 @@
         </div>
 
         <!-- Subtitle -->
-        <div
-            class="text-xl sm:text-2xl md:text-3xl lg:text-4xl leading-tight text-center font-semibold md:mb-4 uppercase">
+        <div class="text-xl sm:text-2xl md:text-3xl lg:text-4xl leading-tight text-center font-semibold uppercase">
             <h2>{{ subtitle }}</h2>
         </div>
 
+        <!-- CTA Button (optional) -->
+        @if (showCta) {
+        <div class="mt-10 md:mt-12 text-center">
+            <a href="" (click)="scrollTo(ctaLink, $event)" class="inline-flex items-center gap-2 bg-red-watabi text-lg sm:text-xl
+         text-white rounded-lg px-6 py-4 font-semibold
+         hover:gap-4 transition-all duration-300
+         shadow-lg hover:shadow-xl">
+                <span>{{ ctaText }}</span>
+                <i class="pi pi-arrow-down animate-bounce-soft"></i>
+            </a>
+
+        </div>
+        }
     </div>
 
 </section>

@@ -8,6 +8,12 @@ export const routes: Routes = [
     pathMatch: 'full',
     data: { title: 'Home - WATABI' },
   },
+  {
+
+    path: 'content-editor',
+    loadComponent: () => import('./pages/content-editor/content-editor').then((m) => m.ContentEditor),
+    data: { title: 'WATABI - Content Editor' },
+  },
 
   // Home page (app.component per ora)
   {

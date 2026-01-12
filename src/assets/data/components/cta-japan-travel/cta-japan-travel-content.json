@@ -1,0 +1,42 @@
+{
+  "header": {
+    "title": "Pronto a <span class=\"text-red-300\">Partire</span>?",
+    "subtitle": "Il tuo viaggio dei sogni in Giappone ti aspetta. Lascia che Watabi trasformi il tuo sogno in realtà."
+  },
+  "features": [
+    {
+      "icon": "pi-users",
+      "title": "Guide Esperte",
+      "description": "Parte della famiglia Watabi"
+    },
+    {
+      "icon": "pi-heart",
+      "title": "Tour Personalizzati",
+      "description": "Viaggi su misura per te"
+    },
+    {
+      "icon": "pi-shield",
+      "title": "Assistenza 24/7",
+      "description": "Sempre al tuo fianco"
+    },
+    {
+      "icon": "pi-star",
+      "title": "Esperienza Unica",
+      "description": "Dal 2015 specialisti del Giappone"
+    }
+  ],
+  "buttons": [
+    {
+      "icon": "pi-send",
+      "text": "Richiedi un Preventivo",
+      "href": "/",
+      "variant": "primary"
+    },
+    {
+      "icon": "pi-users",
+      "text": "Scopri i nostri Tour",
+      "href": "/tour-di-gruppo",
+      "variant": "secondary"
+    }
+  ]
+}

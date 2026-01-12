@@ -1,0 +1,402 @@
+<div class="min-h-screen bg-slate-700 pb-24 pt-36 -mt-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- Header -->
+        <div class="bg-white/90 rounded-lg shadow-md p-6 mb-6">
+            <div class="flex items-center justify-between mb-4 flex-wrap gap-4">
+                <div>
+                    <h1 class="text-3xl font-bold text-slate-900">Editor 🐙</h1>
+                    <p class="text-slate-600 mt-1">Editor dei contenuti statici</p>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    @if (selectedSection && hasLocalChanges()) {
+                    <span class="px-3 py-1 bg-yellow-100 text-yellow-800 text-sm rounded-full">
+                        <i class="pi pi-exclamation-triangle mr-1"></i>
+                        Modifiche locali attive
+                    </span>
+                    }
+
+                    <!-- Help button -->
+                    <button (click)="toggleHelp()"
+                        class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-slate-900/5 hover:bg-slate-900/10 text-slate-700 transition"
+                        title="Come funziona">
+                        <i class="pi pi-question-circle text-xl"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Section Selector -->
+            <div class="mb-2">
+                <label class="block text-sm font-semibold text-slate-700 mb-2">
+                    Seleziona Sezione da Editare
+                </label>
+
+                <select [(ngModel)]="selectedSectionId" (ngModelChange)="selectSection($event)"
+                    class="w-full md:w-96 px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-watabi focus:border-transparent">
+
+                    @for(section of sections; track section.id) {
+                    <option [value]="section.id">
+                        {{ section.name }}
+                        @if (contentService.hasLocalChanges(section.id)) { ⚠️ }
+                    </option>
+                    }
+                </select>
+
+                @if (selectedSection?.description) {
+                <p class="text-sm text-slate-600 mt-2">{{ selectedSection?.description }}</p>
+                }
+            </div>
+
+            @if (saveSuccess) {
+            <div class="mt-4 p-3 bg-green-100 text-green-800 rounded-lg flex items-center">
+                <i class="pi pi-check-circle mr-2"></i>
+                Salvato con successo! Le modifiche sono visibili sulla pagina.
+            </div>
+            }
+        </div>
+
+        <!-- STICKY ACTION BAR -->
+        <div class="sticky top-20 z-40">
+            <div class="bg-white/90 backdrop-blur rounded-lg shadow-md p-3 border border-white/30">
+                <div class="flex flex-wrap items-center gap-3 justify-between">
+
+                    <div class="flex flex-wrap gap-3">
+                        <button (click)="saveToLocalStorage()" [disabled]="isSaving || isLoading || !selectedSectionId"
+                            class="px-4 py-2 bg-red-watabi text-white rounded-lg hover:bg-red-700 transition disabled:opacity-50 disabled:cursor-not-allowed">
+                            <i class="pi pi-save mr-2"></i>
+                            {{ isSaving ? 'Salvataggio...' : 'Salva nel Browser' }}
+                        </button>
+
+                        <button (click)="exportJSON()" [disabled]="isLoading || !selectedSectionId"
+                            class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition disabled:opacity-50">
+                            <i class="pi pi-download mr-2"></i>
+                            Esporta JSON
+                        </button>
+
+                        <button (click)="resetToOriginal()"
+                            [disabled]="isLoading || !hasLocalChanges() || !selectedSectionId"
+                            class="px-4 py-2 bg-slate-600 text-white rounded-lg hover:bg-slate-700 transition disabled:opacity-50">
+                            <i class="pi pi-refresh mr-2"></i>
+                            Ripristina Originale
+                        </button>
+                    </div>
+
+                    <!-- small hint + help -->
+                    <div class="flex items-center gap-3 ml-auto">
+                        @if (selectedSectionId) {
+                        <span class="hidden md:inline text-xs text-slate-600">
+                            Sezione: <strong class="text-slate-800">{{ selectedSection?.name }}</strong>
+                        </span>
+                        }
+
+                        <button (click)="toggleHelp()"
+                            class="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-900/5 hover:bg-slate-900/10 text-slate-700 transition">
+                            <i class="pi pi-info-circle"></i>
+                            <span class="text-sm font-semibold">Come funziona</span>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading State -->
+        @if (isLoading) {
+        <div class="text-center py-20 bg-white/90 rounded-lg mt-6">
+            <i class="pi pi-spin pi-spinner text-4xl text-red-watabi"></i>
+            <p class="mt-4 text-slate-600">Caricamento contenuti...</p>
+        </div>
+        }
+
+        <!-- Dynamic Editor Form -->
+        @if (content && !isLoading && selectedSection) {
+        <div class="space-y-6 mt-6">
+
+            @for(key of getObjectKeys(content); track key) {
+            <div class="bg-white/90 rounded-lg shadow-md p-6">
+                <h2 class="text-xl font-bold text-slate-900 mb-4 flex items-center capitalize">
+                    <i class="pi pi-folder mr-2 text-red-watabi"></i>
+                    {{ key }}
+                </h2>
+
+                <!-- ✅ OGGETTO -->
+                @if (isObject(content[key])) {
+                <div class="space-y-4">
+                    @for(subKey of getObjectKeys(content[key]); track subKey) {
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-2 capitalize">
+                            {{ subKey }}
+                            @if (isString(content[key][subKey]) && content[key][subKey].includes('<')) { <span
+                                class="text-xs text-slate-500 font-normal ml-2">(HTML supportato)</span>
+                                }
+                        </label>
+
+                        @if (isString(content[key][subKey])) {
+                        @if (content[key][subKey].length > 100) {
+                        <textarea [(ngModel)]="content[key][subKey]" rows="4"
+                            class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-watabi focus:border-transparent font-mono text-sm"></textarea>
+                        } @else {
+                        <input type="text" [(ngModel)]="content[key][subKey]"
+                            class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-watabi focus:border-transparent" />
+                        }
+                        }
+
+                        @if (isObject(content[key][subKey])) {
+                        <div class="pl-4 border-l-2 border-slate-200 space-y-3">
+                            @for(nestedKey of getObjectKeys(content[key][subKey]); track nestedKey) {
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-600 mb-1 capitalize">
+                                    {{ nestedKey }}
+                                </label>
+                                <input type="text" [(ngModel)]="content[key][subKey][nestedKey]"
+                                    class="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-watabi focus:border-transparent" />
+                            </div>
+                            }
+                        </div>
+                        }
+
+                        @if (isArray(content[key][subKey])) {
+                        <div class="space-y-3">
+                            @for(item of content[key][subKey]; track trackArrayValue($index, item); let i = $index) {
+                            <div class="flex gap-2">
+                                @if (isString(item)) {
+                                <textarea [(ngModel)]="content[key][subKey][i]" rows="3"
+                                    class="flex-1 px-3 py-2 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-watabi focus:border-transparent font-mono"></textarea>
+                                }
+                                <button (click)="removeArrayItem(content[key][subKey], i)"
+                                    class="px-2 py-1 bg-red-100 text-red-700 text-xs rounded hover:bg-red-200 transition h-fit">
+                                    <i class="pi pi-trash"></i>
+                                </button>
+                            </div>
+                            }
+                            <button (click)="addArrayItem(content[key][subKey])"
+                                class="px-3 py-1 bg-green-100 text-green-700 text-sm rounded hover:bg-green-200 transition">
+                                <i class="pi pi-plus mr-1"></i>
+                                Aggiungi
+                            </button>
+                        </div>
+                        }
+                    </div>
+                    }
+                </div>
+                }
+
+                <!-- ✅ ARRAY ROOT -->
+                @else if (isArray(content[key])) {
+                <div class="space-y-4">
+                    @for(item of content[key]; track trackArrayValue($index, item); let i = $index) {
+                    <div class="border border-slate-200 rounded-lg p-4">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-sm font-semibold text-slate-700">Elemento #{{ i + 1 }}</span>
+                            <button (click)="removeArrayItem(content[key], i)"
+                                class="px-2 py-1 bg-red-100 text-red-700 text-xs rounded hover:bg-red-200 transition">
+                                <i class="pi pi-trash"></i>
+                            </button>
+                        </div>
+
+                        @if (isObject(item)) {
+                        <div class="grid grid-cols-1 gap-3">
+                            @for(itemKey of getObjectKeys(item); track itemKey) {
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-600 mb-1 capitalize">
+                                    {{ itemKey }}
+                                </label>
+
+                                @if (isArray(item[itemKey])) {
+                                <div class="space-y-2 pl-3 border-l-2 border-slate-200">
+                                    @for(subItem of item[itemKey]; track trackArrayValue(subIndex, subItem); let
+                                    subIndex = $index) {
+                                    <div class="flex gap-2">
+                                        <input type="text" [value]="getArrayItemValue(item[itemKey], subIndex)"
+                                            (input)="setArrayItemValue(item[itemKey], subIndex, $event.target.value)"
+                                            class="flex-1 px-3 py-1 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-watabi focus:border-transparent" />
+                                        <button (click)="removeArrayItem(item[itemKey], subIndex)"
+                                            class="px-2 py-1 bg-red-100 text-red-700 text-xs rounded hover:bg-red-200 transition">
+                                            <i class="pi pi-times text-xs"></i>
+                                        </button>
+                                    </div>
+                                    }
+                                    <button (click)="addArrayItem(item[itemKey])"
+                                        class="px-2 py-1 bg-green-100 text-green-700 text-xs rounded hover:bg-green-200 transition">
+                                        <i class="pi pi-plus mr-1"></i>
+                                        Aggiungi
+                                    </button>
+                                </div>
+                                }
+                                @else if (isString(item[itemKey]) && item[itemKey].length > 50) {
+                                <textarea [(ngModel)]="item[itemKey]" rows="2"
+                                    class="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-watabi focus:border-transparent"></textarea>
+                                }
+                                @else {
+                                <input type="text" [(ngModel)]="item[itemKey]"
+                                    class="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-watabi focus:border-transparent" />
+                                }
+                            </div>
+                            }
+                        </div>
+                        }
+                    </div>
+                    }
+
+                    <button (click)="addArrayItem(content[key])"
+                        class="px-3 py-1 bg-green-600 text-white text-sm rounded-lg hover:bg-green-700 transition">
+                        <i class="pi pi-plus mr-1"></i>
+                        Aggiungi Elemento
+                    </button>
+                </div>
+                }
+
+                <!-- ✅ PRIMITIVI ROOT -->
+                @else {
+                <div class="mt-2">
+                    @if (isBoolean(content[key])) {
+                    <label class="inline-flex items-center gap-3 text-sm font-semibold text-slate-700">
+                        <input type="checkbox" [(ngModel)]="content[key]" class="w-5 h-5 accent-red-watabi">
+                        <span>Abilitato</span>
+                    </label>
+                    }
+                    @else if (isNumber(content[key])) {
+                    <input type="number" step="0.05" [(ngModel)]="content[key]"
+                        class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-watabi focus:border-transparent" />
+                    }
+                    @else if (isString(content[key])) {
+                    @if (content[key].length > 120) {
+                    <textarea [(ngModel)]="content[key]" rows="4"
+                        class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-watabi focus:border-transparent font-mono text-sm"></textarea>
+                    } @else {
+                    <input type="text" [(ngModel)]="content[key]"
+                        class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-red-watabi focus:border-transparent" />
+                    }
+                    }
+                    @else {
+                    <p class="text-sm text-slate-500">Tipo non gestito: {{ typeof content[key] }}</p>
+                    }
+                </div>
+                }
+            </div>
+            }
+        </div>
+        }
+
+    </div>
+
+    <!-- ✅ RIGHT SIDEBAR HELP (Drawer) -->
+    @if (helpOpen) {
+    <!-- overlay -->
+    <div class="fixed inset-0 z-50 bg-black/40 backdrop-blur-[1px]" (click)="closeHelp()"></div>
+
+    <!-- drawer -->
+    <aside
+        class="fixed top-0 right-0 z-[999] h-full w-[92vw] sm:w-[650px] bg-white shadow-2xl border-l border-slate-200 flex flex-col">
+        <div class="p-5 border-b border-slate-200 flex items-start justify-between gap-4">
+            <div>
+                <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+                    <i class="pi pi-info-circle text-red-watabi"></i>
+                    Come funziona l’editor
+                </h3>
+                <p class="text-sm text-slate-600 mt-1">
+                    Istruzioni rapide per modificare i contenuti senza rompere nulla.
+                </p>
+            </div>
+
+            <button (click)="closeHelp()"
+                class="w-10 h-10 inline-flex items-center justify-center rounded-lg bg-slate-900/5 hover:bg-slate-900/10 transition"
+                aria-label="Chiudi">
+                <i class="pi pi-times text-lg text-slate-700"></i>
+            </button>
+        </div>
+
+        <div class="p-5 overflow-auto">
+            <ul class="text-sm text-slate-700 space-y-3">
+                <li><strong>1.</strong> Seleziona una sezione dal menu</li>
+                <li><strong>2.</strong> Modifica i campi direttamente</li>
+                <li><strong>3.</strong> <strong> Salva nel Browser</strong> = modifiche locali, visibili subito</li>
+                <li><strong>4.</strong> <strong> Esporta JSON</strong> quando hai finito</li>
+                <li><strong>5.</strong> Invia il JSON a Andrea 🐙 per pubblicare online</li>
+                <li><strong>5.</strong> Il simbolo ⚠️ nel menu indica sezioni con modifiche locali non ancora
+                    pubblicate.</li>
+
+                <li class="pt-2">
+                    <strong class="text-red-watabi">Icone:</strong><br>
+                    Lista su
+                    <a href="https://primeng.org/icons#list" target="_blank"
+                        class="text-blue-700 underline hover:text-blue-900">
+                        PrimeNG Icons
+                    </a><br>
+                    Usa sempre il prefisso <code class="bg-slate-100 px-1 rounded">pi-</code> (es: <code
+                        class="bg-slate-100 px-1 rounded">pi-star</code>)
+                </li>
+
+                <li class="pt-2">
+                    <strong class="text-red-watabi">Formattazione testo (con stile Watabi):</strong><br>
+
+                    <span class="text-slate-700">
+                        Puoi formattare i testi con pochi tag “sicuri”, senza cambiare la struttura della pagina.
+                    </span>
+
+                    <div class="mt-2 space-y-2">
+                        <div>
+                            <strong>Grassetto:</strong>
+                            <code class="bg-slate-100 px-1 rounded">&lt;strong&gt;testo&lt;/strong&gt;</code>
+                        </div>
+
+                        <div>
+                            <strong>Grassetto + colore Watabi:</strong><br>
+                            <code class="bg-slate-100 px-1 rounded">
+                                &lt;strong class="text-red-watabi"&gt;testo&lt;/strong&gt;
+                            </code>
+                            <div class="text-xs text-slate-500 mt-1">
+                                (Consiglio: usa questa forma solo per 1–2 parole importanti)
+                            </div>
+                        </div>
+
+                        <div>
+                            <strong>Solo colore Watabi (senza grassetto):</strong><br>
+                            <code class="bg-slate-100 px-1 rounded">
+                                &lt;span class="text-red-watabi"&gt;testo&lt;/span&gt;
+                            </code>
+                        </div>
+
+                        <div>
+                            <strong>Andare a capo:</strong>
+                            <code class="bg-slate-100 px-1 rounded">&lt;br&gt;</code>
+                        </div>
+                        <div class="pt-1">
+                            <strong>Regole semplici:</strong><br>
+                            - Non usare tag come
+                            <code class="bg-slate-100 px-1 rounded">div</code>,
+                            <code class="bg-slate-100 px-1 rounded">p</code>,
+                            <code class="bg-slate-100 px-1 rounded">h1/h2</code>,
+                            <code class="bg-slate-100 px-1 rounded">img</code>,
+                            <code class="bg-slate-100 px-1 rounded">style</code><br>
+                            - Non cambiare o inventare classi: usa solo
+                            <code class="bg-slate-100 px-1 rounded">text-red-watabi</code>
+                        </div>
+                    </div>
+                </li>
+
+
+                <li>
+                    <strong class="text-red-watabi">Immagini:</strong><br>
+                    Inserisci URL completi che iniziano con <code class="bg-slate-100 px-1 rounded">https://</code>
+                </li>
+
+                <li>
+                    <strong class="text-red-watabi">Numeri:</strong><br>
+                    ⭐ Rating: 1–5<br>
+                    Opacità Header: 0.1–0.9 (per leggibilità)
+                </li>
+
+            </ul>
+        </div>
+
+        <div class="p-4 border-t border-slate-200 bg-white/80">
+            <button (click)="closeHelp()"
+                class="w-full px-4 py-3 rounded-lg bg-red-watabi text-white font-semibold hover:bg-red-700 transition text-xs">
+                Chiudi
+            </button>
+        </div>
+    </aside>
+    }
+</div>

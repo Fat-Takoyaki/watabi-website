@@ -1,12 +1,34 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { ContentService } from '../../../../services/content.services';
 
 interface Strength {
   icon: string;
   title: string;
   description: string;
   color: string;
+}
+
+interface WatabiContent {
+  header: {
+    title: string;
+    subtitle: string;
+  };
+  mainContent: {
+    imageUrl: string;
+    imageAlt: string;
+    badge: {
+      title: string;
+      subtitle: string;
+    };
+    paragraphs: string[];
+    ctaButton: {
+      text: string;
+      link: string;
+    };
+  };
+  strengths: Strength[];
 }
 
 @Component({
@@ -16,41 +38,101 @@ interface Strength {
   templateUrl: './watabi.html',
   styleUrl: './watabi.scss',
 })
-export class Watabi {
-  strengths: Strength[] = [
-    {
-      icon: 'pi-map-marker',
-      title: 'Sede in Giappone',
-      description:
-        'Il nostro team vive e lavora a Tokyo, con una conoscenza diretta e aggiornata del territorio',
-      color: 'from-red-watabi to-red-dark',
-    },
-    {
-      icon: 'pi-users',
-      title: 'Assistenza in Italiano',
-      description:
-        'Guide e supporto nella tua lingua, per viaggiare senza barriere linguistiche',
-      color: 'from-bamboo to-bamboo-light',
-    },
-    {
-      icon: 'pi-heart',
-      title: 'Esperienza Autentica',
-      description:
-        'Itinerari che vanno oltre i luoghi turistici, per scoprire il vero spirito del Giappone',
-      color: 'from-sakura to-pink-watabi',
-    },
-    {
-      icon: 'pi-sliders-h',
-      title: 'Massima Flessibilità',
-      description:
-        'Ogni viaggio è costruito su misura, modificabile in ogni momento secondo le tue esigenze',
-      color: 'from-jade to-jade-dark',
-    },
-  ];
+export class Watabi implements OnInit {
+  content: WatabiContent | null = null;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private contentService: ContentService) {}
 
-  navigateToAbout() {
-    this.router.navigate(['/about']);
+  ngOnInit(): void {
+    this.loadContent();
+  }
+
+  private loadContent(): void {
+    this.contentService
+      .loadContent<WatabiContent>('watabi-approach')
+      .subscribe({
+        next: (data) => {
+          if (data) {
+            this.content = data;
+          } else {
+            // Fallback con contenuti di emergenza
+            this.content = this.getEmergencyContent();
+          }
+        },
+        error: (err) => {
+          console.error('Errore caricamento contenuti Watabi:', err);
+          this.content = this.getEmergencyContent();
+        },
+      });
+  }
+
+  navigateToAbout(): void {
+    if (this.content?.mainContent.ctaButton.link) {
+      this.router.navigate([this.content.mainContent.ctaButton.link]);
+    } else {
+      this.router.navigate(['/about']);
+    }
+  }
+
+  /**
+   * Contenuti di emergenza
+   */
+  private getEmergencyContent(): WatabiContent {
+    return {
+      header: {
+        title:
+          'Il nostro modo di farti <span class="text-red-watabi">scoprire</span> il Giappone',
+        subtitle: 'Viaggiare in Giappone con Watabi',
+      },
+      mainContent: {
+        imageUrl:
+          'https://images.unsplash.com/photo-1528164344705-47542687000d?w=800&q=80',
+        imageAlt: 'Watabi Team',
+        badge: {
+          title: '100% Personalizzabile',
+          subtitle: 'Itinerari su misura',
+        },
+        paragraphs: [
+          '<strong class="text-red-watabi">Watabi</strong> non è solo un\'agenzia di viaggi: siamo italiani che hanno scelto di vivere in Giappone per passione e che hanno fatto di questa passione il loro lavoro.',
+          "La nostra <strong>specializzazione assoluta sul Giappone</strong> ci permette di offrire un servizio che va oltre l'organizzazione logistica: ogni itinerario è pensato per farti vivere il paese in profondità, con la libertà di esplorare al tuo ritmo ma con il supporto costante di chi questo paese lo conosce davvero.",
+          "Grazie al nostro presente sul territorio a:<strong>Tokyo, Kyoto e Osaka</strong>, manteniamo rapporti diretti con strutture, guide e fornitori locali. Questo ci permette di garantirti prezzi competitivi, disponibilità anche in alta stagione e un'assistenza immediata in italiano durante tutto il viaggio.",
+          "Che tu voglia un tour classico, un viaggio di nozze romantico o un'avventura in famiglia, costruiremo insieme l'esperienza giapponese perfetta per te, con <strong>flessibilità totale</strong> e la sicurezza di avere sempre qualcuno che parla la tua lingua a disposizione.",
+        ],
+        ctaButton: {
+          text: 'Scopri chi siamo',
+          link: '/about',
+        },
+      },
+      strengths: [
+        {
+          icon: 'pi-map-marker',
+          title: 'Sede in Giappone',
+          description:
+            'Il nostro team vive e lavora a Tokyo, con una conoscenza diretta e aggiornata del territorio',
+          color: 'from-red-watabi to-red-dark',
+        },
+        {
+          icon: 'pi-users',
+          title: 'Assistenza in Italiano',
+          description:
+            'Guide e supporto nella tua lingua, per viaggiare senza barriere linguistiche',
+          color: 'from-bamboo to-bamboo-light',
+        },
+        {
+          icon: 'pi-heart',
+          title: 'Esperienza Autentica',
+          description:
+            'Itinerari che vanno oltre i luoghi turistici, per scoprire il vero spirito del Giappone',
+          color: 'from-sakura to-pink-watabi',
+        },
+        {
+          icon: 'pi-sliders-h',
+          title: 'Massima Flessibilità',
+          description:
+            'Ogni viaggio è costruito su misura, modificabile in ogni momento secondo le tue esigenze',
+          color: 'from-jade to-jade-dark',
+        },
+      ],
+    };
   }
 }

@@ -1,5 +1,10 @@
-<app-header class="-mt-20"></app-header>
-
+@if (headerContent) {
+<app-header class="-mt-20" [showCta]="headerContent.showCta" [ctaText]="headerContent.ctaText"
+    [ctaLink]="headerContent.ctaLink" [backgroundImage]="headerContent.backgroundImage" [title]="headerContent.title"
+    [subtitle]="headerContent.subtitle" [overlayOpacity]="headerContent.overlayOpacity"
+    [minHeight]="headerContent.minHeight">
+</app-header>
+}
 <!-- 1. ISPIRAZIONE IMMEDIATA: Perché il Giappone? -->
 <app-japan-experience class="-mt-10"></app-japan-experience>
 

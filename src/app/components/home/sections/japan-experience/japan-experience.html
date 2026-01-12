@@ -1,33 +1,23 @@
 <section class="py-20 bg-gradient-to-b from-white via-sakura-light/10 to-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
+        @if (content) {
         <!-- Section Header -->
         <div class="text-center mx-auto mb-16">
-            <h2 class="text-2xl md:text-4xl font-bold text-slate-900 mb-6">
-                Il Giappone: un'esperienza che ti cambia
+            <h2 class="text-2xl md:text-4xl font-bold text-slate-900 mb-6" [innerHTML]="content.header.title">
             </h2>
             <div class="w-44 h-1 bg-gradient-to-r from-red-watabi to-sakura mx-auto mb-4"></div>
-            <h3 class="text-2xl text-slate-700 font-light mb-6">
-                Tradizione, spiritualità, Innovazione e Ospitalità
+            <h3 class="text-2xl text-slate-700 font-light mb-6" [innerHTML]="content.header.subtitle">
             </h3>
-            <p class="text-md text-slate-600 leading-relaxed">
-                Il Giappone è una terra di contrasti straordinari: templi millenari accanto a grattacieli futuristici,
-                giardini zen che convivono con quartieri vivaci e tecnologici.<br/> È un paese dove la spiritualità permea
-                ogni aspetto della vita quotidiana, dove l'ospitalità è un'arte e la natura è venerata con rispetto
-                profondo.
+            <p class="text-md text-slate-600 leading-relaxed" [innerHTML]="content.header.intro">
             </p>
-            <p class="text-md text-slate-600 leading-relaxed mt-4">
-                Una meta affascinante ma culturalmente distante, che <strong class="text-red-watabi">Watabi rende
-                    accessibile</strong>
-                grazie alla sua presenza sul territorio e alla profonda conoscenza delle sfumature culturali che fanno
-                la differenza
-                tra un viaggio e un'esperienza indimenticabile.
+            <p class="text-md text-slate-600 leading-relaxed mt-4" [innerHTML]="content.header.highlight">
             </p>
         </div>
 
         <!-- Feature Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            @for(feature of features; track feature.title) {
+            @for(feature of content.features; track feature.title) {
             <div
                 class="group relative bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
 
@@ -46,8 +36,10 @@
 
                 <!-- Content -->
                 <div class="p-6">
-                    <h4 class="text-xl font-bold text-slate-900 mb-2">{{ feature.title }}</h4>
-                    <p class="text-slate-600 text-sm leading-relaxed">{{ feature.description }}</p>
+                    <h4 class="text-xl font-bold text-slate-900 mb-2" [innerHTML]="feature.title">
+                    </h4>
+                    <p class="text-slate-600 text-sm leading-relaxed" [innerHTML]="feature.description">
+                    </p>
                 </div>
 
                 <!-- Decorative element -->
@@ -60,15 +52,24 @@
 
         <!-- Bottom CTA -->
         <div class="mt-16 text-center">
-            <p class="text-slate-600 mb-6">
-                Scopri come possiamo rendere il tuo sogno giapponese una realtà
+            <p class="text-slate-600 mb-6" [innerHTML]="content.cta.text">
             </p>
-            <a href="#watabi-approach"
+            <a href="" (click)="scrollTo(content.cta.buttonLink, $event)"
                 class="inline-flex items-center gap-2 text-red-watabi font-semibold hover:gap-4 transition-all">
-                <span>Il nostro approccio</span>
+                <span [innerHTML]="content.cta.buttonText"></span>
                 <i class="pi pi-arrow-down"></i>
             </a>
+
         </div>
+        }
+
+        <!-- Loading state (opzionale) -->
+        @if (!content) {
+        <div class="text-center py-20">
+            <i class="pi pi-spin pi-spinner text-4xl text-red-watabi"></i>
+            <p class="mt-4 text-slate-600">Caricamento contenuti...</p>
+        </div>
+        }
 
     </div>
 </section>

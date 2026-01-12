@@ -1,0 +1,31 @@
+input, textarea {
+  transition: all 0.2s ease;
+  
+  &:focus {
+    outline: none;
+  }
+}
+
+button {
+  transition: all 0.2s ease;
+  
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+// Animazione per il messaggio di successo
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.bg-green-100 {
+  animation: slideIn 0.3s ease;
+}
