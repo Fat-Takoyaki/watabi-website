@@ -33,14 +33,14 @@ export class ContentService {
       description: 'Sezione principale della home - Esperienza Giappone',
     },
     {
-      id: 'watabi-approach',
+      id: 'watabi',
       name: 'Watabi Approach',
       storageKey: 'watabi-content',
       jsonPath: 'assets/data/home/sections/watabi/watabi-content.json',
       description: 'Sezione "Il nostro approccio"',
     },
     {
-      id: 'trova-il-tuo-viaggio',
+      id: 'travel-types',
       name: 'Travel Types',
       storageKey: 'travel-types-content',
       jsonPath:

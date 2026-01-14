@@ -8,7 +8,7 @@
       "id": "custom",
       "title": "Viaggi su Misura",
       "subtitle": "La tua avventura, le tue regole",
-      "description": "Costruiamo insieme l'itinerario perfetto per te, che tu viaggi da solo, in coppia o in famiglia. Massima libertà e flessibilità.",
+      "description": "Ideale per chi vuole viaggiare in autonomia, con il supporto di chi conosce il Giappone sul posto.",
       "image": "https://images.unsplash.com/photo-1492571350019-22de08371fd3?w=800&q=80",
       "route": "/custom-travel",
       "icon": "pi-user",
@@ -17,7 +17,8 @@
         "Adatto alle famiglie",
         "Partenze libere"
       ],
-      "gradient": "from-red-watabi to-red-dark"
+      "gradient": "from-red-watabi to-red-dark",
+      "ctaText": "Scopri di più"
     },
     {
       "id": "honeymoon",
@@ -29,25 +30,23 @@
       "icon": "pi-heart",
       "features": [
         "Esperienze romantiche",
-        "Ryokan di lusso",
-        "Itinerari esclusivi"
+        "Ryokan selezionati per esperienze uniche",
+        "Itinerari Esclusivi"
       ],
-      "gradient": "from-sakura to-pink-watabi"
+      "gradient": "from-sakura to-pink-watabi",
+      "ctaText": "Scopri di più"
     },
     {
       "id": "group",
       "title": "Viaggi di Gruppo",
-      "subtitle": "Scopri il Giappone con altri viaggiatori",
+      "subtitle": "Gruppi piccoli, itinerari curati e accompagnamento in italiano",
       "description": "Tour guidati con partenze garantite, per vivere il Giappone in compagnia con l'esperienza di guide esperte.",
       "image": "https://images.unsplash.com/photo-1478436127897-769e1b3f0f36?w=800&q=80",
       "route": "/group-tours",
       "icon": "pi-users",
-      "features": [
-        "Gruppi ristretti",
-        "Guide italiane",
-        "Partenze garantite"
-      ],
-      "gradient": "from-jade to-jade-dark"
+      "features": ["Gruppi ristretti", "Guide italiane", "Partenze garantite"],
+      "gradient": "from-jade to-jade-dark",
+      "ctaText": "Scopri di più"
     }
   ],
   "specialTour": {
@@ -70,7 +69,7 @@
   "footer": {
     "note": "Non sai quale scegliere? Ogni viaggio Watabi è completamente personalizzabile.",
     "noteColor": "text-white",
-    "ctaText": "Scopri di più su i Viaggi su Misura",
+    "ctaText": "Scopri di più",
     "ctaLink": "/contact"
   }
 }

@@ -13,6 +13,7 @@ interface TravelType {
   icon: string;
   features: string[];
   gradient: string;
+  ctaText: string;
 }
 
 interface SpecialTour {
@@ -107,6 +108,7 @@ export class TravelTypes implements OnInit {
             'Partenze libere',
           ],
           gradient: 'from-red-watabi to-red-dark',
+          ctaText: 'Scopri di più',
         },
         {
           id: 'honeymoon',
@@ -124,6 +126,7 @@ export class TravelTypes implements OnInit {
             'Itinerari esclusivi',
           ],
           gradient: 'from-sakura to-pink-watabi',
+          ctaText: 'Scopri di più',
         },
         {
           id: 'group',
@@ -141,6 +144,7 @@ export class TravelTypes implements OnInit {
             'Partenze garantite',
           ],
           gradient: 'from-jade to-jade-dark',
+          ctaText: 'Scopri di più',
         },
       ],
       specialTour: {
@@ -165,7 +169,7 @@ export class TravelTypes implements OnInit {
       footer: {
         note: 'Non sai quale scegliere? Ogni viaggio Watabi è completamente personalizzabile.',
         noteColor: 'text-white',
-        ctaText: 'Scopri di più su i Viaggi su Misura',
+        ctaText: 'Scopri di più',
         ctaLink: '/contact',
       },
     };

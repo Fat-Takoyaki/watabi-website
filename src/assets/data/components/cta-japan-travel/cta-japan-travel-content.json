@@ -1,7 +1,7 @@
 {
   "header": {
-    "title": "Pronto a <span class=\"text-red-300\">Partire</span>?",
-    "subtitle": "Il tuo viaggio dei sogni in Giappone ti aspetta. Lascia che Watabi trasformi il tuo sogno in realtà."
+    "title": "Il prossimo passo è <span class=\"text-red-300\">semplice</span>",
+    "subtitle": "Da qui inizia la progettazione del tuo viaggio in Giappone."
   },
   "features": [
     {
@@ -11,17 +11,17 @@
     },
     {
       "icon": "pi-heart",
-      "title": "Tour Personalizzati",
-      "description": "Viaggi su misura per te"
+      "title": "Presenza in Giappone",
+      "description": "Non intermediari, ma un team che vive e lavora sul posto"
     },
     {
       "icon": "pi-shield",
-      "title": "Assistenza 24/7",
-      "description": "Sempre al tuo fianco"
+      "title": "Supporto in italiano",
+      "description": "Prima, durante e dopo il viaggio, con persone sul posto"
     },
     {
       "icon": "pi-star",
-      "title": "Esperienza Unica",
+      "title": "Specializzazione",
       "description": "Dal 2015 specialisti del Giappone"
     }
   ],

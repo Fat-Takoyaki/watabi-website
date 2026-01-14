@@ -1,7 +1,7 @@
 {
   "header": {
     "title": "Il nostro modo di farti <span class=\"text-red-watabi\">scoprire</span> il Giappone",
-    "subtitle": "Viaggiare in Giappone con Watabi"
+    "subtitle": "Viaggiare in Giappone, con il supporto giusto"
   },
   "mainContent": {
     "imageUrl": "https://images.unsplash.com/photo-1528164344705-47542687000d?w=800&q=80",
@@ -11,10 +11,10 @@
       "subtitle": "Itinerari su misura"
     },
     "paragraphs": [
-      "<strong class=\"text-red-watabi\">Watabi</strong> non è solo un'agenzia di viaggi: siamo italiani che hanno scelto di vivere in Giappone per passione e che hanno fatto di questa passione il loro lavoro.",
-      "La nostra <strong>specializzazione assoluta sul Giappone</strong> ci permette di offrire un servizio che va oltre l'organizzazione logistica: ogni itinerario è pensato per farti vivere il paese in profondità, con la libertà di esplorare al tuo ritmo ma con il supporto costante di chi questo paese lo conosce davvero.",
-      "Grazie al nostro presente sul territorio a:<strong>Tokyo, Kyoto e Osaka</strong>, manteniamo rapporti diretti con strutture, guide e fornitori locali. Questo ci permette di garantirti prezzi competitivi, disponibilità anche in alta stagione e un'assistenza immediata in italiano durante tutto il viaggio.",
-      "Che tu voglia un tour classico, un viaggio di nozze romantico o un'avventura in famiglia, costruiremo insieme l'esperienza giapponese perfetta per te, con <strong>flessibilità totale</strong> e la sicurezza di avere sempre qualcuno che parla la tua lingua a disposizione."
+      "<strong class=\"text-red-watabi\">Watabi</strong> è specializzata esclusivamente in viaggi in Giappone.\nNon trattiamo altre destinazioni, perché conoscere davvero un paese richiede tempo, presenza e continuità.",
+      "Viviamo e operiamo direttamente in Giappone, collaborando ogni giorno con guide, strutture e fornitori locali. Questo ci permette di offrire un’organizzazione flessibile, ma sempre solida, e un supporto costante in italiano, presente senza essere invadente.",
+      "Ogni viaggio nasce dall’ascolto. Costruiamo itinerari su misura, rispettando i ritmi di chi viaggia e lasciando spazio alla scoperta personale, con la sicurezza di avere sempre qualcuno sul posto che conosce il contesto e può fare la differenza.",
+      "Il risultato è un viaggio flessibile, fluido e naturale, che ti permette di vivere il Giappone con libertà, sapendo però di non essere mai davvero solo."
     ],
     "ctaButton": {
       "text": "Scopri chi siamo",
@@ -25,25 +25,25 @@
     {
       "icon": "pi-map-marker",
       "title": "Sede in Giappone",
-      "description": "Il nostro team vive e lavora a Tokyo, con una conoscenza diretta e aggiornata del territorio",
+      "description": "Viviamo e lavoriamo sul posto, con una conoscenza reale e aggiornata del territorio",
       "color": "from-red-watabi to-red-dark"
     },
     {
       "icon": "pi-users",
       "title": "Assistenza in Italiano",
-      "description": "Guide e supporto nella tua lingua, per viaggiare senza barriere linguistiche",
+      "description": "Supporto prima, durante e dopo il viaggio, nella tua lingua",
       "color": "from-bamboo to-bamboo-light"
     },
     {
       "icon": "pi-heart",
       "title": "Esperienza Autentica",
-      "description": "Itinerari che vanno oltre i luoghi turistici, per scoprire il vero spirito del Giappone",
+      "description": "Itinerari pensati per andare oltre i luoghi più turistici",
       "color": "from-sakura to-pink-watabi"
     },
     {
       "icon": "pi-sliders-h",
       "title": "Massima Flessibilità",
-      "description": "Ogni viaggio è costruito su misura, modificabile in ogni momento secondo le tue esigenze",
+      "description": "Viaggi su misura, adattabili in base alle tue esigenze",
       "color": "from-jade to-jade-dark"
     }
   ]

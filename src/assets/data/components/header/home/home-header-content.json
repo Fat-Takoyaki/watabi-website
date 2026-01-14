@@ -1,9 +1,9 @@
 {
   "showCta": true,
-  "ctaText": "Trova il tuo Viaggio",
+  "ctaText": "Trova il viaggio giusto per te",
   "ctaLink": "#trova-il-tuo-viaggio",
   "backgroundImage": "https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=1920&q=80",
-  "title": "Il Giappone per viaggiare liberi",
+  "title": "Il Giappone per viaggiatori liberi",
   "subtitle": "Un modo diverso di viaggiare",
   "overlayOpacity": 0.3,
   "minHeight": "550px"

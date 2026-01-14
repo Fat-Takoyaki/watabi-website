@@ -53,7 +53,7 @@
                     <!-- CTA Button -->
                     <button
                         [class]="'w-full py-3 px-4 bg-gradient-to-r text-white font-semibold rounded-xl hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 ' + type.gradient">
-                        <span>Scopri di più</span>
+                        <span [innerHTML]="type.ctaText"></span>
                         <i class="pi pi-arrow-right group-hover:translate-x-1 transition-transform"></i>
                     </button>
                 </div>
