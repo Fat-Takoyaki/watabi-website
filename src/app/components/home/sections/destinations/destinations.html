@@ -60,7 +60,7 @@
                     <!-- CTA Button -->
                     <button (click)="navigateToBlog(dest.blogRoute)"
                         class="w-full py-3 px-4 bg-gradient-to-r from-red-watabi to-red-dark text-white font-semibold rounded-xl hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 group">
-                        <span>Scopri {{ dest.name }}</span>
+                        <span>{{ dest.labelPreName }} {{ dest.name }}</span>
                         <i class="pi pi-arrow-right group-hover:translate-x-1 transition-transform"></i>
                     </button>
                 </div>

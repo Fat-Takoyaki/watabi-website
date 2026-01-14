@@ -6,6 +6,7 @@
   "destinations": [
     {
       "id": "tokyo",
+      "labelPreName": "Scopri",
       "name": "Tokyo",
       "tagline": "Il cuore pulsante del Giappone moderno",
       "description": "Una metropoli che non dorme mai, dove grattacieli futuristici convivono con templi antichi. Dai quartieri tecnologici di Akihabara alla spiritualità di Asakusa.",
@@ -20,6 +21,7 @@
     },
     {
       "id": "kyoto",
+      "labelPreName": "Visita",
       "name": "Kyoto",
       "tagline": "L'anima tradizionale del Giappone",
       "description": "L'antica capitale imperiale con oltre 2000 templi e santuari. Geishe, giardini zen e l'iconica foresta di bambù di Arashiyama ti aspettano.",
@@ -34,6 +36,7 @@
     },
     {
       "id": "osaka",
+      "labelPreName": "Esplora",
       "name": "Osaka",
       "tagline": "Osaka è informale, diretta, profondamente umana",
       "description": "Vibrante, accogliente e famosa per il suo street food. Osaka offre modernità, cultura pop, quartieri iconici come Dōtonbori e castelli storici immersi nel verde.",
@@ -48,6 +51,7 @@
     },
     {
       "id": "nara",
+      "labelPreName": "Scopri",
       "name": "Nara",
       "tagline": "La città dei cervi sacri",
       "description": "Prima capitale del Giappone, famosa per i suoi cervi mansueti che passeggiano liberamente e per il monumentale Buddha del Todai-ji.",
@@ -62,6 +66,7 @@
     },
     {
       "id": "kanazawa",
+      "labelPreName": "Visita",
       "name": "Kanazawa",
       "tagline": "La piccola Kyoto nascosta",
       "description": "Una gemma sottovalutata con il giardino più bello del Giappone, quartieri di samurai perfettamente conservati e tradizioni artigianali vive.",
@@ -76,6 +81,7 @@
     },
     {
       "id": "okinawa",
+      "labelPreName": "Esplora",
       "name": "Okinawa",
       "tagline": "Il paradiso tropicale giapponese",
       "description": "Isole subtropicali con spiagge cristalline, cultura unica Ryukyu e una storia affascinante. Il Giappone che non ti aspetti.",

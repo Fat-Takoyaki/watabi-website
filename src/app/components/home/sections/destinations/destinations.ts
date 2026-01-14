@@ -5,6 +5,7 @@ import { ContentService } from '../../../../services/content.services';
 
 interface Destination {
   id: string;
+  labelPreName: string;
   name: string;
   tagline: string;
   description: string;
@@ -77,6 +78,7 @@ export class Destinations implements OnInit {
       destinations: [
         {
           id: 'tokyo',
+          labelPreName: 'Scopri',
           name: 'Tokyo',
           tagline: 'Il cuore pulsante del Giappone moderno',
           description:
@@ -89,6 +91,7 @@ export class Destinations implements OnInit {
         },
         {
           id: 'kyoto',
+          labelPreName: 'Visita',
           name: 'Kyoto',
           tagline: "L'anima tradizionale del Giappone",
           description:
@@ -101,6 +104,7 @@ export class Destinations implements OnInit {
         },
         {
           id: 'osaka',
+          labelPreName: 'Esplora',
           name: 'Osaka',
           tagline: 'La capitale gastronomica del Giappone',
           description:
@@ -113,6 +117,7 @@ export class Destinations implements OnInit {
         },
         {
           id: 'nara',
+          labelPreName: 'Scopri',
           name: 'Nara',
           tagline: 'La città dei cervi sacri',
           description:
@@ -125,6 +130,7 @@ export class Destinations implements OnInit {
         },
         {
           id: 'kanazawa',
+          labelPreName: 'Visita',
           name: 'Kanazawa',
           tagline: 'La piccola Kyoto nascosta',
           description:
@@ -137,6 +143,7 @@ export class Destinations implements OnInit {
         },
         {
           id: 'okinawa',
+          labelPreName: 'Esplora',
           name: 'Okinawa',
           tagline: 'Il paradiso tropicale giapponese',
           description:
